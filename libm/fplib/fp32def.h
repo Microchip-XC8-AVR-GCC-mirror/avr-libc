@@ -26,6 +26,6 @@
 
 /* Put constant tables at low addresses in program memory, so they are
    reachable for "lpm" without using RAMPZ on >64K devices.  */
-#define PGM_SECTION	.section  .progmem.gcc_fplib, "a", @progbits
+#define PGM_SECTION	.section  .progmem.gcc_fplib, code
 
 #endif	/* !_FP32DEF_H */

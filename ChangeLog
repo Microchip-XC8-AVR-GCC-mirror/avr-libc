@@ -26,11 +26,6 @@
 	* libc/misc/eewr_block_xmega.c: New file for function eeprom_write_block
 	for xmega devices with eeprom pages.
 
-2016-10-27  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
-
-	Fix for bug #49447: Example code for uart_putchar() has error in recursive call
-	* include/stdio.h: Add 2nd "stream" parameter in example code
-
 2016-10-19  azudem
 
 	Fix for bug #41689: add static_assert to assert.h
@@ -83,10 +78,6 @@
 2016-03-17  Senthil Kumar Selvaraj <senthil_kumar.selvaraj@atmel.com>
 
 	* crt1/gcrt1.S: Weakly define __FUSE_REGION_LENGTH__.
-
-2016-02-08  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
-
-	* configure.ac: Post-release 2.0.0.
 
 2016-02-08  Joerg Wunsch <j.gnu@uriah.heep.sax.de>
 

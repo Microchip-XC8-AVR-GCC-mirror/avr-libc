@@ -98,10 +98,12 @@ _U(strstr_PF):
 
 	clr	ret_b0
 	clr	ret_b1
+	LPM_R0_ZPLUS_FINI s2_b2
 	ret
 
 .L_match_P:
 	sbiw	ret_b0, 1
+	LPM_R0_ZPLUS_INIT s2_b2
 	ret
 
 .L_strstr_end_P:

@@ -620,6 +620,7 @@ Build the tools below in MinGW/MSYS.
             --enable-doc \
             --disable-versioned-doc \
             --enable-html-doc \
+            --enable-xml-doc \
             --enable-pdf-doc \
             --enable-man-doc \
             --mandir=$installdir/man \

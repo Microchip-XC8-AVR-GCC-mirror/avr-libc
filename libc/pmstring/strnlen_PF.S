@@ -73,6 +73,7 @@ _U(strnlen_PF):
 	com	src_b1
 	add	src_b0, ZL
 	adc	src_b1, ZH
+	LPM_R0_ZPLUS_FINI src_b2
 	X_movw	src_b2, src_b0		; size_t is 16 bits
 	ret
 

@@ -75,7 +75,7 @@ _U(strncat_PF):
 	tst	r0
 	st	X+, r0
 	brne	.L_strncat_PF_loop
-
+	LPM_R0_ZPLUS_FINI src_b2
 ; return dest (unchanged)
 
 	ret
@@ -83,7 +83,7 @@ _U(strncat_PF):
 .L_strncat_PF_done:
 
 	st	X, __zero_reg__
-
+	LPM_R0_ZPLUS_FINI src_b2
 ; return dest (unchanged)
 
 	ret

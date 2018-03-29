@@ -318,10 +318,13 @@ AVR will be defined as well when using the standard levels gnu89
   <tr><td>avr5</td><td>ata5782</td><td>__AVR_ATA5782__</td></tr>
   <tr><td>avr5</td><td>ata5790</td><td>__AVR_ATA5790__</td></tr>
   <tr><td>avr5</td><td>ata5790n</td><td>__AVR_ATA5790N__</td></tr>
+  <tr><td>avr5</td><td>ata5791</td><td>__AVR_ATA5791__</td></tr>
   <tr><td>avr5</td><td>ata5795</td><td>__AVR_ATA5795__</td></tr>
   <tr><td>avr5</td><td>ata5831</td><td>__AVR_ATA5831__</td></tr>
   <tr><td>avr5</td><td>ata6613c</td><td>__AVR_ATA6613C__</td></tr>
   <tr><td>avr5</td><td>ata6614q</td><td>__AVR_ATA6614Q__</td></tr>
+  <tr><td>avr5</td><td>ata8210</td><td>__AVR_ATA8210__</td></tr>
+  <tr><td>avr5</td><td>ata8510</td><td>__AVR_ATA8510__</td></tr>
   <tr><td>avr5</td><td>atmega161</td><td>__AVR_ATmega161__</td></tr>
   <tr><td>avr5</td><td>atmega162</td><td>__AVR_ATmega162__</td></tr>
   <tr><td>avr5</td><td>atmega163</td><td>__AVR_ATmega163__</td></tr>
@@ -336,6 +339,7 @@ AVR will be defined as well when using the standard levels gnu89
   <tr><td>avr5</td><td>atmega168a</td><td>__AVR_ATmega168A__</td></tr>
   <tr><td>avr5</td><td>atmega168p</td><td>__AVR_ATmega168P__</td></tr>
   <tr><td>avr5</td><td>atmega168pa</td><td>__AVR_ATmega168PA__</td></tr>
+  <tr><td>avr5</td><td>atmega168pb</td><td>__AVR_ATmega168PB__</td></tr>
   <tr><td>avr5</td><td>atmega169</td><td>__AVR_ATmega169__</td></tr>
   <tr><td>avr5</td><td>atmega169a</td><td>__AVR_ATmega169A__</td></tr>
   <tr><td>avr5</td><td>atmega169p</td><td>__AVR_ATmega169P__</td></tr>
@@ -427,6 +431,7 @@ AVR will be defined as well when using the standard levels gnu89
   <tr><td>avrxmega2</td><td>atxmega16a4u</td><td>__AVR_ATxmega16A4U__</td></tr>
   <tr><td>avrxmega2</td><td>atxmega16c4</td><td>__AVR_ATxmega16C4__</td></tr>
   <tr><td>avrxmega2</td><td>atxmega16d4</td><td>__AVR_ATxmega16D4__</td></tr>
+  <tr><td>avrxmega2</td><td>atxmega16e5</td><td>__AVR_ATxmega16E5__</td></tr>
   <tr><td>avrxmega2</td><td>atxmega32a4</td><td>__AVR_ATxmega32A4__</td></tr>
   <tr><td>avrxmega2</td><td>atxmega32a4u</td><td>__AVR_ATxmega32A4U__</td></tr>
   <tr><td>avrxmega2</td><td>atxmega32c3</td><td>__AVR_ATxmega32C3__</td></tr>

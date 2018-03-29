@@ -32,7 +32,7 @@
 #
 MAINTAINERCLEANFILES = Makefile.in stamp-vti
 
-CLEANFILES           = *.html *.pdf *.ma *.mas \
+CLEANFILES           = *.html *.xml *.pdf *.ma *.mas \
                        *.png *.eps fix_png \
                        doxygen.config doxygen-pdf.config
 
@@ -67,6 +67,7 @@ SUFFIXES             = .pdf .fig .png .eps
 DOC_INST_DIR         = @DOC_INST_DIR@
 
 USER_MANUAL          = @AVR_LIBC_USER_MANUAL@
+USER_MANUAL_XML      = @AVR_LIBC_USER_MANUAL@-xml
 
 DEMO_LIBS            = $(shell cd $(top_srcdir) && find `pwd` \( -name crtm8.o -o -name exit.o \) -print | grep avr4)
 # As avr-gcc must have been installed already, we can reference its
@@ -77,7 +78,7 @@ DEMO_INC             = $(shell cd $(top_srcdir) && echo "-I`pwd`/include")
 # All demo projects where we need to run "make dox" beforehand.
 DEMOS                = demo largedemo stdiodemo
 
-all-local: html pdf
+all-local: html xml pdf
 
 # Before we can build the dox, we need to build the demo project so that some
 # included files get generated.
@@ -126,12 +127,15 @@ fix_png: $(wildcard $(USER_MANUAL)/*.png) latex_src/refman.tex
 	done
 	echo timestamp > fix_png
 
+# Rule for generating XML output
+xml: demo demodox fix_png $(TARGET_DOX_XML)
+
 # Rule for generating PDF output
 pdf: demo demodox $(TARGET_DOX_PDF)
 
 # General rule for installing documentation
 install-data-local: $(INSTALL_DOX_HTML) $(INSTALL_DOX_PDF) \
-	$(INSTALL_DOX_MAN)
+	$(INSTALL_DOX_MAN) $(INSTALL_DOX_XML)
 
 uninstall-local:
 	rm -rf $(DOC_INST_DIR)
@@ -216,6 +220,10 @@ dox-html: demo demodox fix_png $(USER_MANUAL)/index.html
 
 $(USER_MANUAL)/index.html: latex_src/refman.tex
 
+dox-xml: demo demodox fix_png $(USER_MANUAL)/index.xml
+
+$(USER_MANUAL)/index.xml: latex_src/refman.tex
+
 dox-pdf: $(USER_MANUAL).pdf
 
 $(USER_MANUAL).pdf: latex_src/refman.tex
@@ -235,6 +243,15 @@ install-dox-html: dox-html
 	  $(INSTALL_DATA) $$file $(DOC_INST_DIR)/$$file; \
 	done
 
+install-dox-xml: dox-xml
+	$(mkinstalldirs) $(DOC_INST_DIR)/$(USER_MANUAL_XML)
+	@list='$(wildcard $(USER_MANUAL)/*.xml $(USER_MANUAL)/*.css \
+	                  $(USER_MANUAL)/*.jpg $(USER_MANUAL)/*.png)'; \
+	for file in $$list ; do \
+	  echo " $(INSTALL_DATA) $$file $(DOC_INST_DIR)/$(USER_MANUAL_XML)/"`basename $$file`; \
+	  $(INSTALL_DATA) $$file $(DOC_INST_DIR)/$(USER_MANUAL_XML)/`basename $$file`; \
+	done
+
 install-dox-pdf: dox-pdf
 	$(mkinstalldirs) $(DOC_INST_DIR)
 	$(INSTALL_DATA) $(USER_MANUAL).pdf $(DOC_INST_DIR)/$(USER_MANUAL).pdf
@@ -243,7 +260,7 @@ install-dox-man: dox-html
 	$(mkinstalldirs) $(DESTDIR)$(mandir)/man3
 	$(INSTALL_DATA) man/man3/*.3 $(DESTDIR)$(mandir)/man3
 
-.PHONY: html latex pdf demo demodox \
-	dox-html dox-pdf install-pdf install-html \
-	install-dox-html install-dox-pdf \
+.PHONY: html xml latex pdf demo demodox \
+	dox-html dox-xml dox-pdf install-pdf install-html install-xml \
+	install-dox-html install-dox-xml install-dox-pdf \
 	install-dox-man

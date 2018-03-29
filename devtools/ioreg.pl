@@ -128,14 +128,14 @@ $StaticContent = <<'EOST';
 
 #define DW_OP_addr                      0x03
 .eject
-	.section	.debug_abbrev, "", @progbits
+	.section	.debug_abbrev, info
 .Ldebug_abbrev0:
-	.section	.debug_info, "", @progbits
-	.section	.debug_line, "", @progbits
+	.section	.debug_info,  info
+	.section	.debug_line,  info
 .Ldebug_line0:
-	.section	.debug_str, "", @progbits
+	.section	.debug_str,  info
 
-	.section	.debug_info, "", @progbits
+	.section	.debug_info,  info
 	;; compilation unit header
 .Lssinfo:
 	.long	.Leinfo - .Lsinfo
@@ -146,95 +146,95 @@ $StaticContent = <<'EOST';
 
 
 	;; DIE #1: compilation unit
-	.section	.debug_info
+	.section	.debug_info, info
 	.uleb128	1	; ref to abbrev 1
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	1
 	.uleb128	DW_TAG_compile_unit
 	.byte		DW_CHILDREN_yes
 
 	.uleb128	DW_AT_producer
 	.uleb128	DW_FORM_strp
-	.section	.debug_str
+	.section	.debug_str, info
 .Lproducer:
 	.ascii		"avr-libc "
 	.asciz		__AVR_LIBC_VERSION_STRING__
-	.section	.debug_info
+	.section	.debug_info, info
 	.long		.Lproducer
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_stmt_list
 	.uleb128	DW_FORM_data4
-	.section	.debug_info
+	.section	.debug_info, info
 	.long		.Ldebug_line0
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	0
 	.uleb128	0
 
 	;; DIE #2: base type uint8_t
-	.section	.debug_info
+	.section	.debug_info, info
 .Luint8_t:
 	.uleb128	2	; ref to abbrev 2
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	2
 	.uleb128	DW_TAG_base_type
 	.byte		DW_CHILDREN_no
 
 	.uleb128	DW_AT_name
 	.uleb128	DW_FORM_strp
-	.section	.debug_str
+	.section	.debug_str, info
 .Luint8_t_name:
 	.string		"uint8_t"
-	.section	.debug_info
+	.section	.debug_info, info
 	.long		.Luint8_t_name
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_byte_size
 	.uleb128	DW_FORM_data1
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		1
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_encoding
 	.uleb128	DW_FORM_data1
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		DW_ATE_unsigned_char
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	0
 	.uleb128	0
 
 	;; DIE #3: base type uint16_t
-	.section	.debug_info
+	.section	.debug_info, info
 .Luint16_t:
 	.uleb128	3	; ref to abbrev 3
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	3
 	.uleb128	DW_TAG_base_type
 	.byte		DW_CHILDREN_no
 
 	.uleb128	DW_AT_name
 	.uleb128	DW_FORM_strp
-	.section	.debug_str
+	.section	.debug_str, info
 .Luint16_t_name:
 	.string		"uint16_t"
-	.section	.debug_info
+	.section	.debug_info, info
 	.long		.Luint16_t_name
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_byte_size
 	.uleb128	DW_FORM_data1
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		2
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_encoding
 	.uleb128	DW_FORM_data1
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		DW_ATE_unsigned
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	0
 	.uleb128	0
 
@@ -246,35 +246,35 @@ EOST
 $Uint32Tmplate = <<'EOU32';
 ;- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	;; DIE #%No: base type uint32_t
-	.section	.debug_info
+	.section	.debug_info, info
 .Luint32_t:
 	.uleb128	%No	; ref to abbrev %No
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	%No
 	.uleb128	DW_TAG_base_type
 	.byte		DW_CHILDREN_no
 
 	.uleb128	DW_AT_name
 	.uleb128	DW_FORM_strp
-	.section	.debug_str
+	.section	.debug_str, info
 .Luint32_t_name:
 	.string		"uint32_t"
-	.section	.debug_info
+	.section	.debug_info, info
 	.long		.Luint32_t_name
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_byte_size
 	.uleb128	DW_FORM_data1
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		4
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_encoding
 	.uleb128	DW_FORM_data1
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		DW_ATE_unsigned
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	0
 	.uleb128	0
 
@@ -286,54 +286,54 @@ EOU32
 $ContentTmplate = <<'EODY';
 ;- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	;; DIE #%No: variable %Reg
-	.section	.debug_info
+	.section	.debug_info, info
 	.uleb128	%No	; ref to abbrev %No
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	%No
 	.uleb128	DW_TAG_variable
 	.byte		DW_CHILDREN_no
 
 	.uleb128	DW_AT_name
 	.uleb128	DW_FORM_strp
-	.section	.debug_str
+	.section	.debug_str, info
 .Lname%No:
 	.string		"%Reg"
-	.section	.debug_info
+	.section	.debug_info, info
 	.long		.Lname%No
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_decl_file
 	.uleb128	DW_FORM_data1
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		0	; no source file information
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_decl_line
 	.uleb128	DW_FORM_data1
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		0	; no source line information
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_type
 	.uleb128	DW_FORM_ref4
-	.section	.debug_info
+	.section	.debug_info, info
 	.long		.Luint%Si_t - .Lssinfo
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_external
 	.uleb128	DW_FORM_flag
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		1
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_location
 	.uleb128	DW_FORM_block1
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		5	; length of block
 	.byte		DW_OP_addr
 	.long		0x800000 + %Ba + %Of
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	0
 	.uleb128	0
 
@@ -346,96 +346,96 @@ EODY
 $EepromTmplate = <<'EOEE';
 ;- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	;; DIE #%No1: EEPROM array base type: uint8_t
-	.section	.debug_info
+	.section	.debug_info, info
 .Leeprom_t:
 	.uleb128	%No1	; ref to abbrev %No1
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	%No1
 	.uleb128	DW_TAG_array_type
 	.byte		DW_CHILDREN_yes
 
 	.uleb128	DW_AT_type
 	.uleb128	DW_FORM_ref4
-	.section	.debug_info
+	.section	.debug_info, info
 	.long		.Luint8_t - .Lssinfo
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	0
 	.uleb128	0
 
 	;; DIE #%No2: EEPROM array subtype (index type/bounds): uint16_t
-	.section	.debug_info
+	.section	.debug_info, info
 	.uleb128	%No2	; ref to abbrev %No2
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	%No2
 	.uleb128	DW_TAG_subrange_type
 	.byte		DW_CHILDREN_no
 
 	.uleb128	DW_AT_type
 	.uleb128	DW_FORM_ref4
-	.section	.debug_info
+	.section	.debug_info, info
 	.long		.Luint16_t - .Lssinfo
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_upper_bound
 	.uleb128	DW_FORM_data2
-	.section	.debug_info
+	.section	.debug_info, info
 	.word		%Eesize - 1
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	0
 	.uleb128	0
 
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		0	; end of DIE #%No1 children
 
 	;; DIE #%No3: EEPROM array variable (name)
-	.section	.debug_info
+	.section	.debug_info, info
 	.uleb128	%No3	; ref to abbrev %No3
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	%No3
 	.uleb128	DW_TAG_variable
 	.byte		DW_CHILDREN_no
 
 	.uleb128	DW_AT_name
 	.uleb128	DW_FORM_strp
-	.section	.debug_str
+	.section	.debug_str, info
 .Lname%No3:
 	.string		"__eeprom"
-	.section	.debug_info
+	.section	.debug_info, info
 	.long		.Lname%No3
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_decl_file
 	.uleb128	DW_FORM_data1
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		0	; no source file information
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_decl_line
 	.uleb128	DW_FORM_data1
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		0	; no source line information
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_type
 	.uleb128	DW_FORM_ref4
-	.section	.debug_info
+	.section	.debug_info, info
 	.long		.Leeprom_t - .Lssinfo
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_external
 	.uleb128	DW_FORM_flag
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		1
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	DW_AT_location
 	.uleb128	DW_FORM_block1
-	.section	.debug_info
+	.section	.debug_info, info
 	.byte		5	; length of block
 	.byte		DW_OP_addr
 	.long		0x810000 + %Of
 
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	0
 	.uleb128	0
 
@@ -446,10 +446,10 @@ EOEE
 #
 my $trailer = <<'EOT';
 	;; trailer
-	.section	.debug_abbrev
+	.section	.debug_abbrev, info
 	.uleb128	0
 
-	.section	.debug_info
+	.section	.debug_info, info
 	.uleb128	0
 .Leinfo:
 EOT

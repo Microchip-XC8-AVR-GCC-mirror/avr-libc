@@ -95,7 +95,7 @@ _U(memcpy_PF):
 #endif
 
 	brcc	.L_memcpy_PF_loop
-
+	LPM_R0_ZPLUS_FINI src_b2
 ; return dest (unchanged)
 
 	ret

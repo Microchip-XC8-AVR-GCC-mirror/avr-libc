@@ -32,7 +32,7 @@
 /* $Id$ */
 
 #include <stdlib.h>
-
+#include <avr/cpufunc.h>
 #include "../../libc/stdlib/stdlib_private.h"
 
 
@@ -57,6 +57,7 @@ int main(void)
 	 * chunk.
 	 */
 	p = p1 + 10;
+	_MemoryBarrier();
 	if (__brkval != p)
 		return 3;
 
@@ -66,6 +67,7 @@ int main(void)
 		return 4;
 
 	/* should be empty */
+	_MemoryBarrier();
 	if (__flp)
 		return 5;
 
@@ -80,6 +82,7 @@ int main(void)
 		return 7;
 
 	p = p1 + 5;
+	_MemoryBarrier();
 	if (__brkval != p)
 		return 8;
 
@@ -94,6 +97,7 @@ int main(void)
 		return 10;
 
 	/* should be empty */
+	_MemoryBarrier();
 	if (__flp)
 		return 11;
 

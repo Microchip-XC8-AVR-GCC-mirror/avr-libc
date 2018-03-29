@@ -81,6 +81,7 @@ _U(memcmp_PF):
   sub   ret_b0, ret_b0
 3:
   sbc   ret_b1, ret_b1
+  LPM_R0_ZPLUS_FINI s2_b2
   ret
 
   .size _U(memcmp_PF), . - _U(memcmp_PF)

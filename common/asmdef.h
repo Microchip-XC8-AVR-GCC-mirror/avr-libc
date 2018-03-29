@@ -103,7 +103,7 @@
   .endif
 	.L__function = 1
 #ifdef	FUNC_SEGNAME
-	.section  FUNC_SEGNAME, "ax", @progbits
+	.section  FUNC_SEGNAME, code
 #else
 	ASSEMBLY_CLIB_SECTION
 #endif

@@ -473,7 +473,7 @@ __ftoa_engine:
 /* --------------------------------------------------------------------
     Tables.  '.L_powr10' is placed first -- for subnormals stability.
 */
-    .section .progmem.data,"a",@progbits
+    .section .progmem.data, code
 
     .type .L_powr10, "object"
 .L_powr10:

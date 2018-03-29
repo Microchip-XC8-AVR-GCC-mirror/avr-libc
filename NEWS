@@ -6,7 +6,6 @@
   [#41689] add static_assert to assert.h
   [#48898] power_usart3_* functions no more defined in power.h
   [#49020] dtostre() flags documentation error
-  [#49447] Example code for uart_putchar() has error in recursive call
   strings for storage in program memory
 
 * New devices supported:
@@ -18,10 +17,6 @@
   [#8961] Update test script for new simulavr and library layout
   [#8964] Update tests isinf-01.c, signbit-01.c and modf-np.c
   [#9163] New eeprom write block function for xmega using eeprom page write
-  [#8729] [avr/interrupt.h] Add ISR_NOICF, ISR_FLATTEN. Fix namespace of identifiers.
-  [#8536] Fix a typo within <stdio.h>
-  [#8649] small documentation fixes in
-  [#9187] [AVR_TINY]: Support 16-bit xtoa functons and more string functions.
   [#9400] Add avrxmega3 multilibs
 
 * Other changes:

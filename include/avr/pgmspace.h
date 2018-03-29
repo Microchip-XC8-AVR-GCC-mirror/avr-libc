@@ -424,6 +424,19 @@ typedef uint64_t  prog_uint64_t __attribute__((__progmem__,deprecated("prog_uint
     __result;                   \
 }))
 
+#define __LPM_tiny__(addr)      \
+(__extension__({                \
+    uint16_t __addr16 = (uint16_t)(addr) + __AVR_TINY_PM_BASE_ADDRESS__; \
+    uint8_t __result;           \
+    __asm__                     \
+    (                           \
+        "ld %0, z" "\n\t"       \
+        : "=r" (__result)       \
+        : "z" (__addr16)        \
+    );                          \
+    __result;                   \
+}))
+
 #define __LPM_enhanced__(addr)  \
 (__extension__({                \
     uint16_t __addr16 = (uint16_t)(addr); \
@@ -451,6 +464,20 @@ typedef uint64_t  prog_uint64_t __attribute__((__progmem__,deprecated("prog_uint
         : "=r" (__result), "=z" (__addr16)  \
         : "1" (__addr16)                    \
         : "r0"                              \
+    );                                      \
+    __result;                               \
+}))
+
+#define __LPM_word_tiny__(addr)             \
+(__extension__({                            \
+    uint16_t __addr16 = (uint16_t)(addr) + __AVR_TINY_PM_BASE_ADDRESS__; \
+    uint16_t __result;                      \
+    __asm__                                 \
+    (                                       \
+        "ld %A0, z+"     "\n\t"             \
+        "ld %B0, z"      "\n\t"             \
+        : "=r" (__result), "=z" (__addr16)  \
+        : "1" (__addr16)                    \
     );                                      \
     __result;                               \
 }))
@@ -489,6 +516,22 @@ typedef uint64_t  prog_uint64_t __attribute__((__progmem__,deprecated("prog_uint
         : "=r" (__result), "=z" (__addr16)  \
         : "1" (__addr16)                    \
         : "r0"                              \
+    );                                      \
+    __result;                               \
+}))
+
+#define __LPM_dword_tiny__(addr)            \
+(__extension__({                            \
+    uint16_t __addr16 = (uint16_t)(addr) + __AVR_TINY_PM_BASE_ADDRESS__; \
+    uint32_t __result;                      \
+    __asm__                                 \
+    (                                       \
+        "ld %A0, z+"    "\n\t"              \
+        "ld %B0, z+"    "\n\t"              \
+        "ld %C0, z+"    "\n\t"              \
+        "ld %D0, z"     "\n\t"              \
+        : "=r" (__result), "=z" (__addr16)  \
+        : "1" (__addr16)                    \
     );                                      \
     __result;                               \
 }))
@@ -533,6 +576,22 @@ typedef uint64_t  prog_uint64_t __attribute__((__progmem__,deprecated("prog_uint
     __result;                               \
 }))
 
+#define __LPM_float_tiny__(addr)            \
+(__extension__({                            \
+    uint16_t __addr16 = (uint16_t)(addr) + __AVR_TINY_PM_BASE_ADDRESS__; \
+    float __result;                         \
+    __asm__                                 \
+    (                                       \
+        "ld %A0, z+"   "\n\t"               \
+        "ld %B0, z+"   "\n\t"               \
+        "ld %C0, z+"   "\n\t"               \
+        "ld %D0, z"    "\n\t"               \
+        : "=r" (__result), "=z" (__addr16)  \
+        : "1" (__addr16)                    \
+    );                                      \
+    __result;                               \
+}))
+
 #define __LPM_float_enhanced__(addr)        \
 (__extension__({                            \
     uint16_t __addr16 = (uint16_t)(addr);   \
@@ -554,6 +613,20 @@ typedef uint64_t  prog_uint64_t __attribute__((__progmem__,deprecated("prog_uint
 #define __LPM_word(addr)    __LPM_word_enhanced__(addr)
 #define __LPM_dword(addr)   __LPM_dword_enhanced__(addr)
 #define __LPM_float(addr)   __LPM_float_enhanced__(addr)
+/*
+Macro to read data from program memory for avr tiny parts(tiny 4/5/9/10/20/40).
+why:
+- LPM instruction is not available in AVR_TINY instruction set.
+- Programs are executed starting from address 0x0000 in program memory.
+But it must be addressed starting from 0x4000 when accessed via data memory.
+Reference: TINY device (ATTiny 4,5,9,10,20 and 40) datasheets
+Bug: avrtc-536
+*/
+#elif defined (__AVR_TINY__)
+#define __LPM(addr)         __LPM_tiny__(addr)
+#define __LPM_word(addr)    __LPM_word_tiny__(addr)
+#define __LPM_dword(addr)   __LPM_dword_tiny__(addr)
+#define __LPM_float(addr)   __LPM_float_tiny__(addr)
 #else
 #define __LPM(addr)         __LPM_classic__(addr)
 #define __LPM_word(addr)    __LPM_word_classic__(addr)

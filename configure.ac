@@ -40,8 +40,8 @@ dnl        macro name           value            description
 m4_define([avr_libc_major],    [2])dnl           major version
 m4_define([avr_libc_minor],    [0])dnl           minor version
 m4_define([avr_libc_revision], [0])dnl           revision (dot-dot version)
-m4_define([avr_libc_revision_suffix], [svn])dnl  revision suffix (if any)
-m4_define([avr_libc_reldate],  [20150209])dnl    release date
+m4_define([avr_libc_revision_suffix], [])dnl     revision suffix (if any)
+m4_define([avr_libc_reldate],  [20150208])dnl    release date
 dnl end of library versioning data
 
 m4_define([avr_libc_version],
@@ -213,6 +213,14 @@ AC_ARG_ENABLE(html-doc,
   *)   AC_MSG_ERROR(bad value ${enableval} for html-doc option) ;;
  esac], [html_doc=yes])dnl
 
+AC_ARG_ENABLE(xml-doc,
+[  --enable-xml-doc        build XML documentation (default)],
+[case "${enableval}" in
+  yes) xml_doc=yes ;;
+  no)  xml_doc=no ;;
+  *)   AC_MSG_ERROR(bad value ${enableval} for xml-doc option) ;;
+ esac], [xml_doc=yes])dnl
+
 AC_ARG_ENABLE(pdf-doc,
 [  --enable-pdf-doc        build PDF documentation (default)],
 [case "${enableval}" in
@@ -270,6 +278,11 @@ else
 		TARGET_DOX_HTML=dox-html
 		INSTALL_DOX_HTML=install-dox-html
 	fi
+	if test "$xml_doc" = "yes"; then
+		AC_MSG_NOTICE([Enabling XML docs])
+		TARGET_DOX_XML=dox-xml
+		INSTALL_DOX_XML=install-dox-xml
+	fi
 dnl The creation of man pages is a side-effect of the HTML
 dnl generation, so a different target is only needed for installation.
 	if test "$man_doc" = "yes"; then
@@ -281,8 +294,10 @@ fi
 dnl
 AC_SUBST(TARGET_DOX_PDF)
 AC_SUBST(TARGET_DOX_HTML)
+AC_SUBST(TARGET_DOX_XML)
 AC_SUBST(INSTALL_DOX_PDF)
 AC_SUBST(INSTALL_DOX_HTML)
+AC_SUBST(INSTALL_DOX_XML)
 AC_SUBST(INSTALL_DOX_MAN)
 ])dnl
 
@@ -763,6 +778,9 @@ AM_CONDITIONAL(HAS_ata5790, test "x$HAS_ata5790" = "xyes")
 CHECK_AVR_DEVICE(ata5790n)
 AM_CONDITIONAL(HAS_ata5790n, test "x$HAS_ata5790n" = "xyes")
 
+CHECK_AVR_DEVICE(ata5791)
+AM_CONDITIONAL(HAS_ata5791, test "x$HAS_ata5791" = "xyes")
+
 CHECK_AVR_DEVICE(ata5795)
 AM_CONDITIONAL(HAS_ata5795, test "x$HAS_ata5795" = "xyes")
 
@@ -774,6 +792,12 @@ AM_CONDITIONAL(HAS_ata6613c, test "x$HAS_ata6613c" = "xyes")
 
 CHECK_AVR_DEVICE(ata6614q)
 AM_CONDITIONAL(HAS_ata6614q, test "x$HAS_ata6614q" = "xyes")
+
+CHECK_AVR_DEVICE(ata8210)
+AM_CONDITIONAL(HAS_ata8210, test "x$HAS_ata8210" = "xyes")
+
+CHECK_AVR_DEVICE(ata8510)
+AM_CONDITIONAL(HAS_ata8510, test "x$HAS_ata8510" = "xyes")
 
 CHECK_AVR_DEVICE(atmega16)
 AM_CONDITIONAL(HAS_atmega16, test "x$HAS_atmega16" = "xyes")
@@ -822,6 +846,9 @@ AM_CONDITIONAL(HAS_atmega168p, test "x$HAS_atmega168p" = "xyes")
 
 CHECK_AVR_DEVICE(atmega168pa)
 AM_CONDITIONAL(HAS_atmega168pa, test "x$HAS_atmega168pa" = "xyes")
+
+CHECK_AVR_DEVICE(atmega168pb)
+AM_CONDITIONAL(HAS_atmega168pb, test "x$HAS_atmega168pb" = "xyes")
 
 CHECK_AVR_DEVICE(atmega169)
 AM_CONDITIONAL(HAS_atmega169, test "x$HAS_atmega169" = "xyes")
@@ -1119,6 +1146,9 @@ AM_CONDITIONAL(HAS_atxmega32d3, test "x$HAS_atxmega32d3" = "xyes")
 
 CHECK_AVR_DEVICE(atxmega32d4)
 AM_CONDITIONAL(HAS_atxmega32d4, test "x$HAS_atxmega32d4" = "xyes")
+
+CHECK_AVR_DEVICE(atxmega16e5)
+AM_CONDITIONAL(HAS_atxmega16e5, test "x$HAS_atxmega16e5" = "xyes")
 
 CHECK_AVR_DEVICE(atxmega32e5)
 AM_CONDITIONAL(HAS_atxmega32e5, test "x$HAS_atxmega32e5" = "xyes")
@@ -1443,11 +1473,14 @@ AC_CONFIG_FILES([
 	avr/lib/avr5/ata5702m322/Makefile 
 	avr/lib/avr5/ata5782/Makefile 
 	avr/lib/avr5/ata5790/Makefile 
-	avr/lib/avr5/ata5790n/Makefile 
+	avr/lib/avr5/ata5790n/Makefile
+	avr/lib/avr5/ata5791/Makefile
 	avr/lib/avr5/ata5795/Makefile 
 	avr/lib/avr5/ata5831/Makefile 
 	avr/lib/avr5/ata6613c/Makefile 
 	avr/lib/avr5/ata6614q/Makefile 
+	avr/lib/avr5/ata8210/Makefile
+	avr/lib/avr5/ata8510/Makefile
 	avr/lib/avr5/atmega16/Makefile
 	avr/lib/avr5/atmega16a/Makefile
 	avr/lib/avr5/atmega161/Makefile
@@ -1464,6 +1497,7 @@ AC_CONFIG_FILES([
 	avr/lib/avr5/atmega168a/Makefile
 	avr/lib/avr5/atmega168p/Makefile
 	avr/lib/avr5/atmega168pa/Makefile
+	avr/lib/avr5/atmega168pb/Makefile
 	avr/lib/avr5/atmega169/Makefile
 	avr/lib/avr5/atmega169a/Makefile
 	avr/lib/avr5/atmega169p/Makefile
@@ -1567,6 +1601,7 @@ AC_CONFIG_FILES([
 	avr/lib/avrxmega2/atxmega16a4u/Makefile
 	avr/lib/avrxmega2/atxmega16c4/Makefile
 	avr/lib/avrxmega2/atxmega16d4/Makefile
+	avr/lib/avrxmega2/atxmega16e5/Makefile
 	avr/lib/avrxmega2/atxmega32a4/Makefile
 	avr/lib/avrxmega2/atxmega32a4u/Makefile
 	avr/lib/avrxmega2/atxmega32c3/Makefile

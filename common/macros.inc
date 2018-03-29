@@ -334,7 +334,10 @@
    LPM_R0_ZPLUS_NEXT is used inside the loop to load a byte from
    the program memory at [RAMPZ:]Z to R0, and increment [RAMPZ:]Z.
 
-   The argument in both macros is a register that contains the
+   LPM_R0_ZPLUS_FINI is used after the loop to restore RAMPZ if
+   both ELPM and RAMPD are present.
+
+   The argument in above macros is a register that contains the
    high byte (bits 23-16) of the address, bits 15-0 should be in
    the Z (r31:r30) register.  It can be any register except for:
    r0, r1 (__zero_reg__ - assumed to always contain 0), r30, r31.
@@ -343,7 +346,13 @@
 	.macro	LPM_R0_ZPLUS_INIT hhi
 #if __AVR_ENHANCED__
   #if __AVR_HAVE_ELPM__
-	out	AVR_RAMPZ_ADDR, \hhi
+    #if __AVR_HAVE_RAMPD__
+      in r0, AVR_RAMPZ_ADDR   
+      out AVR_RAMPZ_ADDR, \hhi
+      mov \hhi, r0            
+    #else                     
+      out AVR_RAMPZ_ADDR, \hhi
+    #endif                    
   #endif
 #endif
 	.endm
@@ -371,3 +380,14 @@
   #endif
 #endif
 	.endm
+
+	.macro LPM_R0_ZPLUS_FINI hhi
+#if __AVR_ENHANCED__
+  #if __AVR_HAVE_ELPM__
+    #if __AVR_HAVE_RAMPD__
+      out AVR_RAMPZ_ADDR, \hhi
+    #endif
+  #endif
+#endif
+	.endm
+

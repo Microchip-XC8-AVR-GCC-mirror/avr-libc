@@ -114,6 +114,7 @@ compile-time.
 - atmega168a
 - atmega168p
 - atmega168pa
+- atmega168pb
 - atmega16a
 - atmega2560
 - atmega2561
@@ -217,14 +218,17 @@ compile-time.
 - ata5782
 - ata5790
 - ata5790n
-- ata5831
+- ata5791
 - ata5795
+- ata5831
 - ata6612c
 - ata6613c
 - ata6614q
 - ata6616c
 - ata6617c
 - ata664251
+- ata8210
+- ata8510
 
 \par CAN AVR Devices:
 
@@ -300,6 +304,7 @@ compile-time.
 - atxmega16a4u
 - atxmega16c4
 - atxmega16d4
+- atxmega16e5
 - atxmega32a4
 - atxmega32a4u
 - atxmega32c3

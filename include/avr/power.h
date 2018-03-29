@@ -639,7 +639,7 @@ the clock below 131.072 kHz.
 #define power_adc_disable()     (PRR0 |= (uint8_t)(1 << PRADC))
 #endif
 
-#if defined(__AVR_HAVE_PRR0_PRC0)
+#if defined(__AVR_HAVE_PRR0_PRCO)
 #define power_clock_output_enable()     (PRR0 &= (uint8_t)~(1 << PRCO))
 #define power_clock_output_disable()    (PRR0 |= (uint8_t)(1 << PRCO))
 #endif
@@ -1314,6 +1314,8 @@ __power_all_disable()
 || defined(__AVR_AT90USB162__) \
 || defined(__AVR_ATA5505__) \
 || defined(__AVR_ATA5272__) \
+|| defined(__AVR_ATA6617C__) \
+|| defined(__AVR_ATA664251__) \
 || defined(__AVR_ATmega1280__) \
 || defined(__AVR_ATmega1281__) \
 || defined(__AVR_ATmega1284__) \
@@ -1330,12 +1332,16 @@ __power_all_disable()
 || defined(__AVR_ATmega165P__) \
 || defined(__AVR_ATmega165PA__) \
 || defined(__AVR_ATmega168__) \
+|| defined(__AVR_ATmega168A__) \
 || defined(__AVR_ATmega168P__) \
 || defined(__AVR_ATmega168PA__) \
+|| defined(__AVR_ATmega168PB__) \
 || defined(__AVR_ATmega169__) \
 || defined(__AVR_ATmega169A__) \
 || defined(__AVR_ATmega169P__) \
 || defined(__AVR_ATmega169PA__) \
+|| defined(__AVR_ATmega16M1__) \
+|| defined(__AVR_ATmega16U2__) \
 || defined(__AVR_ATmega16U4__) \
 || defined(__AVR_ATmega2560__) \
 || defined(__AVR_ATmega2561__) \
@@ -1343,11 +1349,14 @@ __power_all_disable()
 || defined(__AVR_ATmega256RFR2__) \
 || defined(__AVR_ATmega324A__) \
 || defined(__AVR_ATmega324P__) \
+|| defined(__AVR_ATmega324PA__) \
 || defined(__AVR_ATmega325__) \
 || defined(__AVR_ATmega325A__) \
+|| defined(__AVR_ATmega325P__) \
 || defined(__AVR_ATmega325PA__) \
 || defined(__AVR_ATmega3250__) \
 || defined(__AVR_ATmega3250A__) \
+|| defined(__AVR_ATmega3250P__) \
 || defined(__AVR_ATmega3250PA__) \
 || defined(__AVR_ATmega328__) \
 || defined(__AVR_ATmega328P__) \
@@ -1357,6 +1366,7 @@ __power_all_disable()
 || defined(__AVR_ATmega329PA__) \
 || defined(__AVR_ATmega3290__) \
 || defined(__AVR_ATmega3290A__) \
+|| defined(__AVR_ATmega3290P__) \
 || defined(__AVR_ATmega3290PA__) \
 || defined(__AVR_ATmega32C1__) \
 || defined(__AVR_ATmega32M1__) \
@@ -1366,6 +1376,7 @@ __power_all_disable()
 || defined(__AVR_ATmega48__) \
 || defined(__AVR_ATmega48A__) \
 || defined(__AVR_ATmega48PA__) \
+|| defined(__AVR_ATmega48PB__) \
 || defined(__AVR_ATmega48P__) \
 || defined(__AVR_ATmega640__) \
 || defined(__AVR_ATmega649P__) \
@@ -1381,6 +1392,11 @@ __power_all_disable()
 || defined(__AVR_ATmega6450P__) \
 || defined(__AVR_ATmega649__) \
 || defined(__AVR_ATmega649A__) \
+|| defined(__AVR_ATmega64M1__) \
+|| defined(__AVR_ATmega64C1__) \
+|| defined(__AVR_ATmega88A__) \
+|| defined(__AVR_ATmega88PA__) \
+|| defined(__AVR_ATmega88PB__) \
 || defined(__AVR_ATmega6490__) \
 || defined(__AVR_ATmega6490A__) \
 || defined(__AVR_ATmega6490P__) \
@@ -1392,6 +1408,8 @@ __power_all_disable()
 || defined(__AVR_ATmega16U2__) \
 || defined(__AVR_ATmega32U2__) \
 || defined(__AVR_ATtiny48__) \
+|| defined(__AVR_ATtiny88__) \
+|| defined(__AVR_ATtiny87__) \
 || defined(__AVR_ATtiny167__) \
 || defined(__DOXYGEN__)
 
@@ -1549,6 +1567,8 @@ void clock_prescale_set(clock_div_t __x)
 #define clock_prescale_get()  (clock_div_t)(CLKPR & (uint8_t)((1<<CLKPS0)|(1<<CLKPS1)))
 
 #elif defined(__AVR_ATA5790__) \
+|| defined (__AVR_ATA5790N__) \
+|| defined (__AVR_ATA5791__) \
 || defined (__AVR_ATA5795__)
 
 typedef enum

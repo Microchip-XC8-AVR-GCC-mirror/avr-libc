@@ -73,7 +73,7 @@
   .endif
 	.Lfunction = 1
 #ifdef	FUNC_SEGNAME
-	.section  FUNC_SEGNAME, "ax", @progbits
+	.section  FUNC_SEGNAME, code
 #else
 	.text
 #endif

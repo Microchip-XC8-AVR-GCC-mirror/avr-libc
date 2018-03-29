@@ -61,7 +61,7 @@ _U(strcpy_PF):
 	st	X+, r0
 	tst	r0
 	brne	.L_strcpy_PF_loop
-
+	LPM_R0_ZPLUS_FINI src_b2
 ; return dest (unchanged)
 
 	ret

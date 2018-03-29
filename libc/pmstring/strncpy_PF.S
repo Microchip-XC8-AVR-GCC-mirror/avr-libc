@@ -85,6 +85,7 @@ _U(strncpy_PF):
 	brcc	.L_strncpy_PF_clr_loop
 
 .L_strncpy_PF_done:
+	LPM_R0_ZPLUS_FINI src_b2
 ; return dest (unchanged)
 
 	ret

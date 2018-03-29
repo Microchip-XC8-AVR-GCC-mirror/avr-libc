@@ -69,6 +69,7 @@ avr_HEADERS = \
     ioa5702m322.h \
     ioa5782.h \
     ioa5790.h \
+    ioa5791.h \
     ioa5790n.h \
     ioa5795.h \
     ioa5831.h \
@@ -81,6 +82,8 @@ avr_HEADERS = \
     ioa6616c.h \
     ioa6617c.h \
     ioa664251.h \
+    ioa8210.h \
+    ioa8510.h \
     ioat94k.h \
     iocan32.h \
     iocan64.h \
@@ -102,6 +105,8 @@ avr_HEADERS = \
     iom162.h \
     iom163.h \
     iom164.h \
+    iom164p.h \
+    iom164a.h \
     iom164pa.h \
     iom165.h \
     iom165a.h \
@@ -111,7 +116,9 @@ avr_HEADERS = \
     iom168a.h \
     iom168p.h \
     iom168pa.h \
+    iom168pb.h \
     iom169.h \
+    iom169a.h \
     iom169p.h \
     iom169pa.h \
     iom16hva.h \
@@ -129,15 +136,25 @@ avr_HEADERS = \
     iom32.h \
     iom32a.h \
     iom323.h \
-    iom324.h \
+    iom324p.h \
+    iom324a.h \
     iom324pa.h \
     iom325.h \
+    iom325a.h \
+    iom325p.h \
     iom325pa.h \
     iom3250.h \
+    iom3250a.h \
+    iom3250p.h \
     iom3250pa.h \
+    iom328.h \
     iom328p.h \
     iom329.h \
+    iom329p.h \
+    iom329a.h \
+    iom329pa.h \
     iom3290.h \
+    iom3290a.h \
     iom3290pa.h \
     iom32hvb.h \
     iom32hvbrevb.h \
@@ -160,10 +177,17 @@ avr_HEADERS = \
     iom644p.h \
     iom644pa.h \
     iom645.h \
+    iom645a.h \
+    iom645p.h \
     iom6450.h \
+    iom6450a.h \
+    iom6450p.h \
     iom649.h \
+    iom649a.h \
     iom649p.h \
     iom6490.h \
+    iom6490a.h \
+    iom6490p.h \
     iom64c1.h \
     iom64hve.h \
     iom64hve2.h \
@@ -253,6 +277,7 @@ avr_HEADERS = \
     iox16a4u.h \
     iox16c4.h \
     iox16d4.h \
+    iox16e5.h \
     iox192a3.h \
     iox192a3u.h \
     iox192c3.h \

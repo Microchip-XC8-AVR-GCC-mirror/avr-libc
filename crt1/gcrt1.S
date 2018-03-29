@@ -43,15 +43,23 @@
 	.if (. - __vectors < _VECTORS_SIZE)
 	.weak	\name
 	.set	\name, __bad_interrupt
+#if defined(_VECTOR_SIZE) && (_VECTOR_SIZE == 2)
+	rjmp	\name
+#else
 	XJMP	\name
+#endif
 	.endif
 	.endm
 
-	.section .vectors,"ax",@progbits
+	.section .vectors,code
 	.global	__vectors
 	.func	__vectors
 __vectors:
+#if defined(_VECTOR_SIZE) && (_VECTOR_SIZE == 2)
+	rjmp	__init
+#else
 	XJMP	__init
+#endif
 	vector	__vector_1
 	vector	__vector_2
 	vector	__vector_3
@@ -197,7 +205,7 @@ __bad_interrupt:
 	XJMP	__vector_default
 	.endfunc
 
-	.section .init0,"ax",@progbits
+	.section .init0,code
 	.weak	__init
 ;	.func	__init
 __init:
@@ -214,7 +222,7 @@ __init:
 	.weak	__heap_end
 	.set	__heap_end, 0
 
-	.section .init2,"ax",@progbits
+	.section .init2,code
 	clr	__zero_reg__
 	out	AVR_STATUS_ADDR, __zero_reg__
 	ldi	r28,lo8(__stack)
@@ -249,7 +257,7 @@ __init:
 	/* Only for >64K devices with RAMPZ, replaces the default code
 	   provided by libgcc.S which is only linked in if necessary.  */
 
-	.section .init4,"ax",@progbits
+	.section .init4,code
 	.global __do_copy_data
 __do_copy_data:
 	ldi	r17, hi8(__data_end)
@@ -295,7 +303,7 @@ __do_copy_data:
 	.set	__stack, RAMEND
 #endif /* !__AVR_ASM_ONLY__ */
 
-	.section .init9,"ax",@progbits
+	.section .init9,code
 #ifdef __AVR_ASM_ONLY__
 	XJMP	main
 #else	/* !__AVR_ASM_ONLY__ */
@@ -304,7 +312,7 @@ __do_copy_data:
 #endif	/* __AVR_ASM_ONLY__ */
 ;	.endfunc
 
-    .section .note.gnu.avr.deviceinfo, "", @note
+    .section .note.gnu.avr.deviceinfo, info
 #define NOTE_NAME "AVR"
 #ifdef __AVR_DEVICE_NAME__
     #define DEVICE_NAME STR(__AVR_DEVICE_NAME__)
@@ -327,14 +335,22 @@ __do_copy_data:
 #endif
 #ifdef PROGMEM_SIZE
     .long PROGMEM_SIZE
+#elif !defined (FLASHEND)
+    .long 0
 #elif FLASHEND > 0
     .long FLASHEND + 1
 #else
     .long FLASHEND
 #endif
+#ifdef RAMSTART
     .long RAMSTART
+#else
+    .long 0
+#endif
 #ifdef RAMSIZE
     .long RAMSIZE
+#elif !defined (RAMEND) || !defined (RAMSTART)
+    .long 0
 #elif RAMEND > 0
     .long RAMEND - RAMSTART + 1
 #else
@@ -347,6 +363,8 @@ __do_copy_data:
 #endif
 #ifdef EEPROM_SIZE
     .long EEPROM_SIZE
+#elif !defined (E2END)
+    .long 0
 #elif E2END > 0
     .long E2END + 1
 #else
@@ -381,3 +399,33 @@ __do_copy_data:
 
   .weak __FUSE_REGION_LENGTH__
   .set __FUSE_REGION_LENGTH__, FUSE_MEMORY_SIZE
+
+#ifdef PROGMEM_SIZE
+  .weak __TEXT_REGION_LENGTH__
+  .set __TEXT_REGION_LENGTH__, PROGMEM_SIZE
+#elif defined(FLASHEND) && defined(FLASHSTART) && FLASHEND > 0
+  .weak __TEXT_REGION_LENGTH__
+  .set __TEXT_REGION_LENGTH__, FLASHEND - FLASHSTART + 1
+#elif defined(FLASHEND) && FLASHEND > 0
+  .weak __TEXT_REGION_LENGTH__
+  .set __TEXT_REGION_LENGTH__, FLASHEND + 1
+#endif
+
+#ifdef RAMSIZE
+  .weak __DATA_REGION_LENGTH__
+  .set __DATA_REGION_LENGTH__, RAMSIZE
+#elif defined (RAMEND) && defined(RAMSTART) && RAMEND > 0
+  .weak __DATA_REGION_LENGTH__
+  .set 	__DATA_REGION_LENGTH__, RAMEND - RAMSTART + 1
+#elif defined (RAMEND) && RAMEND > 0
+  .weak __DATA_REGION_LENGTH__
+	.set 	__DATA_REGION_LENGTH__, RAMEND + 1
+#endif
+
+#ifdef EEPROM_SIZE
+  .weak __EEPROM_REGION_LENGTH__
+  .set __EEPROM_REGION_LENGTH__, EEPROM_SIZE
+#elif  defined(E2END) && E2END > 0
+  .weak __EEPROM_REGION_LENGTH__
+  .set __EEPROM_REGION_LENGTH__, E2END + 1
+#endif
