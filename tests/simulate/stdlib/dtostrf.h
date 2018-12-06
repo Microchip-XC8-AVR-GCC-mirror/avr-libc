@@ -45,6 +45,12 @@ struct dtostrf_s {
     char pattern[PATTERN_SIZE];
 };
 
+#ifdef __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__
+#define __CONST const
+#else
+#define __CONST
+#endif
+
 #ifndef	__AVR__
 
 # include <stdio.h>
@@ -74,7 +80,7 @@ void run_dtostrf (const struct dtostrf_s *pt, int testno)
     unsigned char prec;
     static char s[2*PZLEN + sizeof(pt->pattern)];
     char c, *ps;
-    void *pv;
+    __CONST void *pv;
     
     memset (s, testno, sizeof(s));
 

@@ -52,12 +52,24 @@
 #include <stdio.h>
 #include "progmem.h"
 
+#ifdef __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__
+#define memcpy_P memcpy
+#define memcmp_P memcmp
+#define __CONST const
+// with const-data-in-progmem we are forcing string const
+// to memx address space, so, ignore PSTR to force to progmem
+#undef PSTR
+#define PSTR(x) x
+#else
+#define __CONST
+#endif
+
 void Check (int line,
 	    const void *s1, size_t n1, const char *s2, size_t n2, int expect)
 {
     char t1[300];
     char t2[100];
-    char *p;
+    __CONST char *p;
 
     if (n1 > sizeof(t1) || n2 > sizeof(t2))
 	exit (1);

@@ -41,6 +41,8 @@
 
 #include "asmdef.h"
 
+#if !defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+
 #define dst_lo		r24
 #define src_hi		r23
 #define src_lo		r22
@@ -80,6 +82,8 @@ ENTRY strlcpy
 	rjmp	2b
 
 ENDFUNC
+
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 
 #endif /* not __DOXYGEN__ */
 

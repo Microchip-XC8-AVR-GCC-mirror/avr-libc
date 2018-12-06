@@ -29,7 +29,7 @@
 
 /* bug #22800: sprintf() expands a 128char string parameter incorrectly
    $Id$
-   
+
    This bug is marked as INVALID.  It is take place with avr-libc 1.4 only,
    which is not supported now.  Avr-libc 1.6 is correct.
  */
@@ -44,6 +44,14 @@
 # include <avr/pgmspace.h>
 #endif
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define strcmp_P    strcmp
+# undef  PSTR
+# define PSTR(x)     x
+# define __CONST     const
+#else
+# define __CONST
+#endif
 
 char buffer[210], string[200];
 char tmp[] = "123";
@@ -55,8 +63,8 @@ int main ()
     /* This is the bug report code.	*/
     for (i = 0; i < 129; i++)
 	string[i] = 'B';
-    sprintf (buffer, "%s%s", string, tmp);
-    
+    sprintf (buffer, "%s%s", (__CONST char*) string, (__CONST char*) tmp);
+
     if (strcmp_P (buffer, PSTR ("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  /* 32*B */
 				"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  /* 32*B */
 				"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  /* 32*B */
@@ -75,11 +83,11 @@ int main ()
 	memset (s, 'A', sizeof(s));
 	s[sizeof(s) - 1] = 0;
 	memset (t, 'B', sizeof(t));
-	sprintf (t, "%s", s);
-	
+	sprintf (t, "%s", (__CONST char*)s);
+
 	if (strcmp (s, t)) return __LINE__;
     }
 #endif
-    
+
     return 0;
 }

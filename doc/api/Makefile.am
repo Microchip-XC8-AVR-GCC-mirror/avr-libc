@@ -69,7 +69,7 @@ DOC_INST_DIR         = @DOC_INST_DIR@
 USER_MANUAL          = @AVR_LIBC_USER_MANUAL@
 USER_MANUAL_XML      = @AVR_LIBC_USER_MANUAL@-xml
 
-DEMO_LIBS            = $(shell cd $(top_srcdir) && find `pwd` \( -name crtm8.o -o -name exit.o \) -print | grep avr4)
+DEMO_LIBS            = $(shell cd $(top_srcdir) && find `pwd` \( -name crtm8.o -o -name exit.o \) -print | grep -m 1 avr4)
 # As avr-gcc must have been installed already, we can reference its
 # library by a -l option.
 DEMO_LIBS            += -lgcc

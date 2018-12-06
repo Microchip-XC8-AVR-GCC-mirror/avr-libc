@@ -43,6 +43,14 @@
 # define EXIT(code)	exit (code)
 #endif
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define strcpy_P    strcpy
+# define strlen_P    strlen
+# define strcmp_P    strcmp
+#undef PSTR
+# define PSTR(x) x
+#endif
+
 static void
 Check (int line, const char *s, const char *delim, int rslt, const char *token)
 {

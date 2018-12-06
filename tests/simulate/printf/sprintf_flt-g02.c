@@ -35,6 +35,14 @@
 #include <string.h>
 #include "progmem.h"
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define sprintf_P sprintf
+# define strcmp_P strcmp
+# define strlen_P strlen
+#undef PSTR
+# define PSTR(x) x
+#endif
+
 PROGMEM static const struct sprf_s {
     char fmt[8];
     float val;

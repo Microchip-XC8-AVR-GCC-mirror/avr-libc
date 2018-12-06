@@ -44,6 +44,13 @@
 # define EXIT(code)	exit (code)
 #endif
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#undef PSTR
+#define PSTR(x) x
+# define strcmp_P    strcmp
+#endif
+
+
 #ifndef	__AVR__
 static char *ultoa_recursive (unsigned long val, char *s, unsigned radix)
 {

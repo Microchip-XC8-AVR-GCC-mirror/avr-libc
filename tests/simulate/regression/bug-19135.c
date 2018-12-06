@@ -32,10 +32,16 @@
 
 #include <string.h>
 
+#ifdef __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__
+#define __CONST const
+#else
+#define __CONST
+#endif
+
 int main ()
 {
     char haystack[] = "ababac";
-    char *p = strstr (haystack, "abac");
+    __CONST char *p = strstr (haystack, "abac");
     if (p != haystack + 2)
 	return __LINE__;
     return 0;

@@ -42,6 +42,14 @@
 #include <stdlib.h>
 #include "sectionname.h"
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#define __CONST const
+#define strncasecmp_P strncasecmp
+# define pgm_read_dword(addr)	(*(const unsigned long *)(addr))
+#else
+#define __CONST
+#endif
+
 /* Only GCC 4.2 calls the library function to convert an unsigned long
    to float.  Other GCC-es (including 4.3) use a signed long to float
    conversion along with a large inline code to correct the result.	*/
@@ -86,7 +94,7 @@ PROGMEM static const char pstr_nan[] = {'N','A','N'};
  */
 ATTRIBUTE_CLIB_SECTION
 double
-strtod (const char * nptr, char ** endptr)
+strtod (const char * nptr, __CONST char ** endptr)
 {
     union {
 	unsigned long u32;
@@ -103,7 +111,7 @@ strtod (const char * nptr, char ** endptr)
 #define FL_MEXP	    0x10	/* exponent 'e' is neg.	*/
 
     if (endptr)
-	*endptr = (char *)nptr;
+	*endptr = (__CONST char *)nptr;
 
     do {
 	c = *nptr++;
@@ -116,30 +124,30 @@ strtod (const char * nptr, char ** endptr)
     } else if (c == '+') {
 	c = *nptr++;
     }
-    
+
     if (!strncasecmp_P (nptr - 1, pstr_inf, 3)) {
 	nptr += 2;
 	if (!strncasecmp_P (nptr, pstr_inity, 5))
 	    nptr += 5;
 	if (endptr)
-	    *endptr = (char *)nptr;
+	    *endptr = (__CONST char *)nptr;
 	return flag & FL_MINUS ? -INFINITY : +INFINITY;
     }
-    
+
     /* NAN() construction is not realised.
        Length would be 3 characters only.	*/
     if (!strncasecmp_P (nptr - 1, pstr_nan, 3)) {
 	if (endptr)
-	    *endptr = (char *)nptr + 2;
+	    *endptr = (__CONST char *)nptr + 2;
 	return NAN;
     }
 
     x.u32 = 0;
     exp = 0;
     while (1) {
-    
+
 	c -= '0';
-    
+
 	if (c <= 9) {
 	    flag |= FL_ANY;
 	    if (flag & FL_OVFL) {
@@ -161,7 +169,7 @@ strtod (const char * nptr, char ** endptr)
 	}
 	c = *nptr++;
     }
-    
+
     if (c == (('e'-'0') & 0xff) || c == (('E'-'0') & 0xff))
     {
 	int i;
@@ -190,21 +198,21 @@ strtod (const char * nptr, char ** endptr)
 	    exp += i;
 	}
     }
-    
+
     if ((flag & FL_ANY) && endptr)
-	*endptr = (char *)nptr - 1;
-    
+	*endptr = (__CONST char *)nptr - 1;
+
     x.flt = __floatunsisf (x.u32);		/* manually	*/
     if ((flag & FL_MINUS) && (flag & FL_ANY))
 	x.flt = -x.flt;
-	
+
     if (x.flt != 0) {
 	int pwr;
 	if (exp < 0) {
-	    nptr = (void *)(pwr_m10 + 5);
+	    nptr = (const void *)(pwr_m10 + 5);
 	    exp = -exp;
 	} else {
-	    nptr = (void *)(pwr_p10 + 5);
+	    nptr = (const void *)(pwr_p10 + 5);
 	}
 	for (pwr = 32; pwr; pwr >>= 1) {
 	    for (; exp >= pwr; exp -= pwr) {
@@ -212,7 +220,7 @@ strtod (const char * nptr, char ** endptr)
 		    unsigned long u32;
 		    float flt;
 		} y;
-		y.u32 = pgm_read_dword ((float *)nptr);
+		y.u32 = pgm_read_dword ((const float *)nptr);
 		x.flt *= y.flt;
 	    }
 	    nptr -= sizeof(float);

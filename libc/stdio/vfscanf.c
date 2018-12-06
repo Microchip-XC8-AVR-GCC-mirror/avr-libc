@@ -113,6 +113,17 @@ typedef unsigned char width_t;
 # endif
 #endif
 
+#if defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define GETBYTE(flag, mask, pnt)	({            \
+      unsigned char __c;                        \
+      __c = *pnt;                               \
+      pnt++;                                    \
+      __c;                                      \
+    })
+#define strchr_P strchr
+#define pgm_read_byte(p) (*(const unsigned char*)(p))
+#define pgm_read_dword(p) (*(const unsigned long*)(p))
+#else
 #if  DISABLE_ASM
 # define GETBYTE(flag, mask, pnt)	({	\
     unsigned char __c;				\
@@ -154,6 +165,7 @@ typedef unsigned char width_t;
     );						\
     __c;					\
 })
+#endif
 #endif
 
 /* Add noinline attribute to avoid GCC 4.2 optimization.	*/
@@ -526,10 +538,10 @@ static unsigned char conv_flt (FILE *stream, width_t width, float *addr)
 	x.flt = __floatunsisf (x.u32);
 
 	if (exp < 0) {
-	    p = (void *)(pwr_m10 + 5);
+	    p = (const void *)(pwr_m10 + 5);
 	    exp = -exp;
 	} else {
-	    p = (void *)(pwr_p10 + 5);
+	    p = (const void *)(pwr_p10 + 5);
 	}
 	for (width = 32; width; width >>= 1) {
 	    for (; (unsigned)exp >= width; exp -= width) {
@@ -540,7 +552,7 @@ static unsigned char conv_flt (FILE *stream, width_t width, float *addr)
 		y.lo = pgm_read_dword (p);
 		x.flt *= y.fl;
 	    }
-	    p = (void *)p - sizeof(float);
+	    p = (const void *)p - sizeof(float);
 	}
     } /* switch */
 

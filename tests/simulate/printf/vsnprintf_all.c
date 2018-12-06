@@ -55,11 +55,19 @@
 #include <string.h>
 #include "progmem.h"
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define vsnprintf_P  vsnprintf
+# define strcmp_P strcmp
+#undef PSTR
+# define PSTR(x) x
+# define PFMT(s)	s
+#else
 #ifdef	L_progmem
 # define vsnprintf	vsnprintf_P
 # define PFMT(s)	PSTR(s)
 #else
 # define PFMT(s)	s
+#endif
 #endif
 
 void Check (int line,

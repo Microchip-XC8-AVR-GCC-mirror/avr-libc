@@ -31,7 +31,36 @@
 
 string_a_c_sources = \
 	strdup.c \
-	strtok.c
+	strtok.c \
+	memcpy_M.c \
+	memccpy_M.c \
+	memcmp_M.c \
+	memmem_M.c \
+	memmove_M.c \
+  memchr_M.c \
+	memrchr_M.c \
+	strcat_M.c \
+	strchr_M.c \
+	strrchr_M.c \
+	strchrnul_M.c \
+	strcmp_M.c \
+	strncmp_M.c \
+	strlen_M.c \
+	strcpy_M.c \
+	strnlen_M.c \
+	strncpy_M.c \
+	strcasecmp_M.c \
+	strpbrk_M.c \
+	strcspn_M.c \
+	strspn_M.c \
+	strstr_M.c \
+	strcasestr_M.c \
+	strlcat_M.c \
+	strlcpy_M.c \
+	strtok_r_M.c \
+	strncat_M.c \
+	strncasecmp_M.c \
+	strsep_M.c
 
 string_a_asm_sources = \
 	ffs.S \

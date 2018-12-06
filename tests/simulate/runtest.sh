@@ -45,14 +45,35 @@ myname="$0"
 : ${SIMULAVR:=simulavr}
 
 : ${AVRDIR=../..}
-: ${MCU_LIST="atmega128 at90s8515"}
-: ${MCU_LIST_FULL="atmega128 at90s2313 at90s4414 at90s8515 atmega8 atmega16"}
+
+# simulavr-1.1 supported devices
+#   at90can128 at90can32 at90can64 at90s4433 at90s8515 atmega128 atmega1280 atmega1284
+#   atmega1284a atmega16 atmega164 atmega164a atmega168 atmega2560 atmega32 atmega324
+#   atmega324a atmega328 atmega48 atmega64 atmega640 atmega644 atmega644a atmega8 atmega88
+#   attiny2313 attiny25 attiny45 attiny85
+
+# skipped devices as not in avr-gcc: atmega1284a atmega164 atmega324
+# skipped devices as simulavr crashes: atmega324a
+: ${MCU_LIST_FULL="atmega128 atmega1280 atmega1284 atmega16 atmega164a atmega168
+    atmega2560 atmega32 atmega328 atmega48 atmega64 atmega640
+    atmega644 atmega644a atmega8 atmega88 attiny2313 attiny25 attiny45 attiny85"}
+
+# Selecting devices based on architecture for all testcases
+# attiny2313 - avr25 - shortsp
+# attiny85   - avr25
+# atmega48   - avr4
+# atmega168  - avr5
+# atmega128  - avr51
+# atmega2560 - avr6
+: ${MCU_LIST="attiny2313 attiny85 atmega48 atmega168 atmega128 atmega2560 "}
 
 HOST_PASS=			# Add pass at host computer
 HOST_ONLY=			# Pass at host only, skip AVR mode
 MAKE_ONLY=			# Compile/link only
 FLAG_STOP=			# Stop at any error
 FLAG_KEEPCORE=			# Keep simulator core file upon error
+
+MEMXCONST_FLAG=
 
 Errx ()
 {
@@ -63,7 +84,7 @@ Errx ()
 Usage ()
 {
     cat <<EOF
-Usage: $1 [-a AVRDIR] [-g AVR_GCC] [-ictTsh] [FILE]...
+Usage: $1 [-a AVRDIR] [-g AVR_GCC] [-ictTsLh] [FILE]...
 Options:
   -a AVRDIR   Specify avr-libc root (default is $AVRDIR)
   -i          Test an installed avr-libc
@@ -73,12 +94,16 @@ Options:
   -t          Add pass at host computer
   -T          Pass at host only
   -s          Stop at any error, temparary files will save
+  -L dyldpath Specify DYLD_LIBRARY_PATH
   -h          Print this help
 If FILE is not specified, the full test list is used.
 EOF
 }
 
-while getopts "a:icg:ktTsh" opt ; do
+# -L dyld path, mac os x shell may purge dynamic linker environment
+#    variables such as DYLD_LIBRARY_PATH, So pass explicitly to simulavr
+#
+while getopts "a:icg:ktTsL:Mh" opt ; do
     case $opt in
 	a)	AVRDIR="$OPTARG" ;;
 	i)	AVRDIR= ;;
@@ -88,6 +113,8 @@ while getopts "a:icg:ktTsh" opt ; do
 	t)	HOST_PASS=1 ;;
 	T)	HOST_ONLY=1 ; HOST_PASS=1 ;;
 	s)	FLAG_STOP=1 ;;
+	L)	LIBPATH="$OPTARG" ;;
+    M)  MEMXCONST_FLAG="-mconst-data-in-progmem" ;;
 	h)	Usage `basename $myname` ; exit 0 ;;
 	*)	Errx "Invalid option(s). Try '-h' for more info."
     esac
@@ -98,7 +125,7 @@ test_list=${*:-"time/*.c regression/*.c stdlib/*.c string/*.c pmstring/*.c \
 		avr/*.[cS]"}
 
 CPPFLAGS="-Wundef -I."
-CFLAGS="-gdwarf-4 -W -Wall -pipe -Os"
+CFLAGS="-gdwarf-4 -W -Wall -pipe -Os $MEMXCONST_FLAG"
 CORE=core_avr_dump.core
 HOST_CC=gcc
 HOST_CFLAGS="-W -Wall -std=gnu99 -pipe -O2 -I."
@@ -122,13 +149,10 @@ Host_exe ()
 # Usage: Simulate ELFILE MCU
 Simulate ()
 {
-    local exit_addr=0x`$AVR_NM $1 | grep __stop_program | cut -f1 -d' '`
-    # change the exit address from byte address to word address
-    exit_addr=`printf "0x%08x" $((exit_addr/2))`
     rm -f $CORE
     # pass device name, exit address, elf file, dump file and timeout (60 seconds).
-    if	$SIMULAVR -d $2 -B $exit_addr -f $1 -C $CORE -m 60000000000 2>&1 >/dev/null \
-	| grep "ERROR:"
+    if DYLD_LIBRARY_PATH=${LIBPATH} $SIMULAVR -d $2 -T __stop_program -f $1 -C $CORE -m 60000000000 2>&1 > /dev/null \
+    | grep "ERROR:"
     then
 	RETVAL=-1
     else
@@ -142,7 +166,7 @@ Simulate ()
 				grep r$i | cut -d= -f2` ))
 	    done
 	else
-	    echo "Core dump is not created"
+	    echo "Simulator core dump is not created "
 	    RETVAL=-1
 	fi
     fi
@@ -159,7 +183,7 @@ Compile ()
     if [ -z "$AVRDIR" ] ; then
 	  libs="-lm"
     else
-      local multilibdir=`$AVR_GCC -mmcu=$2 -print-multi-directory`
+      local multilibdir=`$AVR_GCC -mmcu=$2 -print-multi-directory $MEMXCONST_FLAG`
       # prefix dir 'avr2' if multilib dir is default or not starts with 'avr'
       # example: '.' or 'tinystack'
       if [[ $multilibdir != "avr"* ]]; then
@@ -167,7 +191,7 @@ Compile ()
       fi
       crt=crt$2.o
 	  flags="-isystem $AVRDIR/include -nostdlib"
-      crt=`find $AVRDIR/avr/lib -name $crt -print | head -1`
+      crt=`find $AVRDIR/avr/lib/$multilibdir/$2 -name $crt -print | head -1`
       libs="$AVRDIR/avr/lib/$multilibdir/libc.a	\
             $AVRDIR/avr/lib/$multilibdir/libm.a \
             $AVRDIR/avr/lib/$multilibdir/$2/lib$2.a -lgcc"
@@ -270,29 +294,30 @@ for test_file in $test_list ; do
 	        elf_file=$rootname.elf
 		for prvers in $prlist ; do
 		    for mcu in $mcu_list ; do
-			echo -n "Simulate: $test_file "
+			echo "Test $test_file ($mcu)"
+			logmsg="Simulate: $test_file"
 			case $prvers in
-			    PR_MIN)	echo -n "/printf_min " ;;
-			    PR_FLT)	echo -n "/printf_flt " ;;
-			    SC_MIN)	echo -n "/scanf_min " ;;
-			    SC_FLT)	echo -n "/scanf_flt " ;;
+			    PR_MIN)	logmsg="$logmsg /printf_min" ;;
+			    PR_FLT)	logmsg="$logmsg /printf_flt " ;;
+			    SC_MIN)	logmsg="$logmsg /scanf_min " ;;
+			    SC_FLT)	logmsg="$logmsg /scanf_flt " ;;
 			esac
-			echo -n "$mcu ... "
+			logmsg="$logmsg $mcu ..."
 		        if ! Compile $test_file $mcu $elf_file $prvers
 			then
-			    Err_echo "compile failed"
+			    Err_echo "$logmsg compile failed"
 			    n_emake=$(($n_emake + 1))
-			    break
+			    #break
 			elif [ -z $MAKE_ONLY ] && ! Simulate $elf_file $mcu
 			then
-			    Err_echo "simulate failed: $RETVAL"
+			    Err_echo "$logmsg simulate failed: $RETVAL"
 			    if [ $FLAG_KEEPCORE ] ; then
 				mv -f $CORE ${CORE}-$(echo ${test_file} \
 					| sed -e 's,/,_,g')-${mcu}-${prvers}
 			    fi
 			    n_esimul=$(($n_esimul + 1))
 			else
-			    echo "OK"
+			    echo "$logmsg OK"
 			fi
 		    done
 	        done
@@ -313,23 +338,24 @@ for test_file in $test_list ; do
 
 	        elf_file=$rootname.elf
 		for mcu in $mcu_list ; do
-		    echo -n "Simulate: $test_file "
-		    echo -n "$mcu ... "
+			echo "Test $test_file ($mcu)"
+		    logmsg="Simulate: $test_file"
+		    logmsg="$logmsg $mcu ..."
 		    if ! Compile $test_file $mcu $elf_file
 		    then
-			Err_echo "compile failed"
+			Err_echo "$logmsg compile failed"
 			n_emake=$(($n_emake + 1))
-			break
+			#break
 		    elif [ -z $MAKE_ONLY ] && ! Simulate $elf_file $mcu
 		    then
-			Err_echo "simulate failed: $RETVAL"
+			Err_echo "$logmsg simulate failed: $RETVAL"
 			if [ $FLAG_KEEPCORE ] ; then
 			    mv -f $CORE ${CORE}-$(echo ${test_file} \
 					| sed -e 's,/,_,g')-${mcu}
 			fi
 			n_esimul=$(($n_esimul + 1))
 		    else
-			echo "OK"
+			echo "$logmsg OK"
 		    fi
 		done
 		rm -f $elf_file $CORE

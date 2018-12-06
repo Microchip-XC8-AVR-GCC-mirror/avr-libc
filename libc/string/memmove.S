@@ -31,6 +31,7 @@
 #if !defined(__DOXYGEN__)
 
 #include "macros.inc"
+#if !defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
 
 #define dest_hi r25
 #define dest_lo r24
@@ -70,4 +71,5 @@ _U(memmove):
 .L_memmove_end:
 	.size	_U(memmove), .L_memmove_end - _U(memmove)
 
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */

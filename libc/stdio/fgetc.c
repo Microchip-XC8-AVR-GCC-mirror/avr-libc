@@ -49,12 +49,20 @@ fgetc(FILE *stream)
 	}
 
 	if (stream->flags & __SSTR) {
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+		rv = *stream->robuf;
+#else
 		rv = *stream->buf;
+#endif
 		if (rv == '\0') {
 			stream->flags |= __SEOF;
 			return EOF;
 		} else {
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+			stream->robuf++;
+#else
 			stream->buf++;
+#endif
 		}
 	} else {
 		rv = stream->get(stream);

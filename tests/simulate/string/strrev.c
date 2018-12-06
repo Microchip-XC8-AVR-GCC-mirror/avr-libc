@@ -40,7 +40,7 @@
 char * strrev (char *s)
 {
     char *p1, *p2;
-    
+
     for (p2 = s; *p2; ) p2++;
     p1 = s;
     while (p1 < p2) {
@@ -52,6 +52,15 @@ char * strrev (char *s)
     return s;
 }
 #endif
+
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define strcpy_P    strcpy
+# define strlen_P    strlen
+# define strcmp_P    strcmp
+# undef  PSTR
+# define PSTR(x)     x
+#endif
+
 
 void Check (int line, const char *s, const char *expect)
 {
@@ -73,9 +82,9 @@ void Check (int line, const char *s, const char *expect)
 	    code = line;
 	    break;
 	}
-	p = (char *)s;		/* change strings	*/
+    const char *temp = s;           /* change strings       */
 	s = expect;
-	expect = p;
+	expect = temp;
     }
     if (!code)
 	return;
@@ -98,16 +107,16 @@ int main ()
 {
     /* Empty string.	*/
     CHECK ("", "");
-    
+
     /* 1 char long	*/
     CHECK ("a", "a");
     CHECK ("\001", "\001");
     CHECK ("\377", "\377");
-    
+
     /* 2 chars long	*/
     CHECK ("01", "10");
     CHECK ("**", "**");
-    
+
     /* 3 and more chars long	*/
     CHECK ("abc", "cba");
     CHECK ("qwer", "rewq");
@@ -144,6 +153,6 @@ int main ()
 	   "6..............................................................5"
 	   "4..............................................................3"
 	   "2..............................................................1");
-    
+
     return 0;
 }

@@ -60,6 +60,13 @@
 # define _FDEV_EOF	(-1)
 #endif
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#undef pgm_read_byte
+# define pgm_read_byte(x) (*(const unsigned char*)(x))
+#undef PSTR
+# define PSTR(x) x
+#endif
+
 /* Next variables are useful to debug the AVR.	*/
 int vrslt = 1;
 struct {

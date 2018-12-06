@@ -159,7 +159,7 @@ extern void *memccpy(void *, const void *, int, size_t);
 
     \returns The memchr() function returns a pointer to the matching byte or
     NULL if the character does not occur in the given memory area.  */
-extern void *memchr(const void *, int, size_t) __ATTR_PURE__;
+extern const void *memchr(const void *, int, size_t) __ATTR_PURE__;
 
 /** \ingroup avr_string
     \fn int memcmp(const void *s1, const void *s2, size_t len)
@@ -200,7 +200,7 @@ extern void *memcpy(void *, const void *, size_t);
     \return The memmem() function returns a pointer to the beginning of
     the substring, or \c NULL if the substring is not found. If \p len2
     is zero, the function returns \p s1. */
-extern void *memmem(const void *, size_t, const void *, size_t) __ATTR_PURE__;
+extern const void *memmem(const void *, size_t, const void *, size_t) __ATTR_PURE__;
 
 /** \ingroup avr_string
     \fn void *memmove(void *dest, const void *src, size_t len)
@@ -222,7 +222,7 @@ extern void *memmove(void *, const void *, size_t);
     \return The memrchr() function returns a pointer to the matching
     byte or \c NULL if the character does not occur in the given memory
     area. */
-extern void *memrchr(const void *, int, size_t) __ATTR_PURE__;
+extern const void *memrchr(const void *, int, size_t) __ATTR_PURE__;
 
 /** \ingroup avr_string
     \fn void *memset(void *dest, int val, size_t len)
@@ -259,7 +259,7 @@ extern char *strcat(char *, const char *);
 
     \returns The strchr() function returns a pointer to the matched
     character or \c NULL if the character is not found. */
-extern char *strchr(const char *, int) __ATTR_PURE__;
+extern const char *strchr(const char *, int) __ATTR_PURE__;
 
 /** \ingroup avr_string
     \fn char *strchrnul(const char *s, int c)
@@ -271,7 +271,7 @@ extern char *strchr(const char *, int) __ATTR_PURE__;
     \return The strchrnul() function returns a pointer to the matched
     character, or a pointer to the null byte at the end of \p s (i.e.,
     \c s+strlen(s)) if the character is not found.	*/
-extern char *strchrnul(const char *, int) __ATTR_PURE__;
+extern const char *strchrnul(const char *, int) __ATTR_PURE__;
 
 /** \ingroup avr_string
     \fn int strcmp(const char *s1, const char *s2)
@@ -330,7 +330,7 @@ extern int strcasecmp(const char *, const char *) __ATTR_PURE__;
     \return The strcasestr() function returns a pointer to the beginning
     of the substring, or \c NULL if the substring is not found. If \p s2
     points to a string of zero length, the function returns \p s1. */
-extern char *strcasestr(const char *, const char *) __ATTR_PURE__;
+extern const char *strcasestr(const char *, const char *) __ATTR_PURE__;
 
 /** \ingroup avr_string
     \fn size_t strcspn(const char *s, const char *reject)
@@ -488,7 +488,7 @@ extern size_t strnlen(const char *, size_t) __ATTR_PURE__;
     if no such character is found. The terminating zero is not
     considered as a part of string: if one or both args are empty, the
     result will be \c NULL. */
-extern char *strpbrk(const char *__s, const char *__accept) __ATTR_PURE__;
+extern const char *strpbrk(const char *__s, const char *__accept) __ATTR_PURE__;
 
 /** \ingroup avr_string
     \fn char *strrchr(const char *src, int val)
@@ -502,7 +502,7 @@ extern char *strpbrk(const char *__s, const char *__accept) __ATTR_PURE__;
 
     \returns The strrchr() function returns a pointer to the matched character
     or NULL if the character is not found. */
-extern char *strrchr(const char *, int) __ATTR_PURE__;
+extern const char *strrchr(const char *, int) __ATTR_PURE__;
 
 /** \ingroup avr_string
     \fn char *strrev(char *s)
@@ -554,7 +554,7 @@ extern size_t strspn(const char *__s, const char *__accept) __ATTR_PURE__;
     \returns The strstr() function returns a pointer to the beginning of
     the substring, or \c NULL if the substring is not found. If \p s2
     points to a string of zero length, the function returns \p s1. */
-extern char *strstr(const char *, const char *) __ATTR_PURE__;
+extern const char *strstr(const char *, const char *) __ATTR_PURE__;
 
 /** \ingroup avr_string
     \fn char *strtok(char *s, const char *delim)

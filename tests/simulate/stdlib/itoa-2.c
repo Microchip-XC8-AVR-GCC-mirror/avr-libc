@@ -73,6 +73,13 @@ static char *itoa (int val, char *s, int radix)
 }
 #endif
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#undef PSTR
+#define PSTR(x) (x)
+# define strcmp_P    strcmp
+#endif
+
+
 static void
 Check (int line, int val, const char *rslt, int radix)
 {

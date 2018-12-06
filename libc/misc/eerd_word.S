@@ -43,6 +43,10 @@
 
 ENTRY	eeprom_read_word
 
+#if defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+	X_movw r24, r22
+#endif
+
 #if  __AVR_XMEGA__
 
 	XCALL	eeprom_mapen

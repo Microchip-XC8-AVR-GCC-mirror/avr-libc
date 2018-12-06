@@ -31,6 +31,7 @@
 #if !defined(__DOXYGEN__)
 
 #include "macros.inc"
+#if !defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
 
 #define s1_hi r25
 #define s1_lo r24
@@ -67,4 +68,5 @@ _U(strncmp):
 .L_strncmp_end:
 	.size	_U(strncmp), .L_strncmp_end - _U(strncmp)
 
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */

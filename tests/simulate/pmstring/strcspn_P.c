@@ -37,6 +37,15 @@
 #include <string.h>
 #include "progmem.h"
 
+
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define    strlen_P       strlen
+# define    strcpy_P       strcpy
+# define    strcspn_P      strcspn
+# undef     PSTR
+# define    PSTR(x)        x
+#endif
+
 void Check (int line, const char *s1, const char *s2, size_t expect)
 {
     char t1[300];
@@ -91,12 +100,12 @@ int main ()
     CHECK ("...b", "ab", 3);
     CHECK ("0101010101", "23", 10);
     CHECK ("0123456789AB", ".A", 10);
-    
+
     /* accept[] length > 2	*/
     CHECK ("the quick brown fox", "QWERTYUIOPASDFGHJKLZXCVBNM", 19);
     CHECK ("the quick brown fox ...", ".QWERTYUIOPASDFGHJKLZXCVBNM", 20);
     CHECK ("the quick brown fox .?", "QWERTYUIOPASDFGHJKLZXCVBNM?", 21);
-    
+
     /* non ASCII chars	*/
     CHECK ("\001", "\001", 0);
     CHECK ("\377", "\377", 0);

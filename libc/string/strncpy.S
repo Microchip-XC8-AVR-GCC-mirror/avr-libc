@@ -31,6 +31,7 @@
 #if !defined(__DOXYGEN__)
 
 #include "macros.inc"
+#if !defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
 
 #define dest_hi r25
 #define dest_lo r24
@@ -69,4 +70,5 @@ _U(strncpy):
 .L_strncpy_end:
 	.size	_U(strncpy), .L_strncpy_end - _U(strncpy)
 
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */

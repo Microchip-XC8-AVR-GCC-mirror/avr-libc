@@ -52,6 +52,16 @@
 # define EXIT	exit
 #endif
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define strsep_P  strsep
+# define strlen_P  strlen
+# define strcpy_P  strcpy
+# define strcmp_P strcmp
+# define memcmp_P memcmp
+#undef PSTR
+# define PSTR(x) x
+#endif
+
 void Check (int line, const char *s1, const char *s2, int clr, int pnt)
 {
     char t1[300];

@@ -33,6 +33,7 @@
 #if !defined(__DOXYGEN__)
 
 #include "asmdef.h"
+#if !defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
 
 #define src_hi	r25
 #define src_lo	r24
@@ -61,6 +62,7 @@ ENTRY memrchr
 	ret
 ENDFUNC
 
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

@@ -83,6 +83,15 @@ size_t strlcat (char *dst, const char *src, size_t siz)
 }
 #endif	/* !__AVR__ */
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define strcpy_P    strcpy
+# define strlen_P    strlen
+# define strcmp_P    strcmp
+#undef PSTR
+# define PSTR(x) x
+#endif
+
+
 void Check (int line,
 	    const char *dst, const char *src, size_t size,
 	    const char *result)

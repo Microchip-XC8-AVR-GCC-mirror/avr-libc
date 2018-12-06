@@ -55,20 +55,10 @@ extern struct __freelist *__flp; /* freelist pointer (head of freelist) */
 extern char *__malloc_heap_start;
 extern char *__malloc_heap_end;
 
-#if defined(__AVR_ATmega128__)
 #define HEAP_START 0x200
 #define HEAP_END   0x1000
 #define ALLOC_FAILS 0xe00
 #define ALLOC_WORKS 0xdfe
-#elif defined(__AVR_AT90S8515__)
-#define HEAP_START 0x100
-#define HEAP_END   0x200
-#define ALLOC_FAILS 0x100
-#define ALLOC_WORKS 0xfe
-#else
-#  error "Unknown MCU type"
-#endif
-
 
 int main(void)
 {

@@ -32,18 +32,22 @@
 
 #include "macros.inc"
 
-#define dest_hi r25
-#define dest_lo r24
-#define src_hi r23
-#define src_lo r22
-#define len_hi r21
-#define len_lo r20
+#if !defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#  define dest_hi r25
+#  define dest_lo r24
+#  define src_hi r23
+#  define src_lo r22
+#  define len_hi r21
+#  define len_lo r20
 
 	ASSEMBLY_CLIB_SECTION
 	.global	_U(memcpy)
 	.type	_U(memcpy), @function
 _U(memcpy):
 	X_movw	ZL, src_lo
+#if (__AVR_CONST_POINTER_IS_MEMX__)
+  X_mov
+#endif
 	X_movw	XL, dest_lo
 #if OPTIMIZE_SPEED
 ; 15 words, (14 + len * 6 - (len & 1)) cycles
@@ -75,4 +79,5 @@ _U(memcpy):
 .L_memcpy_end:
 	.size	_U(memcpy), .L_memcpy_end - _U(memcpy)
 
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */

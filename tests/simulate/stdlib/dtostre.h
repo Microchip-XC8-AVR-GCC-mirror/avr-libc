@@ -45,6 +45,24 @@ struct dtostre_s {
     char pattern[PATTERN_SIZE];
 };
 
+#ifdef __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__
+#define __CONST const
+#undef PSTR
+# define PSTR(s)		(s)
+#undef pgm_read_byte
+# define pgm_read_byte(addr)	(*(const unsigned char *)(addr))
+#undef pgm_read_word
+# define pgm_read_word(addr)	(*(const unsigned int *)(addr))
+#undef pgm_read_dword
+# define pgm_read_dword(addr)	(*(const unsigned long *)(addr))
+#undef pgm_read_float
+# define pgm_read_float(addr)	(*(const float *)(addr))
+#undef pgm_read_qword
+# define pgm_read_qword(addr)	(*(const unsigned long long *)(addr))
+#else
+#define __CONST
+#endif
+
 #ifndef	__AVR__
 
 # include <stdio.h>
@@ -89,7 +107,7 @@ void run_dtostre (const struct dtostre_s *pt, int testno)
     unsigned char prec, flags;
     static char s[2*PZLEN + sizeof(pt->pattern)];
     char c, *ps;
-    void *pv;
+    __CONST void *pv;
     
     memset(s, testno, sizeof(s));
 

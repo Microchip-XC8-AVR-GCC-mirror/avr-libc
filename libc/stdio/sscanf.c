@@ -44,6 +44,9 @@ sscanf(const char *s, const char *fmt, ...)
 	int i;
 
 	f.flags = __SRD | __SSTR;
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+	f.robuf = s;
+#else
 	/*
 	 * It is OK to discard the "const" qualifier here.  f.buf is
 	 * non-const as in the generic case, this buffer is obtained
@@ -53,6 +56,7 @@ sscanf(const char *s, const char *fmt, ...)
 	 * a chance to get write access to it again.
 	 */
 	f.buf = (char *)s;
+#endif
 	va_start(ap, fmt);
 	i = vfscanf(&f, fmt, ap);
 	va_end(ap);

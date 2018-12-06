@@ -52,11 +52,24 @@
 #include <stdio.h>
 #include "progmem.h"
 
+#ifdef __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__
+#define strlen_P strlen
+#define strcpy_P strcpy
+#define strcmp_P strcmp
+#define __CONST const
+// with const-data-in-progmem we are forcing string const
+// to memx address space, so, ignore PSTR to force to progmem
+#undef PSTR
+#define PSTR(x) x
+#else
+#define __CONST
+#endif
+
 void Check (int line, const char *s1, const char *s2, int expect)
 {
     char t1[300];
     char t2[100];
-    char *p;
+    __CONST char *p;
 
     if ((strlen_P(s1) > sizeof(t1) - 1) || (strlen_P(s2) > sizeof(t2) - 1))
 	exit (1);
@@ -106,7 +119,7 @@ int main ()
     CHECK (".a", "a", 1);
     CHECK (".a.", "a", 1);
     CHECK ("ABCDEFGH", "H", 7);
-    
+
     /* 'needle' of 2 bytes long	*/
     CHECK ("", "12", -1);
     CHECK ("13", "12", -1);
@@ -115,20 +128,20 @@ int main ()
     CHECK ("123", "12", 0);
     CHECK ("012", "12", 1);
     CHECK ("01200", "12", 1);
-    
+
     /* partially mathing	*/
     CHECK ("a_ab_abc_abcd_abcde", "abcdef", -1);
     CHECK ("a_ab_abc_abcd_abcde_abcdef", "abcdef", 20);
     CHECK ("aababcabcdabcde", "abcdef", -1);
     CHECK ("aababcabcdabcdeabcdef", "abcdef", 15);
-    
+
     /* repeated chars	*/
     CHECK ("abaabaaabaaaab", "aaaaab", -1);
     CHECK ("abaabaaabaaaabaaaaab", "aaaaab", 14);
-    
+
     /* A first match is returned.	*/
     CHECK ("_foo_foo", "foo", 1);
-    
+
     /* Case is ignored.	*/
     CHECK ("A", "a", 0);
     CHECK ("qwertyuiopasdfghjklzxcvbnm",
@@ -150,7 +163,7 @@ int main ()
     CHECK (".\133", ".\173", -1);
     CHECK (".\173", ".\133", -1);
     CHECK ("\100\140", "\140", 1);	/* second match	*/
-    
+
     /* Very long s1	*/
     CHECK ("................................................................"
 	   "................................................................"

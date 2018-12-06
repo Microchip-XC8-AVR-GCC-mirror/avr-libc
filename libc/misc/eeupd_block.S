@@ -30,6 +30,8 @@
 
 #ifndef	__DOXYGEN__
 
+#if !defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+
 #include <avr/io.h>
 
 #if	E2END && __AVR_ARCH__ > 1
@@ -82,4 +84,5 @@ ENTRY	eeprom_update_block
 ENDFUNC
 
 #endif	/* E2END && __AVR_ARCH__ > 1 */
+#endif  /* !__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif	/* !__DOXYGEN__ */

@@ -34,9 +34,21 @@
 #include <string.h>
 #include "progmem.h"
 
+#ifdef __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__
+#define __CONST const
+#define strcpy_P strcpy
+// with const-data-in-progmem we are forcing string const
+// to memx address space, so, ignore PSTR to force to progmem
+#undef PSTR
+#define PSTR(x) x
+#else
+#define __CONST
+#endif
+
 void Check (int line, const char *s, int c, int expect)
 {
-    char t[300], *p;
+    char t[300];
+    __CONST char *p;
     strcpy_P (t, s);
     p = strchr (t, c);
     if (expect == -1 && !p)

@@ -61,6 +61,8 @@
 
 #include "macros.inc"
 
+#if !defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+
 #define str_hi	r25
 #define str_lo	r24
 #define num_hi	r25
@@ -124,5 +126,7 @@ _U(atoi):
 
 .L_atoi_end:
 	.size _U(atoi), .L_atoi_end - _U(atoi)
+
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 
 #endif /* not __DOXYGEN__ */

@@ -354,7 +354,7 @@
 
 
 /* Fuses */
-#define FUSE_MEMORY_SIZE 0
+#define FUSE_MEMORY_SIZE 1
 
 
 /* Lock Bits */

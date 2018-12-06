@@ -37,6 +37,19 @@
 #include <string.h>
 #include "progmem.h"
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#define strcpy_P    strcpy
+#define __CONST     const
+#undef pgm_read_byte
+# define pgm_read_byte(addr)    (*(const unsigned char *)(addr))
+#undef pgm_read_word
+# define pgm_read_word(addr)    (*(const unsigned int *)(addr))
+#undef pgm_read_float
+# define pgm_read_float(addr)   (*(const float *)(addr))
+#else
+#define __CONST
+#endif
+
 union lofl_u {
     long lo;
     float fl;
@@ -90,22 +103,22 @@ void x_exit (int index)
 int main ()
 {
     char s [sizeof(t[0].s)];
-    char *p;
+    __CONST char *p;
     union lofl_u mst;
     unsigned char len;
     int eno;
     int i;
-    
+
     for (i = 0; i < (int) (sizeof(t) / sizeof(t[0])); i++) {
 	strcpy_P (s, t[i].s);
 	len = pgm_read_byte (& t[i].len);
 	mst.lo = pgm_read_dword (& t[i].val);
 	eno = pgm_read_word (& t[i].eno);
-	
+
 	errno = 0;
 	p = 0;
 	v.fl = strtod (s, &p);
-	
+
 	if (!p || (p - s) != len || errno != eno)
 	    x_exit (i+1);
 	if (isnan(mst.fl) && isnan(v.fl))

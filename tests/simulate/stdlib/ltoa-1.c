@@ -74,6 +74,12 @@ static char *ltoa (long val, char *s, int radix)
 #endif
 
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#undef PSTR
+#define PSTR(x) (x)
+# define strcmp_P    strcmp
+#endif
+
 int main ()
 {
     char s[40];

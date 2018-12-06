@@ -30,6 +30,8 @@
 
 #if !defined(__DOXYGEN__)
 
+#if !defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+
 #include "asmdef.h"
 
 #define dest_hi r25
@@ -68,4 +70,7 @@ ENTRY memccpy
 	clr	ret_hi
 	ret
 ENDFUNC
+
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
+
 #endif /* not __DOXYGEN__ */

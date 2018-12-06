@@ -36,6 +36,12 @@
 #include <stdlib.h>
 #include "sectionname.h"
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#define __CONST const
+#else
+#define __CONST
+#endif
+
 /*
  * Convert a string to a long integer.
  *
@@ -44,7 +50,7 @@
  */
 ATTRIBUTE_CLIB_SECTION
 long
-strtol(const char *nptr, char **endptr, register int base)
+strtol(const char *nptr, __CONST char **endptr, register int base)
 {
 	register unsigned long acc;
 	register unsigned char c;
@@ -55,7 +61,7 @@ strtol(const char *nptr, char **endptr, register int base)
 #define FL_0X	0x02		/* number has a 0x prefix */
 
 	if (endptr)
-		*endptr = (char *)nptr;
+		*endptr = (__CONST char *)nptr;
 	if (base != 0 && (base < 2 || base > 36))
 		return 0;
 
@@ -154,9 +160,9 @@ strtol(const char *nptr, char **endptr, register int base)
 	}
 	if (endptr) {
 		if (any)
-		    *endptr = (char *)nptr - 1;
+		    *endptr = (__CONST char *)nptr - 1;
 		else if (flag & FL_0X)
-		    *endptr = (char *)nptr - 2;
+		    *endptr = (__CONST char *)nptr - 2;
 	}
 	if (any < 0) {
 		acc = (flag & FL_NEG) ? LONG_MIN : LONG_MAX;

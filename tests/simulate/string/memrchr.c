@@ -47,6 +47,15 @@
 # define EXIT	exit
 #endif
 
+#ifdef __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__
+#define PSTR(x) x
+#define __CONST const
+#define memcpy_P memcpy
+#define memcmp_P memcmp
+#else
+#define __CONST
+#endif
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -55,7 +64,7 @@
 void Check (int line, const char *s, int c, size_t len, int expect)
 {
     char t[320];
-    char *p;
+    __CONST char *p;
     
     if (len > sizeof(t))
 	exit (1);

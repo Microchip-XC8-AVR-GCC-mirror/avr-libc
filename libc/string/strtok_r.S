@@ -36,6 +36,8 @@
 
 #include "asmdef.h"
 
+#if !defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+
 /*  char *strtok_r (char *s, const char *delim, char **last)
     {
 	char *p = *last;
@@ -137,6 +139,8 @@ ENTRY strtok_r
 	ret
 
 ENDFUNC
+
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 
 #endif /* not __DOXYGEN__ */
 

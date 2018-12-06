@@ -40,10 +40,12 @@ eeprom_asm_sources = \
 	eerd_dword.S \
 	eerd_word.S \
 	eeupd_block.S \
+	eeupd_block_M.S \
 	eeupd_byte.S \
 	eeupd_dword.S \
 	eeupd_word.S \
 	eewr_block.S \
+	eewr_block_M.S \
 	eewr_byte.S \
 	eewr_dword.S \
 	eewr_word.S

@@ -45,6 +45,14 @@
 # define EXIT(code)	exit (code)
 #endif
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define memcpy_P    memcpy
+# define memcmp_P    memcmp
+#undef PSTR
+# define PSTR(x) x
+#endif
+
+
 /* The expected return value must be (dst + expret) in case of expret >= 0,
    or NULL in case of expret == -1.
  */

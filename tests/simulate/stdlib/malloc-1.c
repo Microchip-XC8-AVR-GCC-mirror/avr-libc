@@ -41,6 +41,8 @@ int main ()
 }
 
 #else
+#include <avr/io.h>
+#if defined(RAMSTART) && defined(RAMEND)
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -55,29 +57,35 @@ extern struct __freelist *__flp; /* freelist pointer (head of freelist) */
 extern char *__malloc_heap_start;
 extern char *__malloc_heap_end;
 
-#if defined(__AVR_ATmega128__)
+#if (((RAMEND)-(RAMSTART)) < 128)
+#define NALLOCS 6
+static const int sizes[NALLOCS] =
+{
+    4, 2, 3, 1, 5, 3 /* 18 + 1 [padding] + 2 * 6 [ptrs] = 31 */
+};
+#define TARGETVAL 31
+#elif (((RAMEND)-(RAMSTART)) < 512)
+#define NALLOCS 8
+static const int sizes[8] =
+{
+    5, 8, 2, 22, 56, 1, 32, 25 /* 151 + 1 [padding] + 2 * 8 [ptrs] = 168 */
+};
+#define TARGETVAL 168
+#else
+#define NALLOCS 8
 static const int sizes[8] =
 {
     5, 8, 2, 122, 256, 1, 32, 25 /* 451 + 1 [padding] + 2 * 8 [ptrs] = 468 */
 };
 #define TARGETVAL 468
-#elif defined(__AVR_AT90S8515__)
-static const int sizes[8] =
-{
-    5, 8, 2, 22, 256, 1, 12, 25 /* 331 + 1 [padding] + 2 * 8 [ptrs] = 348 */
-};
-#define TARGETVAL 348
-#else
-#  error "Unknown MCU type"
 #endif
-
 
 int main(void)
 {
     void *ptrs[8];
     uint8_t i;
 
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < NALLOCS; i++)
     {
         void *p = malloc(sizes[i]);
         /* first test: all allocations are supposed to fit */
@@ -88,7 +96,7 @@ int main(void)
        match the expected TARGETVAL */
     if (__brkval - __malloc_heap_start != TARGETVAL) return __LINE__;
 
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < NALLOCS; i++)
     {
         free(ptrs[i]);
     }
@@ -98,5 +106,5 @@ int main(void)
 
     return 0;
 }
-
+#endif /* defined (RAMSTART, RAMEND) */
 #endif  /* !AVR */

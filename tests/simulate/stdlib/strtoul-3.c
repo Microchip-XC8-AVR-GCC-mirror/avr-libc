@@ -35,6 +35,10 @@
 #include "progmem.h"
 #include "strtoul.h"
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#define memcpy_P memcpy
+#endif
+
 int main ()
 {
     PROGMEM static const struct t_s {
@@ -44,7 +48,7 @@ int main ()
 	int err;		/* errno must	*/
 	unsigned char len;	/* endptr displacement must	*/
     } t[] = {
-	
+
 	{ "0", 2,	0, 0, 1 },
 	{ "1", 2,	1, 0, 1 },
 	{ "-1", 2,	-1, 0, 2 },
@@ -65,11 +69,11 @@ int main ()
 	{ "-11111111111111111111111111111111", 2,  0x00000001, 0, 33 },
 	{ "-100000000000000000000000000000000", 2, 0xffffffff, ERANGE, 34 },
 	{ "-100000000000000000000000000000001", 2, 0xffffffff, ERANGE, 34 },
-	
+
     };
     struct t_s tt;
     int i;
-    
+
     for (i = 0; i != (int)(sizeof(t)/sizeof(t[0])); i++) {
 	struct t_s *p;
 	memcpy_P (&tt, t + i, sizeof(tt));

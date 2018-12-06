@@ -34,6 +34,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__
+#define __CONST const
+#else
+#define __CONST
+#endif
+
 jmp_buf env;
 
 /* foo_jmp() use stack.	longjmp must restore frame pointer from env.	*/
@@ -47,7 +53,7 @@ void foo_jmp (const char *p)
 
 /* foo() use stack. If frame pointer would be scratch, return value
    (or all program) would be another.	*/
-int foo (char *p)
+int foo (__CONST char *p)
 {
     volatile char s[16];
     strcpy ((char *)s, p);

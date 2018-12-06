@@ -41,6 +41,12 @@ int main ()	{ return 0; }
 #include <avr/pgmspace.h>
 #include <string.h>
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define strlcat_P    strlcat
+# undef PSTR
+# define PSTR(x) x
+#endif
+
 int main ()
 {
     /* To activiate this bug, it is needed 0xXXFF address of terminated

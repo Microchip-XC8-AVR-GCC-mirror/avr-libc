@@ -39,13 +39,19 @@
 # define EINVAL	22	/* Invalid argument	*/
 #endif
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#define __CONST const
+#else
+#define __CONST
+#endif
+
 static int
 t_strtoul (const char *s, int base, unsigned long ret, int err, int len)
 {
-    char * endptr;
-    
+    __CONST char * endptr;
+
     errno = 0;
-    endptr = (char *)s - 1;		/* invalid value	*/
+    endptr = (__CONST char *)s - 1;		/* invalid value	*/
     if (strtoul (s, & endptr, base) != ret
 	|| errno != err
 #ifdef	__AVR__

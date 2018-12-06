@@ -47,6 +47,11 @@
 # define EXIT	exit
 #endif
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#define strcmp_P strcmp
+#define sprintf_P sprintf
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -54,14 +54,8 @@ extern struct __freelist *__flp; /* freelist pointer (head of freelist) */
 extern char *__malloc_heap_start;
 extern char *__malloc_heap_end;
 
-#if defined(__AVR_ATmega128__)
-#define HEAP_START 0x200
-#elif defined(__AVR_AT90S8515__)
-#define HEAP_START 0x100
-#else
-#  error "Unknown MCU type"
-#endif
-
+#include <avr/io.h>
+#define HEAP_START RAMSTART
 
 int main(void)
 {

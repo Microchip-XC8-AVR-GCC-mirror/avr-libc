@@ -390,6 +390,18 @@ __do_copy_data:
 .L__desc_end:
     .balign 4
 
+  /* Set TEXT_REGION_ORIGIN symbol. */
+#ifdef FLASHSTART
+  .weak __TEXT_REGION_ORIGIN__
+  .set __TEXT_REGION_ORIGIN__, FLASHSTART
+#endif
+
+  /* Set DATA_REGION_ORIGIN symbol. */
+#ifdef RAMSTART
+  .weak __DATA_REGION_ORIGIN__
+  .set __DATA_REGION_ORIGIN__, 0x800000 | RAMSTART
+#endif
+
   /* Set REGION_LENGTH symbol values for well known memory regions.
   The default linker script uses these symbols to set MEMORY 
   region lengths, and by defining these here, the linker can detect

@@ -3,7 +3,7 @@
 
 #include <avr/io.h>
 
-#if E2END && __AVR_XMEGA__ && defined(E2PAGESIZE) && (E2PAGESIZE)
+#if E2END && __AVR_XMEGA__ && defined(E2PAGESIZE) && (E2PAGESIZE > 1)
 
 #include <assert.h>
 #include "sectionname.h"

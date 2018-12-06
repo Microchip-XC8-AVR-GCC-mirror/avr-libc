@@ -33,6 +33,7 @@
 #ifndef	__DOXYGEN__
 
 #include "macros.inc"
+#if !defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
 
 #define str_lo	r24
 #define acc_lo	r22
@@ -68,6 +69,7 @@ _U(strpbrk):
 
 	.size _U(strpbrk), . - _U(strpbrk)
 
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif	/* !__DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

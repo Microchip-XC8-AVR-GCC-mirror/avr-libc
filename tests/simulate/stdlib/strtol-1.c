@@ -88,6 +88,10 @@ PROGMEM static const struct t_s {
     { "12345", 16,    0x12345, 0, 5 },
 };
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define memcpy_P    memcpy
+#endif
+
 int main ()
 {
     struct t_s tt;

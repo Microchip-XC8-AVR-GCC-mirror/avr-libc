@@ -45,6 +45,13 @@ int main ()
 #include <stdlib.h>
 #include <avr/cpufunc.h>
 
+#include <avr/io.h>
+#if (((RAMEND)-(RAMSTART)) < 128)
+#define ALLOCSZ 3
+#else
+#define ALLOCSZ 10
+#endif
+
 #include "../../libc/stdlib/stdlib_private.h"
 
 int main(void)
@@ -54,7 +61,7 @@ int main(void)
 
     for (i = 0; i < 6; i++)
     {
-        void *p = malloc(10);
+        void *p = malloc(ALLOCSZ);
         if (p == NULL) return __LINE__;
         ptrs[i] = p;
     }
@@ -77,7 +84,7 @@ int main(void)
     _MemoryBarrier();
     /* One entry added. */
     if ((char *)(ptrs[1]) - 2 != (void *)__flp) return __LINE__;
-    if (__flp->sz != 10) return __LINE__;
+    if (__flp->sz != ALLOCSZ) return __LINE__;
     if (__flp->nx != (void *)ofp) return __LINE__;
 
     free(ptrs[3]);

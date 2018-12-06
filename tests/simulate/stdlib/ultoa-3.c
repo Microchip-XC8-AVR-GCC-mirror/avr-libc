@@ -44,6 +44,12 @@
 # define EXIT(code)	exit (code)
 #endif
 
+#ifdef __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__
+#define __CONST const
+#else
+#define __CONST
+#endif
+
 #ifndef	__AVR__
 static char *ultoa_recursive (unsigned long val, char *s, unsigned radix)
 {
@@ -70,7 +76,8 @@ static char *ultoa (unsigned long val, char *s, int radix)
 static void
 Check (int line, unsigned long val, int radix)
 {
-    char s[40], *p;
+    char s[40];
+    __CONST char *p;
     unsigned long x;
 
     memset (s, 0xff, sizeof (s) - 1);

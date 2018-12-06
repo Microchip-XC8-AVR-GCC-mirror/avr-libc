@@ -33,6 +33,8 @@
 
 #if !defined(__DOXYGEN__)
 
+#if !defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+
 #include "macros.inc"
 
 #define strp_lo	r24
@@ -78,6 +80,8 @@ _U(strsep):
 	ret
 
 	.size	_U(strsep), . - _U(strsep)
+
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 
 #endif /* not __DOXYGEN__ */
 

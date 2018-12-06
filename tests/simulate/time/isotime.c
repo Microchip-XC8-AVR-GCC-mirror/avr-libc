@@ -36,8 +36,14 @@
 #include <time.h>
 #include <string.h>
 
-char           *Y2K_isostring = "2000-01-01 00:00:00";
-char           *end_isostring = "2136-02-07 06:28:15";
+#ifdef __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__
+#define __CONST const
+#else
+#define __CONST
+#endif
+
+__CONST char           *Y2K_isostring = "2000-01-01 00:00:00";
+__CONST char           *end_isostring = "2136-02-07 06:28:15";
 
 int
 main()

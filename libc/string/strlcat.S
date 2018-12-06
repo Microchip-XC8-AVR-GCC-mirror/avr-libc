@@ -41,6 +41,9 @@
 
 #include "asmdef.h"
 
+#if !defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+
+
 /*  size_t strlcat (char *dst, const char *src, size_t siz)
     {
 	char *d = dst;
@@ -113,6 +116,9 @@ ENTRY strlcat
 	ret
 
 ENDFUNC
+
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
+
 #endif /* not __DOXYGEN__ */
 
 #endif /* not __AVR_TINY__ */

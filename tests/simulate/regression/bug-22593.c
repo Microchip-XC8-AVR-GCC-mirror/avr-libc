@@ -44,11 +44,17 @@
 # include <avr/pgmspace.h>
 #endif
 
+#if defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# undef  PSTR
+# define PSTR(x) x
+# define sscanf_P sscanf
+#endif
+
 int main ()
 {
     char s1[5], s2[5];
     int result;
-    
+
     s1[0] = 0;
     s2[0] = 0;
 

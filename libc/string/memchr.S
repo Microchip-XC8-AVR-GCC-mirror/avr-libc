@@ -34,6 +34,7 @@
 
 #include "macros.inc"
 
+#if !defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
 #define src_hi r25
 #define src_lo r24
 ; #define val_hi r23
@@ -66,6 +67,7 @@ _U(memchr):
 .L_memchr_end:
 	.size	_U(memchr), .L_memchr_end - _U(memchr)
 
+#endif /* not __AVR_CONST_POINTER_IS_MEMX__ */
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

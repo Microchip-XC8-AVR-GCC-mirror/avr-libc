@@ -92,6 +92,12 @@ void t_exit (int idx)
 #endif
 }
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define strcpy_P    strcpy
+#undef pgm_read_word
+#define pgm_read_word(x) (*x)
+#endif
+
 int main ()
 {
     int i;

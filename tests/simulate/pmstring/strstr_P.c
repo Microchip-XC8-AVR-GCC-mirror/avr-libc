@@ -37,10 +37,21 @@
 #include <string.h>
 #include "progmem.h"
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define strstr_P  strstr
+# define strlen_P  strlen
+# define strcpy_P  strcpy
+#undef PSTR
+# define PSTR(x) x
+# define __CONST const
+#else
+# define __CONST
+#endif
+
 void Check (int line, const char *s1, const char *s2, int expect)
 {
     char t1[200];
-    char *p;
+    __CONST char *p;
 
     if (strlen_P(s1) > sizeof(t1) - 1)
 	exit (1);

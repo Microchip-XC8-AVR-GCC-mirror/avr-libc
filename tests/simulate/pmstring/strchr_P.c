@@ -38,6 +38,12 @@
 # define strchr_P	strchr
 #endif
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define strchr_P  strchr
+#undef PSTR
+# define PSTR(x) x
+#endif
+
 void Check (int line, const char *s, int c, int expect)
 {
     const char *p;

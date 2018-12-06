@@ -49,7 +49,8 @@ dtostre (double val, char *sbeg, unsigned char prec, unsigned char flags)
     if (prec > 7) prec = 7;
     
     exp = __ftoa_engine (val, sbeg, prec, 0);
-    d = s = sbeg;
+    s = sbeg;
+    d = sbeg;
     vtype = *s++;
 
     if ((vtype & FTOA_MINUS) && !(vtype & FTOA_NAN))	/* like 'Glibc'	*/
@@ -69,7 +70,11 @@ dtostre (double val, char *sbeg, unsigned char prec, unsigned char flags)
       copy:
 	if (flags & DTOSTR_UPPERCASE)
 	    s += sizeof(str_nan[0]);
+#if defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+	strcpy (d, s);
+#else
 	strcpy_P (d, s);
+#endif
 	goto ret;
     }
     

@@ -30,12 +30,19 @@
 
 #ifndef	__DOXYGEN__
 
+#if !defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+
 #include <avr/io.h>
 
 #if	E2END && __AVR_ARCH__ > 1
 
-/* Skip for Xmega with valid page size. Refer. eewr_block_xmega.c.  */
-#if !(__AVR_XMEGA__ && defined (E2PAGESIZE) && (E2PAGESIZE))
+/* Skip for Xmega with valid page size.  Refer. eewr_block_xmega.c.
+   e.g.1 all xmega devices
+   e.g.2 avr64da128 have eeprom page size as 1 and it doesn't have
+   eeprom erase_write command.
+   Note: It ok to skip even if eeprom erase_write command is available
+   and page size is 1. Using C function for page size 1 is not optimal.  */
+#if !(__AVR_XMEGA__ && defined (E2PAGESIZE) && (E2PAGESIZE > 1))
 
 #include <avr/eeprom.h>
 #include "asmdef.h"
@@ -75,4 +82,5 @@ ENTRY	eeprom_write_block
 ENDFUNC
 #endif  /* All except __AVR_XMEGA__ && E2PAGESIZE */
 #endif	/* E2END && __AVR_ARCH__ > 1 */
+#endif  /* !__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif	/* !__DOXYGEN__ */

@@ -215,7 +215,11 @@ extern void qsort(void *__base, size_t __nmemb, size_t __size,
     errno is set to \ref avr_errno "ERANGE" and the function return value
     is clamped to \c LONG_MIN or \c LONG_MAX, respectively.
 */
+#if defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+extern long strtol(const char *__nptr, const char **__endptr, int __base);
+#else
 extern long strtol(const char *__nptr, char **__endptr, int __base);
+#endif
 
 /**
     The strtoul() function converts the string in \c nptr to an
@@ -246,10 +250,14 @@ extern long strtol(const char *__nptr, char **__endptr, int __base);
     or, if there was a leading minus sign, the negation of the result
     of the conversion, unless the original (non-negated) value would
     overflow; in the latter case, strtoul() returns ULONG_MAX, and \c
-    errno is set to \ref avr_errno "ERANGE".  If no conversion could 
+    errno is set to \ref avr_errno "ERANGE".  If no conversion could
     be performed, 0 is returned.
 */
+#if defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+extern unsigned long strtoul(const char *__nptr, const char **__endptr, int __base);
+#else
 extern unsigned long strtoul(const char *__nptr, char **__endptr, int __base);
+#endif
 
 /**
     The atol() function converts the initial portion of the string
@@ -347,7 +355,11 @@ extern void *calloc(size_t __nele, size_t __size) __ATTR_MALLOC__;
 */
 extern void *realloc(void *__ptr, size_t __size) __ATTR_MALLOC__;
 
+#if defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+extern double strtod(const char *__nptr, const char **__endptr);
+#else
 extern double strtod(const char *__nptr, char **__endptr);
+#endif
 
 /** \ingroup avr_stdlib
     \fn  double atof (const char *nptr)
@@ -417,7 +429,7 @@ extern int rand_r(unsigned long *__ctx);
    number between 2 (binary conversion) and up to 36.  If \c radix
    is greater than 10, the next digit after \c '9' will be the letter
    \c 'a'.
-    
+
     If radix is 10 and val is negative, a minus sign will be prepended.
 
    The itoa() function returns the pointer passed as \c s.
@@ -443,7 +455,7 @@ char *itoa (int __val, char *__s, int __radix)
 
 /**
  \ingroup avr_stdlib
- 
+
    \brief Convert a long integer to a string.
 
    The function ltoa() converts the long integer value from \c val into an

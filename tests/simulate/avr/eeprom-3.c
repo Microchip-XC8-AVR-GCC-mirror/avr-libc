@@ -34,6 +34,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#define memcpy_P   memcpy
+#define memcmp_P   memcmp
+#undef  PSTR
+#define PSTR(x) x
+#endif
+
 int main ()
 {
     void *p;
@@ -41,11 +48,11 @@ int main ()
     /* Fill all EEPROM.	*/
     for (p = 0; p <= (void *)E2END; p++)
 	eeprom_write_byte (p, (int)(p + 1));
-    
+
     /* Update a byte.	*/
     {
 	unsigned char *p = (unsigned char *)1;
-	
+
 	eeprom_update_byte (p, 2);	/* the same value	*/
 	if (!eeprom_is_ready ()) exit (__LINE__);
 	if (eeprom_read_byte (p) != 2) exit (__LINE__);
@@ -101,7 +108,7 @@ int main ()
     {
 	unsigned char *p = (unsigned char *)8;
 	unsigned char s[5];
-	
+
 	memcpy_P (s, PSTR ("\x09\x0A\x0B\x0C\x0D"), 5);
 	eeprom_update_block (s, p, 5);
 	if (!eeprom_is_ready ()) exit (__LINE__);
@@ -122,7 +129,7 @@ int main ()
 	memset (s, 0, sizeof (s));
 	eeprom_read_block (s, p, 5);
 	if (memcmp_P (s, PSTR ("\x19\x0A\x0B\x0C\x1D"), 5)) exit (__LINE__);
-	
+
 	memcpy_P (s, PSTR ("\x1A\x1B\x1C"), 3);
 	eeprom_update_block (s, p + 1, 1);
 	eeprom_update_block (s + 1, p + 2, 2);

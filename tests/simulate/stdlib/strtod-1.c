@@ -37,6 +37,26 @@
 #include <string.h>
 #include "progmem.h"
 
+
+
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#define strcpy_P    strcpy
+#define __CONST     const
+
+#undef pgm_read_byte
+# define pgm_read_byte(addr)	(*(const unsigned char *)(addr))
+
+#undef pgm_read_word
+# define pgm_read_word(addr)	(*(const unsigned int *)(addr))
+
+#undef pgm_read_float
+# define pgm_read_float(addr)	(*(const float *)(addr))
+
+#else
+#define __CONST
+#endif
+
+
 union lofl_u {
     long lo;
     float fl;
@@ -61,14 +81,14 @@ PROGMEM const struct {		/* Table of test cases.	*/
     { "0.0", 3,		0.0, 0 },
     { "+0", 2,		0.0, 0 },
     { "+0.0", 4,	0.0, 0 },
-    
+
     /* -0.0	*/
     { "-0", 2,		-0.0, 0 },
     { "-0.0", 4,	-0.0, 0 },
-    
+
     /* Leading spaces	*/
     { " \t\n\r\f\v1", 7,	1, 0 },
-    
+
     /* Non-zero character at the end of number	*/
     { "123 ", 3, 123, 0 },
     { "123/", 3, 123, 0 },
@@ -93,7 +113,7 @@ PROGMEM const struct {		/* Table of test cases.	*/
     { "- 1",   0, 0, 0 },
     { "IN",    0, 0, 0 },
     { "NA",    0, 0, 0 },
-    
+
     /* Infinity	*/
     { "INF", 3,		INFINITY, 0 },
     { " inf", 4,	INFINITY, 0 },
@@ -101,19 +121,19 @@ PROGMEM const struct {		/* Table of test cases.	*/
 
     { "-INF", 4,	-INFINITY, 0 },
     { "\t-inF", 5,	-INFINITY, 0 },
-    
+
     { "INFINITY", 8,	INFINITY, 0 },
     { "-InFiNiTy", 9,	-INFINITY, 0 },
 
     { "INFINIT", 3,	INFINITY, 0 },
     { "infinitys", 8,	INFINITY, 0 },
-    
+
     /* NaN	*/
     { "NAN", 3,		NAN, 0 },
     { " nan", 4,	NAN, 0 },
     { "-NaN", 4,	NAN, 0 },
     { "NANQ", 3,	NAN, 0 },
-    
+
     /* Overflow	*/
     { "1e309", 5,	INFINITY, ERANGE },
     { "-1e309", 6,	-INFINITY, ERANGE },
@@ -122,7 +142,7 @@ PROGMEM const struct {		/* Table of test cases.	*/
     { "1e32768", 7,		INFINITY, ERANGE },
     { "1e32769", 7,		INFINITY, ERANGE },
     { "1e9999999999", 12,	INFINITY, ERANGE },
-    
+
     /* Underflow	*/
     { "1e-350", 6,	0.0, ERANGE },
 #ifdef	__AVR__
@@ -134,7 +154,7 @@ PROGMEM const struct {		/* Table of test cases.	*/
     { "1e-32768", 8,		0.0, ERANGE },
     { "1e-32769", 8,		0.0, ERANGE },
     { "1e-9999999999", 13,	0.0, ERANGE },
-    
+
     /* Nonregular cases	*/
     { "1234.5", 6,	1234.5, 0 },
     { "-9.876e12", 9,	-9.876e12, 0 },
@@ -151,22 +171,22 @@ void x_exit (int index)
 int main ()
 {
     char s [sizeof(t[0].s)];
-    char *p;
+    __CONST char *p;
     union lofl_u mst;
     unsigned char len;
     int eno;
     int i;
-    
+
     for (i = 0; i < (int) (sizeof(t) / sizeof(t[0])); i++) {
 	strcpy_P (s, t[i].s);
 	len = pgm_read_byte (& t[i].len);
 	mst.fl = pgm_read_float (& t[i].val);
 	eno = pgm_read_word (& t[i].eno);
-	
+
 	errno = 0;
 	p = 0;
 	v.fl = strtod (s, &p);
-	
+
 	if (!p || (p - s) != len || errno != eno)
 	    x_exit (i+1);
 	if (isnan(mst.fl) && isnan(v.fl))

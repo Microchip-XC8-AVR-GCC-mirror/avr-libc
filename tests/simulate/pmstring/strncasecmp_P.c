@@ -31,11 +31,18 @@
 
 #ifndef __AVR__
 # include <stdio.h>
-# define strncasecmp_P  strncasecmp
 #endif
 #include <stdlib.h>
 #include <string.h>
 #include "progmem.h"
+
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define    strlen_P       strlen
+# define    strcpy_P       strcpy
+# define    strncasecmp_P  strncasecmp
+# undef     PSTR
+# define    PSTR(x)        x
+#endif
 
 void Check (int line, const char *s1, const char *s2, size_t len, int expect)
 {
@@ -93,22 +100,22 @@ int main ()
     CHECK ("\177", "\200", 10, -1);
     CHECK ("\001", "\377", 10, -254);
     CHECK ("\377", "\001", 10, 254);
-    
+
     /* Length too small	*/
     CHECK ("", "", 0, 0);
     CHECK ("ab", "ac", 1, 0);
     CHECK ("FOO", "foo123", 3, 0);
     CHECK ("ABCDEF", "AbcD", 4, 0);
-    
+
     /* Length too big	*/
     CHECK ("", "", ~0, 0);
     CHECK ("foo", "Foo", ~0, 0);
-    
+
     /* Length is equal to string length	*/
     CHECK ("12345678", "12345678", 8, 0);
     CHECK ("12345679", "12345678", 8, 1);
     CHECK ("12345678", "12345679", 8, -1);
-    
+
     /* A very long string	*/
     CHECK ("................................................................"
 	   "................................................................"

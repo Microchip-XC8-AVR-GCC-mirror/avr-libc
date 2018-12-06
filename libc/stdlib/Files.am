@@ -31,6 +31,8 @@
 
 stdlib_a_c_sources = \
 	abs.c \
+	atoi_M.c \
+	atol_M.c \
 	assert.c \
 	atexit.c \
 	bsearch.c \

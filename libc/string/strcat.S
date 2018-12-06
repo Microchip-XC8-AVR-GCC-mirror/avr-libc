@@ -33,6 +33,7 @@
 #if !defined(__DOXYGEN__)
 
 #include "macros.inc"
+#if !defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
 
 #define dest_hi r25
 #define dest_lo r24
@@ -60,6 +61,7 @@ _U(strcat):
 .L_strcat_end:
 	.size	_U(strcat), .L_strcat_end - _U(strcat)
 
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

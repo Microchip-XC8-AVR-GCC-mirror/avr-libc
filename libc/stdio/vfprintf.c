@@ -65,6 +65,19 @@
 # error "Not a known printf level."
 #endif
 
+#if defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define GETBYTE(flag, mask, pnt)	({            \
+  unsigned char __c;                            \
+  __c = *pnt;                                   \
+  pnt++;                                        \
+  __c;                                          \
+  })
+#define strchr_P strchr
+#define strnlen_P strnlen
+#define pgm_read_byte(p) (*(const unsigned char*)(p))
+#undef PSTR
+#define PSTR(x) (x)
+#else
 #ifndef	__AVR_HAVE_LPMX__
 # if  defined(__AVR_ENHANCED__) && __AVR_ENHANCED__
 #  define __AVR_HAVE_LPMX__	1
@@ -112,6 +125,7 @@
     pnt++;					\
     __c;					\
 })
+#endif
 #endif
 
 /* --------------------------------------------------------------------	*/
@@ -188,7 +202,7 @@ vfprintf (FILE * stream, const char *fmt, va_list ap)
 		/* FALLTHROUGH */
 
 	      case 's':
-		pnt = va_arg (ap, char *);
+		pnt = va_arg (ap, const char *);
 	        while ( (c = GETBYTE (flags, FL_PGMSTRING, pnt)) != 0)
 		    putc (c, stream);
 		continue;
@@ -565,14 +579,14 @@ int vfprintf (FILE * stream, const char *fmt, va_list ap)
 		goto no_pgmstring;
 
 	      case 's':
-		pnt = va_arg (ap, char *);
+		pnt = va_arg (ap, const char *);
 		size = strnlen (pnt, (flags & FL_PREC) ? prec : ~0);
 	      no_pgmstring:
 		flags &= ~FL_PGMSTRING;
 		goto str_lpad;
 
 	      case 'S':
-	        pnt = va_arg (ap, char *);
+	        pnt = va_arg (ap, const char *);
 		size = strnlen_P (pnt, (flags & FL_PREC) ? prec : ~0);
 		flags |= FL_PGMSTRING;
 

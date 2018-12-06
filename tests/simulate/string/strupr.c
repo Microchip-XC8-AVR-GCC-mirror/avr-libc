@@ -37,6 +37,14 @@
 #include <string.h>
 #include "progmem.h"
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define strcpy_P    strcpy
+# define strlen_P    strlen
+# define strcmp_P    strcmp
+#undef PSTR
+# define PSTR(x) x
+#endif
+
 #ifndef	__AVR__			/* strupr() is't a standart function	*/
 char * strupr (char *s)
 {

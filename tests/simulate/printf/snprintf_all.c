@@ -54,6 +54,13 @@
 #include <string.h>
 #include "progmem.h"
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define snprintf_P snprintf
+# define strcmp_P strcmp
+#undef PSTR
+# define PSTR(x) x
+# define PFMT(x) x
+#else
 #ifdef	L_progmem
 # ifdef	 __AVR__
 #  define snprintf	snprintf_P
@@ -62,6 +69,8 @@
 #else
 # define PFMT(s)	s
 #endif
+#endif
+
 
 void Check (int line,
             int expval, const char *expstr,

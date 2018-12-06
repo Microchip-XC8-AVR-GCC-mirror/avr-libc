@@ -53,11 +53,22 @@
 #include <stdio.h>
 #include "progmem.h"
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define memcpy_P    memcpy
+# define memmem_P   memmem
+# define memcmp_P   memcmp
+#undef PSTR
+# define PSTR(x) x
+# define __CONST const
+# else
+# define __CONST
+#endif
+
 void Check (int line,
 	    const void *s1, size_t n1, const char *s2, size_t n2, int expect)
 {
     char t1[300];
-    char *p;
+    __CONST char *p;
 
     if (n1 > sizeof(t1))
 	exit (1);

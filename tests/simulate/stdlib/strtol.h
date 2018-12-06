@@ -40,10 +40,16 @@
 # define EINVAL	22	/* Invalid argument	*/
 #endif
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+#define __CONST const
+#else
+#define __CONST
+#endif
+
 static int t_strtol (const char *s, int base, long ret, int err, int len)
 {
-    char * endptr;
-    
+    __CONST char * endptr;
+
     errno = 0;
     endptr = (char *)s - 1;		/* invalid value	*/
     if (strtol (s, & endptr, base) != ret

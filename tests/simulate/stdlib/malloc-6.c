@@ -44,6 +44,13 @@ int main ()
 #include <stdint.h>
 #include <stdlib.h>
 
+#include <avr/io.h>
+#if (((RAMEND)-(RAMSTART)) < 128)
+#define ALLOCSZ 3
+#else
+#define ALLOCSZ 10
+#endif
+
 struct __freelist {
         size_t sz;
         struct __freelist *nx;
@@ -61,7 +68,7 @@ int main(void)
 
     for (i = 0; i < 6; i++)
     {
-        void *p = malloc(10);
+        void *p = malloc(ALLOCSZ);
         if (p == NULL) return __LINE__;
         ptrs[i] = p;
     }

@@ -34,7 +34,8 @@
 # pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #endif
 
-#ifndef __AVR__
+#if !defined(__AVR__) \
+  || defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
 
 /* Omit the test.	*/
 int main ()	{ return 0; }

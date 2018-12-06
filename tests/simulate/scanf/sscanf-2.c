@@ -56,6 +56,15 @@
 # define sscanf_P	sscanf
 #endif
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define sscanf_P	sscanf
+# define strcpy_P	strcpy
+#undef pgm_read_byte
+# define pgm_read_byte(x) (*(const unsigned char*)(x))
+#undef PSTR
+# define PSTR(x) x
+#endif
+
 /* Next variables are useful to debug the AVR.	*/
 int vrslt = 1;
 struct {
@@ -110,3 +119,4 @@ int main ()
 
     return 0;
 }
+ 

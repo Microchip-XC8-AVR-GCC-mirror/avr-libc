@@ -242,7 +242,10 @@
  * elements of it beyond by using the official interfaces provided.
  */
 struct __file {
-	char	*buf;		/* buffer pointer */
+  union {
+	  char	*buf;		/* buffer pointer */
+    const char	*robuf;		/* readonly buffer pointer for sscanf */
+  };
 	unsigned char unget;	/* ungetc() buffer */
 	uint8_t	flags;		/* flags, see below */
 #define __SRD	0x0001		/* OK to read */

@@ -37,6 +37,14 @@
 #include <string.h>
 #include "progmem.h"
 
+#if defined(__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+# define strspn_P  strspn
+# define strlen_P  strlen
+# define strcpy_P  strcpy
+#undef PSTR
+# define PSTR(x) x
+#endif
+
 void Check (int line, const char *s1, const char *s2, size_t expect)
 {
     char t1[300];

@@ -61,7 +61,12 @@
 ENTRY eeprom_read_block
 
 #if  __AVR_XMEGA__	/* --------------------------------------------	*/
-  
+
+#if defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+	X_movw  r22, r20
+	X_movw  r20, r18
+#endif
+
   ; It has to be noted that for some Xmega parts (Eg. Xmega E family) EEPROM
   ; is always memory mapped. So it is not required to  enable EEPROM mapping
   ; explicitly. 
@@ -95,6 +100,11 @@ ENTRY eeprom_read_block
 
 #elif  E2END <= 0xFF	/* --------------------------------------------	*/
 
+#if defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+	X_movw  r22, r20
+	X_movw  r20, r18
+#endif
+
 # if  RAMEND <= 0xFF
 	mov	XL, sram_lo
 # else
@@ -124,6 +134,11 @@ ENTRY eeprom_read_blraw
 #else	/* ------------------------------------------------------------	*/
 
 ENTRY eeprom_read_block
+
+#if defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
+	X_movw  r22, r20
+	X_movw  r20, r18
+#endif
 
 	X_movw	XL, sram_lo
 	X_movw	addr_lo, eepr_lo

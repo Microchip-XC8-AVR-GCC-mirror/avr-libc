@@ -1347,6 +1347,21 @@ AC_CONFIG_FILES([
 	avr/lib/avr2/attiny28/Makefile
 ])
 
+#avr2/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avr2/memx-const/Makefile
+	avr/lib/avr2/memx-const/at90s1200/Makefile
+	avr/lib/avr2/memx-const/at90s4414/Makefile
+	avr/lib/avr2/memx-const/at90s4434/Makefile
+	avr/lib/avr2/memx-const/at90s8515/Makefile
+	avr/lib/avr2/memx-const/at90c8534/Makefile
+	avr/lib/avr2/memx-const/at90s8535/Makefile
+	avr/lib/avr2/memx-const/attiny11/Makefile
+	avr/lib/avr2/memx-const/attiny12/Makefile
+	avr/lib/avr2/memx-const/attiny15/Makefile
+	avr/lib/avr2/memx-const/attiny28/Makefile
+])
+
 #avr2/tiny-stack
 AC_CONFIG_FILES([
 	avr/lib/avr2/tiny-stack/Makefile
@@ -1357,6 +1372,18 @@ AC_CONFIG_FILES([
 	avr/lib/avr2/tiny-stack/attiny22/Makefile
 	avr/lib/avr2/tiny-stack/attiny26/Makefile
 	avr/lib/avr2/tiny-stack/at90s4433/Makefile
+])
+
+#avr2/tiny-stack/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avr2/tiny-stack/memx-const/Makefile
+	avr/lib/avr2/tiny-stack/memx-const/at90s2313/Makefile
+	avr/lib/avr2/tiny-stack/memx-const/at90s2323/Makefile
+	avr/lib/avr2/tiny-stack/memx-const/at90s2333/Makefile
+	avr/lib/avr2/tiny-stack/memx-const/at90s2343/Makefile
+	avr/lib/avr2/tiny-stack/memx-const/attiny22/Makefile
+	avr/lib/avr2/tiny-stack/memx-const/attiny26/Makefile
+	avr/lib/avr2/tiny-stack/memx-const/at90s4433/Makefile
 ])
 
 #avr25
@@ -1385,6 +1412,32 @@ AC_CONFIG_FILES([
 	avr/lib/avr25/attiny88/Makefile
 ])
 
+#avr25/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avr25/memx-const/Makefile
+	avr/lib/avr25/memx-const/at86rf401/Makefile
+	avr/lib/avr25/memx-const/ata5272/Makefile
+	avr/lib/avr25/memx-const/ata6616c/Makefile
+	avr/lib/avr25/memx-const/attiny4313/Makefile
+	avr/lib/avr25/memx-const/attiny43u/Makefile
+	avr/lib/avr25/memx-const/attiny44/Makefile
+	avr/lib/avr25/memx-const/attiny44a/Makefile
+	avr/lib/avr25/memx-const/attiny441/Makefile
+	avr/lib/avr25/memx-const/attiny45/Makefile
+	avr/lib/avr25/memx-const/attiny461/Makefile
+	avr/lib/avr25/memx-const/attiny461a/Makefile
+	avr/lib/avr25/memx-const/attiny48/Makefile
+	avr/lib/avr25/memx-const/attiny828/Makefile
+	avr/lib/avr25/memx-const/attiny84/Makefile
+	avr/lib/avr25/memx-const/attiny84a/Makefile
+	avr/lib/avr25/memx-const/attiny841/Makefile
+	avr/lib/avr25/memx-const/attiny85/Makefile
+	avr/lib/avr25/memx-const/attiny861/Makefile
+	avr/lib/avr25/memx-const/attiny861a/Makefile
+	avr/lib/avr25/memx-const/attiny87/Makefile
+	avr/lib/avr25/memx-const/attiny88/Makefile
+])
+
 #avr25/tiny-stack
 AC_CONFIG_FILES([
 	avr/lib/avr25/tiny-stack/Makefile
@@ -1399,6 +1452,20 @@ AC_CONFIG_FILES([
 	avr/lib/avr25/tiny-stack/attiny261a/Makefile
 ])
 
+#avr25/tiny-stack/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avr25/tiny-stack/memx-const/Makefile
+	avr/lib/avr25/tiny-stack/memx-const/attiny13/Makefile
+	avr/lib/avr25/tiny-stack/memx-const/attiny13a/Makefile
+	avr/lib/avr25/tiny-stack/memx-const/attiny2313/Makefile
+	avr/lib/avr25/tiny-stack/memx-const/attiny2313a/Makefile
+	avr/lib/avr25/tiny-stack/memx-const/attiny24/Makefile
+	avr/lib/avr25/tiny-stack/memx-const/attiny24a/Makefile
+	avr/lib/avr25/tiny-stack/memx-const/attiny25/Makefile
+	avr/lib/avr25/tiny-stack/memx-const/attiny261/Makefile
+	avr/lib/avr25/tiny-stack/memx-const/attiny261a/Makefile
+])
+
 #avr3
 AC_CONFIG_FILES([
 	avr/lib/avr3/Makefile
@@ -1406,11 +1473,25 @@ AC_CONFIG_FILES([
 	avr/lib/avr3/at76c711/Makefile
 ])
 
+#avr3/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avr3/memx-const/Makefile
+	avr/lib/avr3/memx-const/at43usb355/Makefile
+	avr/lib/avr3/memx-const/at76c711/Makefile
+])
+
 #avr31
 AC_CONFIG_FILES([
 	avr/lib/avr31/Makefile
 	avr/lib/avr31/atmega103/Makefile
 	avr/lib/avr31/at43usb320/Makefile
+])
+
+#avr31/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avr31/memx-const/Makefile
+	avr/lib/avr31/memx-const/atmega103/Makefile
+	avr/lib/avr31/memx-const/at43usb320/Makefile
 ])
 
 #avr35
@@ -1426,6 +1507,21 @@ AC_CONFIG_FILES([
 	avr/lib/avr35/atmega32u2/Makefile
 	avr/lib/avr35/attiny167/Makefile
 	avr/lib/avr35/attiny1634/Makefile
+])
+
+#avr35/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avr35/memx-const/Makefile
+	avr/lib/avr35/memx-const/at90usb82/Makefile
+	avr/lib/avr35/memx-const/at90usb162/Makefile
+	avr/lib/avr35/memx-const/ata5505/Makefile
+	avr/lib/avr35/memx-const/ata6617c/Makefile
+	avr/lib/avr35/memx-const/ata664251/Makefile
+	avr/lib/avr35/memx-const/atmega8u2/Makefile
+	avr/lib/avr35/memx-const/atmega16u2/Makefile
+	avr/lib/avr35/memx-const/atmega32u2/Makefile
+	avr/lib/avr35/memx-const/attiny167/Makefile
+	avr/lib/avr35/memx-const/attiny1634/Makefile
 ])
 
 #avr4
@@ -1456,6 +1552,36 @@ AC_CONFIG_FILES([
 	avr/lib/avr4/at90pwm3/Makefile
 	avr/lib/avr4/at90pwm3b/Makefile
 	avr/lib/avr4/at90pwm81/Makefile
+])
+
+#avr4/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avr4/memx-const/Makefile
+	avr/lib/avr4/memx-const/ata6285/Makefile
+	avr/lib/avr4/memx-const/ata6286/Makefile
+	avr/lib/avr4/memx-const/ata6289/Makefile
+	avr/lib/avr4/memx-const/ata6612c/Makefile
+	avr/lib/avr4/memx-const/atmega48/Makefile
+	avr/lib/avr4/memx-const/atmega48a/Makefile
+	avr/lib/avr4/memx-const/atmega48pa/Makefile
+	avr/lib/avr4/memx-const/atmega48pb/Makefile
+	avr/lib/avr4/memx-const/atmega48p/Makefile
+	avr/lib/avr4/memx-const/atmega8/Makefile
+	avr/lib/avr4/memx-const/atmega8a/Makefile
+	avr/lib/avr4/memx-const/atmega88/Makefile
+	avr/lib/avr4/memx-const/atmega88a/Makefile
+	avr/lib/avr4/memx-const/atmega88p/Makefile
+	avr/lib/avr4/memx-const/atmega88pa/Makefile
+	avr/lib/avr4/memx-const/atmega88pb/Makefile
+	avr/lib/avr4/memx-const/atmega8515/Makefile
+	avr/lib/avr4/memx-const/atmega8535/Makefile
+	avr/lib/avr4/memx-const/atmega8hva/Makefile
+	avr/lib/avr4/memx-const/at90pwm1/Makefile
+	avr/lib/avr4/memx-const/at90pwm2/Makefile
+	avr/lib/avr4/memx-const/at90pwm2b/Makefile
+	avr/lib/avr4/memx-const/at90pwm3/Makefile
+	avr/lib/avr4/memx-const/at90pwm3b/Makefile
+	avr/lib/avr4/memx-const/at90pwm81/Makefile
 ])
 
 #avr5
@@ -1567,6 +1693,115 @@ AC_CONFIG_FILES([
 	avr/lib/avr5/m3000/Makefile
 ])
 
+#avr5/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avr5/memx-const/Makefile
+	avr/lib/avr5/memx-const/at90can32/Makefile
+	avr/lib/avr5/memx-const/at90can64/Makefile
+	avr/lib/avr5/memx-const/at90pwm216/Makefile
+	avr/lib/avr5/memx-const/at90pwm316/Makefile
+	avr/lib/avr5/memx-const/at90pwm161/Makefile
+	avr/lib/avr5/memx-const/at90scr100/Makefile
+	avr/lib/avr5/memx-const/at90usb646/Makefile
+	avr/lib/avr5/memx-const/at90usb647/Makefile
+	avr/lib/avr5/memx-const/at94k/Makefile
+	avr/lib/avr5/memx-const/ata5702m322/Makefile
+	avr/lib/avr5/memx-const/ata5782/Makefile
+	avr/lib/avr5/memx-const/ata5790/Makefile
+	avr/lib/avr5/memx-const/ata5790n/Makefile
+	avr/lib/avr5/memx-const/ata5791/Makefile
+	avr/lib/avr5/memx-const/ata5795/Makefile
+	avr/lib/avr5/memx-const/ata5831/Makefile
+	avr/lib/avr5/memx-const/ata6613c/Makefile
+	avr/lib/avr5/memx-const/ata6614q/Makefile
+	avr/lib/avr5/memx-const/ata8210/Makefile
+	avr/lib/avr5/memx-const/ata8510/Makefile
+	avr/lib/avr5/memx-const/atmega16/Makefile
+	avr/lib/avr5/memx-const/atmega16a/Makefile
+	avr/lib/avr5/memx-const/atmega161/Makefile
+	avr/lib/avr5/memx-const/atmega162/Makefile
+	avr/lib/avr5/memx-const/atmega163/Makefile
+	avr/lib/avr5/memx-const/atmega164a/Makefile
+	avr/lib/avr5/memx-const/atmega164p/Makefile
+	avr/lib/avr5/memx-const/atmega164pa/Makefile
+	avr/lib/avr5/memx-const/atmega165/Makefile
+	avr/lib/avr5/memx-const/atmega165a/Makefile
+	avr/lib/avr5/memx-const/atmega165p/Makefile
+	avr/lib/avr5/memx-const/atmega165pa/Makefile
+	avr/lib/avr5/memx-const/atmega168/Makefile
+	avr/lib/avr5/memx-const/atmega168a/Makefile
+	avr/lib/avr5/memx-const/atmega168p/Makefile
+	avr/lib/avr5/memx-const/atmega168pa/Makefile
+	avr/lib/avr5/memx-const/atmega168pb/Makefile
+	avr/lib/avr5/memx-const/atmega169/Makefile
+	avr/lib/avr5/memx-const/atmega169a/Makefile
+	avr/lib/avr5/memx-const/atmega169p/Makefile
+	avr/lib/avr5/memx-const/atmega169pa/Makefile
+	avr/lib/avr5/memx-const/atmega16hva/Makefile
+	avr/lib/avr5/memx-const/atmega16hva2/Makefile
+	avr/lib/avr5/memx-const/atmega16hvb/Makefile
+	avr/lib/avr5/memx-const/atmega16hvbrevb/Makefile
+	avr/lib/avr5/memx-const/atmega16m1/Makefile
+	avr/lib/avr5/memx-const/atmega16u4/Makefile
+	avr/lib/avr5/memx-const/atmega32/Makefile
+	avr/lib/avr5/memx-const/atmega32a/Makefile
+	avr/lib/avr5/memx-const/atmega323/Makefile
+	avr/lib/avr5/memx-const/atmega324a/Makefile
+	avr/lib/avr5/memx-const/atmega324p/Makefile
+	avr/lib/avr5/memx-const/atmega324pa/Makefile
+	avr/lib/avr5/memx-const/atmega325/Makefile
+	avr/lib/avr5/memx-const/atmega325a/Makefile
+	avr/lib/avr5/memx-const/atmega325p/Makefile
+	avr/lib/avr5/memx-const/atmega325pa/Makefile
+	avr/lib/avr5/memx-const/atmega3250/Makefile
+	avr/lib/avr5/memx-const/atmega3250a/Makefile
+	avr/lib/avr5/memx-const/atmega3250p/Makefile
+	avr/lib/avr5/memx-const/atmega3250pa/Makefile
+	avr/lib/avr5/memx-const/atmega328/Makefile
+	avr/lib/avr5/memx-const/atmega328p/Makefile
+	avr/lib/avr5/memx-const/atmega329/Makefile
+	avr/lib/avr5/memx-const/atmega329a/Makefile
+	avr/lib/avr5/memx-const/atmega329p/Makefile
+	avr/lib/avr5/memx-const/atmega329pa/Makefile
+	avr/lib/avr5/memx-const/atmega3290/Makefile
+	avr/lib/avr5/memx-const/atmega3290a/Makefile
+	avr/lib/avr5/memx-const/atmega3290p/Makefile
+	avr/lib/avr5/memx-const/atmega3290pa/Makefile
+	avr/lib/avr5/memx-const/atmega32c1/Makefile
+	avr/lib/avr5/memx-const/atmega32hvb/Makefile
+	avr/lib/avr5/memx-const/atmega32hvbrevb/Makefile
+	avr/lib/avr5/memx-const/atmega32m1/Makefile
+	avr/lib/avr5/memx-const/atmega32u4/Makefile
+	avr/lib/avr5/memx-const/atmega32u6/Makefile
+	avr/lib/avr5/memx-const/atmega406/Makefile
+	avr/lib/avr5/memx-const/atmega64rfr2/Makefile
+	avr/lib/avr5/memx-const/atmega644rfr2/Makefile
+	avr/lib/avr5/memx-const/atmega64/Makefile
+	avr/lib/avr5/memx-const/atmega64a/Makefile
+	avr/lib/avr5/memx-const/atmega640/Makefile
+	avr/lib/avr5/memx-const/atmega644/Makefile
+	avr/lib/avr5/memx-const/atmega644a/Makefile
+	avr/lib/avr5/memx-const/atmega644p/Makefile
+	avr/lib/avr5/memx-const/atmega644pa/Makefile
+	avr/lib/avr5/memx-const/atmega645/Makefile
+	avr/lib/avr5/memx-const/atmega645a/Makefile
+	avr/lib/avr5/memx-const/atmega645p/Makefile
+	avr/lib/avr5/memx-const/atmega6450/Makefile
+	avr/lib/avr5/memx-const/atmega6450a/Makefile
+	avr/lib/avr5/memx-const/atmega6450p/Makefile
+	avr/lib/avr5/memx-const/atmega649/Makefile
+	avr/lib/avr5/memx-const/atmega649a/Makefile
+	avr/lib/avr5/memx-const/atmega649p/Makefile
+	avr/lib/avr5/memx-const/atmega6490/Makefile
+	avr/lib/avr5/memx-const/atmega6490a/Makefile
+	avr/lib/avr5/memx-const/atmega6490p/Makefile
+	avr/lib/avr5/memx-const/atmega64c1/Makefile
+	avr/lib/avr5/memx-const/atmega64hve/Makefile
+	avr/lib/avr5/memx-const/atmega64hve2/Makefile
+	avr/lib/avr5/memx-const/atmega64m1/Makefile
+	avr/lib/avr5/memx-const/m3000/Makefile
+])
+
 #avr51
 AC_CONFIG_FILES([
 	avr/lib/avr51/Makefile
@@ -1584,6 +1819,23 @@ AC_CONFIG_FILES([
 	avr/lib/avr51/at90usb1287/Makefile
 ])
 
+#avr51/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avr51/memx-const/Makefile
+	avr/lib/avr51/memx-const/atmega128/Makefile
+	avr/lib/avr51/memx-const/atmega128a/Makefile
+	avr/lib/avr51/memx-const/atmega1280/Makefile
+	avr/lib/avr51/memx-const/atmega1281/Makefile
+	avr/lib/avr51/memx-const/atmega1284/Makefile
+	avr/lib/avr51/memx-const/atmega1284p/Makefile
+	avr/lib/avr51/memx-const/atmega128rfa1/Makefile
+	avr/lib/avr51/memx-const/atmega128rfr2/Makefile
+	avr/lib/avr51/memx-const/atmega1284rfr2/Makefile
+	avr/lib/avr51/memx-const/at90can128/Makefile
+	avr/lib/avr51/memx-const/at90usb1286/Makefile
+	avr/lib/avr51/memx-const/at90usb1287/Makefile
+])
+
 #avr6
 AC_CONFIG_FILES([
 	avr/lib/avr6/Makefile
@@ -1591,6 +1843,15 @@ AC_CONFIG_FILES([
 	avr/lib/avr6/atmega2561/Makefile
 	avr/lib/avr6/atmega256rfr2/Makefile
 	avr/lib/avr6/atmega2564rfr2/Makefile
+])
+
+#avr6/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avr6/memx-const/Makefile
+	avr/lib/avr6/memx-const/atmega2560/Makefile
+	avr/lib/avr6/memx-const/atmega2561/Makefile
+	avr/lib/avr6/memx-const/atmega256rfr2/Makefile
+	avr/lib/avr6/memx-const/atmega2564rfr2/Makefile
 ])
 
 # avrxmega2
@@ -1609,6 +1870,24 @@ AC_CONFIG_FILES([
 	avr/lib/avrxmega2/atxmega32d3/Makefile
 	avr/lib/avrxmega2/atxmega32d4/Makefile
 	avr/lib/avrxmega2/atxmega32e5/Makefile
+])
+
+# avrxmega2/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avrxmega2/memx-const/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega8e5/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega16a4/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega16a4u/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega16c4/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega16d4/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega16e5/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega32a4/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega32a4u/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega32c3/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega32c4/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega32d3/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega32d4/Makefile
+	avr/lib/avrxmega2/memx-const/atxmega32e5/Makefile
 ])
 
 # avrxmega3
@@ -1634,11 +1913,31 @@ AC_CONFIG_FILES([
 	avr/lib/avrxmega4/atxmega64d4/Makefile
 ])
 
+# avrxmega4/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avrxmega4/memx-const/Makefile
+	avr/lib/avrxmega4/memx-const/atxmega64a3/Makefile
+	avr/lib/avrxmega4/memx-const/atxmega64a3u/Makefile
+	avr/lib/avrxmega4/memx-const/atxmega64a4u/Makefile
+	avr/lib/avrxmega4/memx-const/atxmega64b1/Makefile
+	avr/lib/avrxmega4/memx-const/atxmega64b3/Makefile
+	avr/lib/avrxmega4/memx-const/atxmega64c3/Makefile
+	avr/lib/avrxmega4/memx-const/atxmega64d3/Makefile
+	avr/lib/avrxmega4/memx-const/atxmega64d4/Makefile
+])
+
 # avrxmega5
 AC_CONFIG_FILES([
 	avr/lib/avrxmega5/Makefile
 	avr/lib/avrxmega5/atxmega64a1/Makefile
 	avr/lib/avrxmega5/atxmega64a1u/Makefile
+])
+
+# avrxmega5/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avrxmega5/memx-const/Makefile
+	avr/lib/avrxmega5/memx-const/atxmega64a1/Makefile
+	avr/lib/avrxmega5/memx-const/atxmega64a1u/Makefile
 ])
 
 # avrxmega6
@@ -1665,12 +1964,44 @@ AC_CONFIG_FILES([
 	avr/lib/avrxmega6/atxmega384d3/Makefile
 ])
 
+# avrxmega6/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avrxmega6/memx-const/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega128a3/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega128a3u/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega128b1/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega128b3/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega128c3/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega128d3/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega128d4/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega192a3/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega192a3u/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega192c3/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega192d3/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega256a3/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega256a3u/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega256a3b/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega256a3bu/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega256c3/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega256d3/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega384c3/Makefile
+	avr/lib/avrxmega6/memx-const/atxmega384d3/Makefile
+])
+
 # avrxmega7
 AC_CONFIG_FILES([
 	avr/lib/avrxmega7/Makefile
 	avr/lib/avrxmega7/atxmega128a1/Makefile
 	avr/lib/avrxmega7/atxmega128a1u/Makefile
 	avr/lib/avrxmega7/atxmega128a4u/Makefile
+])
+
+# avrxmega7/memx-const
+AC_CONFIG_FILES([
+	avr/lib/avrxmega7/memx-const/Makefile
+	avr/lib/avrxmega7/memx-const/atxmega128a1/Makefile
+	avr/lib/avrxmega7/memx-const/atxmega128a1u/Makefile
+	avr/lib/avrxmega7/memx-const/atxmega128a4u/Makefile
 ])
 
 

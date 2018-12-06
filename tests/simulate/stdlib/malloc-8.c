@@ -36,6 +36,13 @@
 #include <string.h>
 #include <stdint.h>
 
+#include <avr/io.h>
+#if !defined(FLASHEND) || ((FLASHEND) < 0x800)  /* if not enough flash */
+int main ()
+{
+  return 0;
+}
+#else
 #ifdef __AVR__
 #include "../../libc/stdlib/stdlib_private.h"
 #endif
@@ -323,3 +330,5 @@ main(void)
 #endif
   return 0;
 }
+#endif /* if enough flash */
+

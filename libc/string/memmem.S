@@ -34,6 +34,7 @@
 
 #include "asmdef.h"
 
+#if !defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
 #define s1_hi	r25
 #define s1_lo	r24
 #define	len1_hi	r23
@@ -107,6 +108,7 @@ ENTRY memmem
 
 ENDFUNC
 
+#endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */
