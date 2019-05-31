@@ -2386,3 +2386,7 @@ GENERATE_LEGEND        = YES
 # This tag requires that the tag HAVE_DOT is set to YES.
 
 DOT_CLEANUP            = YES
+
+# make case insensitive files/ directories
+CASE_SENSE_NAMES       = NO
+
