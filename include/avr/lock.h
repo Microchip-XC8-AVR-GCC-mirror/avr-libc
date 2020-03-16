@@ -191,7 +191,11 @@
 #endif
 
 #ifndef LOCKBITS
+#if defined(LOCKBITS_SIZE) && (LOCKBITS_SIZE == 4)
+#define LOCKBITS unsigned long __lock LOCKMEM
+#else
 #define LOCKBITS unsigned char __lock LOCKMEM
+#endif /* !(defined(LOCKBITS_SIZE) && (LOCKBITS_SIZE == 4)) */
 #endif
 
 /* Lock Bit Modes */
@@ -230,8 +234,13 @@
 #define BLBB1 ~_BV(7)
 #endif
 
-
+/* Define LOCKBITS_DEFAULT if no previous definition found.
+The lockbits size and default values are different for the new devices
+such as AVRDA variants. So, device headers are expected to have
+have LOCKBITS_DEFAULT defined for these new devices.  */
+#ifndef LOCKBITS_DEFAULT
 #define LOCKBITS_DEFAULT (0xFF)
+#endif
 
 #endif  /* !(__ASSEMBLER || __DOXYGEN__) */
 

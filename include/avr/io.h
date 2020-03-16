@@ -600,6 +600,14 @@
 #  include <avr/ioa8210.h>
 #elif defined (__AVR_ATA8510__)
 #  include <avr/ioa8510.h>
+#elif defined (__AVR_ATtiny817__)
+#  include <avr/iotn817.h>
+#elif defined (__AVR_ATtiny3216__)
+#  include <avr/iotn3216.h>
+#elif defined (__AVR_ATmega809__)
+#  include <avr/iom809.h>
+#elif defined (__AVR_ATmega4809__)
+#  include <avr/iom4809.h>
 /* avr1: the following only supported for assembler programs */
 #elif defined (__AVR_ATtiny28__)
 #  include <avr/iotn28.h>

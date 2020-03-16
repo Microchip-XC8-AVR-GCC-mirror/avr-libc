@@ -43,7 +43,9 @@
 	.if (. - __vectors < _VECTORS_SIZE)
 	.weak	\name
 	.set	\name, __bad_interrupt
-#if defined(_VECTOR_SIZE) && (_VECTOR_SIZE == 2)
+#if defined(_VECTOR_SIZE) && (_VECTOR_SIZE == 4)
+	jmp	\name
+#elif defined(_VECTOR_SIZE) && (_VECTOR_SIZE == 2)
 	rjmp	\name
 #else
 	XJMP	\name
@@ -55,7 +57,9 @@
 	.global	__vectors
 	.func	__vectors
 __vectors:
-#if defined(_VECTOR_SIZE) && (_VECTOR_SIZE == 2)
+#if defined(_VECTOR_SIZE) && (_VECTOR_SIZE == 4)
+	jmp     __init
+#elif defined(_VECTOR_SIZE) && (_VECTOR_SIZE == 2)
 	rjmp	__init
 #else
 	XJMP	__init
