@@ -47,15 +47,15 @@
 #define	rC0	r16
 #define	rCE	r15
 
-FUNCTION log
-
+ENTRY log
+	rjmp	.L_begin
 .L_nf:	brts	.L_nan		; branch, if -Inf
 	XJMP	_U(__fp_mpack)	; pass as is: NaN --> NaN, +Inf --> +Inf
 .L_nan:	XJMP	_U(__fp_nan)
 .L_min:	set
 	XJMP	_U(__fp_inf)
 
-ENTRY log
+.L_begin:
 	XCALL	_U(__fp_splitA)
 	brcs	.L_nf		; !isfinite(A)
 	tst	rA3

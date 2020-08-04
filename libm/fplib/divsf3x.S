@@ -41,8 +41,8 @@
 #include "fp32def.h"
 #include "asmdef.h"
 
-FUNCTION __divsf3x
-
+ENTRY	__divsf3x
+	rjmp    .L_begin
 0:	XCALL	_U(__fp_pscB)
 	brcs	.L_nan
 	XCALL	_U(__fp_pscA)
@@ -58,7 +58,7 @@ FUNCTION __divsf3x
 .L_zr:	XJMP	_U(__fp_szero)
 .L_nan:	XJMP	_U(__fp_nan)
 
-ENTRY	__divsf3x
+.L_begin:
 	XCALL	_U(__fp_split3)
 	brcs	0b
 

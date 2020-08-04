@@ -1,5 +1,5 @@
 /* Copyright (c) 2007 Anatoly Sokolov
-   Copyright (c) 2010 Atmel Corporation
+   Copyright (C) 2020, Microchip Technology Inc. and its subsidiaries ("Microchip")
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without

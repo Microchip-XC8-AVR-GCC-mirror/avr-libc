@@ -1,8 +1,8 @@
 /* Copyright (c) 2002, 2003, 2004, 2007 Marek Michalkiewicz
    Copyright (c) 2005, 2006 Bjoern Haase
-   Copyright (c) 2008 Atmel Corporation
    Copyright (c) 2008 Wouter van Gulik
    Copyright (c) 2009 Dmitry Xmelkov
+   Copyright (C) 2020, Microchip Technology Inc. and its subsidiaries ("Microchip")
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without

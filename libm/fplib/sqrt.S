@@ -38,15 +38,15 @@
     Square root function.
  */
 
-FUNCTION sqrt
-
+ENTRY sqrt
+ALIAS_ENTRY sqrtf
+	rjmp	.L_begin
 .L_nf:	brne	.L_pk		; NaN, return as is
 	brtc	.L_pk		; sqrt(+Inf) --> +Inf
 .L_nan:	XJMP	_U(__fp_nan)
 .L_pk:	XJMP	_U(__fp_mpack)
 
-ENTRY sqrt
-ALIAS_ENTRY sqrtf
+.L_begin:
   ; split and check arg.
 	XCALL	_U(__fp_splitA)
 	brcs	.L_nf		; !isfinite(A)

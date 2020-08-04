@@ -41,12 +41,12 @@
 #define	exp_lo	r20
 #define	exp_hi	r21
 
-FUNCTION ldexp
-
+ENTRY ldexp
+	rjmp	.L_begin
 .L_inf:	XJMP	_U(__fp_inf)
 .L_pk:	XJMP	_U(__fp_mpack)
 
-ENTRY ldexp
+.L_begin:
 	XCALL	_U(__fp_splitA)
 	brcs	.L_pk			; as is
 	tst	rA3

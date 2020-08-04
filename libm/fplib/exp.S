@@ -46,15 +46,15 @@
 #define	exp_lo	r20
 #define	exp_hi	r21
 
-FUNCTION exp
-
+ENTRY exp
+	rjmp	.L_begin
 .L_nf:	brne	.L_nan
 .L_tb:	brts	.L_zr
 	XJMP	_U(__fp_inf)
 .L_zr:	XJMP	_U(__fp_zero)
 .L_nan:	XJMP	_U(__fp_nan)
 
-ENTRY exp
+.L_begin:
   ; split and analize A
 	XCALL	_U(__fp_splitA)
 	brcs	.L_nf		; A is not a finite number

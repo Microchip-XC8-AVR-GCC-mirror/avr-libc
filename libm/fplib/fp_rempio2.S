@@ -45,15 +45,13 @@
 #define	HI40_PIO2	0x3FC90FDA	/* (flt40_t) Pi/2	*/
 #define	LO40_PIO2	0xA2
 
-FUNCTION __fp_rempio2
-
-0:	XJMP	_U(__fp_nan)
-
 ENTRY __fp_rempio2
+
   ; split and check finite
 	XCALL	_U(__fp_splitA)
-	brcs	0b		; only finite numbers are valid
-	clt			; ignore a sign
+	brcc	0f		; only finite numbers are valid
+	XJMP	_U(__fp_nan)
+0:	clt			; ignore a sign
   ; init division result
 	ldi	ZL, 0
   ; extend A

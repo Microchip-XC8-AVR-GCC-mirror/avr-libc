@@ -72,8 +72,8 @@
 
 #define	REM	RD0
 
-FUNCTION cbrt
-
+ENTRY cbrt
+	rjmp .L_begin
 /* Division by 3.
    Input:
 	rA3	- arg
@@ -112,7 +112,7 @@ FUNCTION cbrt
 
 0:	XJMP	_U(__fp_mpack)
 
-ENTRY cbrt
+.L_begin:
   ; split and check arg.
 	XCALL	_U(__fp_splitA)
 	brcs	0b		; !isfinite(A)

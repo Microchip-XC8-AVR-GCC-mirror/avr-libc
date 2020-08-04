@@ -1,5 +1,5 @@
 /* Copyright (c) 2002, Peter Jansen
-   Copyright (c) 2007, Atmel Corporation
+   Copyright (C) 2020, Microchip Technology Inc. and its subsidiaries ("Microchip")
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without

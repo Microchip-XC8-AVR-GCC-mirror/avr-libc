@@ -69,7 +69,8 @@
 #define	rC2	r16
 #define	rC3	r17
 
-FUNCTION hypot
+ENTRY hypot
+	rjmp	.L_begin
 
 .L_nf:	XCALL	_U(__fp_pscA)
 	breq	1f		; hypot(Inf, *) --> Inf
@@ -84,7 +85,7 @@ FUNCTION hypot
 .L_retA:
 	XJMP	_U(__fp_mpack)
 
-ENTRY hypot
+.L_begin:
   ; clear signs
 	andi	rA3, 0x7f
 	andi	rB3, 0x7f

@@ -40,8 +40,8 @@
      towards zero to an integer.
  */
 
-FUNCTION fmod
-
+ENTRY fmod
+	rjmp	.L_begin
 0:	XCALL	_U(__fp_pscA)
 	brcs	.L_nan		; isnan(A)
 	breq	.L_nan		; isinf(A)
@@ -51,7 +51,7 @@ FUNCTION fmod
 .L_nan:	XJMP	_U(__fp_nan)
 .L_sz:	XJMP	_U(__fp_szero)
 
-ENTRY fmod
+.L_begin:
   ; split and check exceptions
 	mov	ZL, rA3		; save
 	XCALL	_U(__fp_split3)

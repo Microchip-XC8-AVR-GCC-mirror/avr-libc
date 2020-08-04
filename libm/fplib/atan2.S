@@ -66,8 +66,8 @@
 
 #define	disp	ZL		/* displacement high byte	*/
 
-FUNCTION atan2
-
+ENTRY   atan2
+	rjmp	.L_begin
 .L_nf:	XCALL	_U(__fp_pscA)
 	brcs	.L_nan
 	ldi	rA2, 0x80
@@ -85,7 +85,7 @@ FUNCTION atan2
 .L_nan:	XJMP	_U(__fp_nan)
 .L_zr:	XJMP	_U(__fp_zero)
 
-ENTRY   atan2
+.L_begin:
   ; save 'y' sign
 	mov	disp, rA3
 	andi	disp, 0x80

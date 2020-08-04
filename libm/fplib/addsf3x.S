@@ -46,8 +46,8 @@
 #include "fp32def.h"
 #include "asmdef.h"
 
-FUNCTION __addsf3x
-
+ENTRY	__addsf3x
+	rjmp    .L_begin
 0:	XCALL	_U(__fp_pscA)
 	brcs	.L_nan
 	XCALL	_U(__fp_pscB)
@@ -65,7 +65,7 @@ FUNCTION __addsf3x
 	bst	ZL, 7
 	XJMP	_U(__fp_inf)
 
-ENTRY	__addsf3x
+.L_begin:
 	mov	ZL, rA3		; save sign of A
 	XCALL	_U(__fp_split3)
 	brcs	0b

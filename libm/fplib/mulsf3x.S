@@ -37,10 +37,9 @@
 #include "fp32def.h"
 #include "asmdef.h"
 
-FUNCTION __mulsf3x
-
+ENTRY   __mulsf3x
+	rjmp    .L_begin
 #if	defined(__AVR_ENHANCED__) && __AVR_ENHANCED__
-
 0:	XCALL	_U(__fp_pscA)
 	brcs	1f
 	XCALL	_U(__fp_pscB)
@@ -52,7 +51,7 @@ FUNCTION __mulsf3x
 2:	clr	r1			; after 'mul rA3,rB3'
 	XJMP	_U(__fp_szero)
 
-ENTRY   __mulsf3x
+.L_begin:
 	XCALL	_U(__fp_split3)
 	brcs	0b
 
@@ -132,7 +131,7 @@ ENTRY   __mulsf3_pse			; post split entry
 1:	XJMP	_U(__fp_nan)		; 0 * Inf --> NaN
 2:	XJMP	_U(__fp_szero)
 
-ENTRY   __mulsf3x
+.L_begin:
 	XCALL	_U(__fp_split3)
 	brcs	0b
 
