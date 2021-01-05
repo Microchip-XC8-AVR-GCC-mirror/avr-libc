@@ -46,3 +46,5 @@ ENTRY log10
 	ldi	rB3, hhi8(INV_LN_10)
 	XJMP	_U(__mulsf3)
 ENDFUNC
+
+STACKUSAGE log10, 0

@@ -106,6 +106,7 @@ ENTRY	eeprom_write_block
     ret
 
 ENDFUNC
+STACKUSAGE eeprom_write_block, 3
 
 #endif  /* All except __AVR_XMEGA__ && E2PAGESIZE */
 #endif	/* E2END && __AVR_ARCH__ > 1 */

@@ -97,4 +97,5 @@ ENTRY frexp
 	XJMP	_U(__fp_mpack)
 ENDFUNC
 
+STACKUSAGE frexp, 0
 #endif /* !defined(__AVR_TINY__) */

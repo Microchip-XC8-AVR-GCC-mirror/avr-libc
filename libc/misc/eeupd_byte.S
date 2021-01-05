@@ -106,6 +106,9 @@ ENTRY	eeprom_update_r18
 
 ENDFUNC
 
+STACKUSAGE eeprom_update_byte, 0
+STACKUSAGE eeprom_update_r18, 0
+
 #endif	/* E2END && __AVR_ARCH__ > 1 */
 
 #endif	/* !__DOXYGEN__ */

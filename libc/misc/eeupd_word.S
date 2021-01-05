@@ -49,6 +49,7 @@ ENTRY	eeprom_update_word
 	XJMP	eeprom_update_byte	; val_lo
 
 ENDFUNC
+STACKUSAGE eeprom_update_word, 0
 
 #endif	/* E2END && __AVR_ARCH__ > 1 */
 #endif	/* !__DOXYGEN__ */

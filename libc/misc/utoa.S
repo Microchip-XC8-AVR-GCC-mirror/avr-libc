@@ -60,5 +60,7 @@ ENTRY	__utoa
 
 ENDFUNC
 
+STACKUSAGE utoa, 0
+STACKUSAGE __utoa, 0
 #endif	/* !__AVR_TINY__ */
 #endif	/* !__DOXYGEN__ */

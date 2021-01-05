@@ -57,6 +57,7 @@ _U(__strlen_P):
 .L_strlen_P_end:
 	.size	_U(__strlen_P), .L_strlen_P_end - _U(__strlen_P)
 
+STACKUSAGE _U(__strlen_P), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

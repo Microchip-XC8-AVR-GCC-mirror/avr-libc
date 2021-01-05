@@ -80,4 +80,5 @@ _U(__mulsi_const_10):
 
 	ret
 
+STACKUSAGE _U(__mulsi_const_10), 0
 #endif /* not __DOXYGEN__ */

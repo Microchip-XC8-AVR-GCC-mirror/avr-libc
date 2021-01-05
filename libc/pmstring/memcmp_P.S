@@ -66,7 +66,7 @@ _U(memcmp_P):
 	ret
 
 	.size	_U(memcmp_P), . - _U(memcmp_P)
-
+STACKUSAGE _U(memcmp_P), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

@@ -55,5 +55,7 @@ _U(ffs):
 9:	ret
 
     .size  _U(ffs), . - _U(ffs)
+STACKUSAGE _U(ffs), 0
     .end
+
 #endif	/* not __DOXYGEN__ */

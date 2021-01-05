@@ -52,6 +52,7 @@ ENTRY strchrnul_P
 	ret
 ENDFUNC
 
+STACKUSAGE strchrnul_P, 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

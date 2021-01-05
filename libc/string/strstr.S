@@ -96,6 +96,7 @@ _U(strstr):
 
 .size _U(strstr), . - _U(strstr)
 
+STACKUSAGE _U(strstr), 0
 #endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */
 

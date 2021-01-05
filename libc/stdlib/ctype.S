@@ -83,6 +83,8 @@ GLOBAL(isascii)
           RET
 
           ENDFUNC
+
+STACKUSAGE isascii, 0
 #endif
 
 #if defined (Ltoascii)
@@ -95,6 +97,7 @@ GLOBAL(toascii)
           RET
 
           ENDFUNC
+STACKUSAGE toascii, 0
 #endif
 
 #if defined (Lisalnum)
@@ -112,6 +115,7 @@ GLOBAL(isalnum)
 2:	ret
 
           ENDFUNC
+STACKUSAGE isalnum, 0
 #endif
 
 #if defined (Lcty_isfalse)
@@ -125,6 +129,8 @@ GLOBAL(__ctype_istrue)
           RET
 
           ENDFUNC
+STACKUSAGE __ctype_isfalse, 0
+STACKUSAGE __ctype_istrue, 0
 #endif
 
 ;-------------------------------------------------------------------
@@ -150,6 +156,9 @@ GLOBAL(islower)
           RET			; TRUE: rLow is in -26..-1
 
           ENDFUNC
+STACKUSAGE isupper, 0
+STACKUSAGE isalpha, 0
+STACKUSAGE islower, 0
 #endif
 
 ;-------------------------------------------------------------------
@@ -168,6 +177,7 @@ GLOBAL(isdigit)
           RET                      ; rLow: -10..-1
 
           ENDFUNC
+STACKUSAGE isdigit, 0
 #endif
 
 ;-------------------------------------------------------------------
@@ -195,6 +205,7 @@ GLOBAL(isxdigit)
 2:	ret				; OK: return a negative value
 
           ENDFUNC
+STACKUSAGE isxdigit, 0
 #endif
 
 ;-------------------------------------------------------------------
@@ -215,6 +226,7 @@ GLOBAL(iscntrl)
           RET			; TRUE: rLow is 0x7F or negative value
 
           ENDFUNC
+STACKUSAGE iscntrl, 0
 #endif
 
 ;-------------------------------------------------------------------
@@ -235,6 +247,8 @@ GLOBAL(isprint)
 	  RET			; TRUE: rlow is negative value
 
           ENDFUNC
+STACKUSAGE isgraph, 0
+STACKUSAGE isprint, 0
 #endif
 
 ;-------------------------------------------------------------------
@@ -260,6 +274,7 @@ GLOBAL(isspace)
 2:	  RET			; TRUE result: rLow is -5..-1 or ' '
 
           ENDFUNC
+STACKUSAGE isspace, 0
 #endif
 
 ;-------------------------------------------------------------------
@@ -282,6 +297,7 @@ GLOBAL(ispunct)
 	ret
 
           ENDFUNC
+STACKUSAGE ispunct, 0
 #endif
 
 ;-------------------------------------------------------------------
@@ -302,6 +318,7 @@ GLOBAL(isblank)
           RET
 
           ENDFUNC
+STACKUSAGE isblank, 0
 #endif
 
 ;-------------------------------------------------------------------
@@ -321,6 +338,7 @@ GLOBAL(tolower)
 	ret
 
           ENDFUNC
+STACKUSAGE tolower, 0
 #endif
 
 ;-------------------------------------------------------------------
@@ -340,6 +358,7 @@ GLOBAL(toupper)
 	ret
 
           ENDFUNC
+STACKUSAGE toupper, 0
 #endif
 
 #endif /* not __DOXYGEN__ */

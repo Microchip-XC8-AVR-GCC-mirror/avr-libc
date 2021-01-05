@@ -139,6 +139,7 @@ _U(atol):
 .L_atol_end:
 	.size _U(atol), .L_atol_end - _U(atol)
 
+STACKUSAGE _U(atol), 1
 #endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 
 #endif /* not __DOXYGEN__ */

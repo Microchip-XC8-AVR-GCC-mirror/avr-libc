@@ -59,5 +59,7 @@ ENTRY	__ultoa
 
 ENDFUNC
 
+STACKUSAGE ultoa, 0
+STACKUSAGE __ultoa, 0
 #endif	/* !__AVR_TINY__ */
 #endif	/* !__DOXYGEN__ */

@@ -215,4 +215,5 @@ ENTRY pow
 	XJMP	_U(exp)
 ENDFUNC
 
+STACKUSAGE pow, 5
 #endif /* !defined(__AVR_TINY__) */

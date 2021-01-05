@@ -42,4 +42,5 @@ _U(exit):
 
 	.size	_U(exit), . - _U(exit)
 
+STACKUSAGE _U(exit), 0
 #endif	/* !__DOXYGEN__	*/

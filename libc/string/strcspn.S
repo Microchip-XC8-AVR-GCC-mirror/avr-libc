@@ -69,6 +69,7 @@ _U(strcspn):
 
 	.size _U(strcspn), . - _U(strcspn)
 
+STACKUSAGE _U(strcspn), 0
 #endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif	/* !__DOXYGEN__ */
 

@@ -109,6 +109,7 @@ ENTRY exp
 	XJMP	_U(inverse)
 	ret
 ENDFUNC
+STACKUSAGE exp, 5
 	
 	PGM_SECTION
 .L_table:

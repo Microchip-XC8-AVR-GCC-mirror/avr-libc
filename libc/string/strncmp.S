@@ -68,5 +68,6 @@ _U(strncmp):
 .L_strncmp_end:
 	.size	_U(strncmp), .L_strncmp_end - _U(strncmp)
 
+STACKUSAGE _U(strncmp), 0
 #endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */

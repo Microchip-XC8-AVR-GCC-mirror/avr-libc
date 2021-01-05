@@ -75,6 +75,7 @@ _U(strrev):
 
     .size _U(strrev), . - _U(strrev)
 
+STACKUSAGE _U(strrev), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

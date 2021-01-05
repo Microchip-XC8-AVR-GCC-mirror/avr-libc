@@ -86,6 +86,7 @@ _U(memcmp_PF):
 
   .size _U(memcmp_PF), . - _U(memcmp_PF)
 
+STACKUSAGE _U(memcmp_PF), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

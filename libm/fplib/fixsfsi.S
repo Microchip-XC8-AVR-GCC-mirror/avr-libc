@@ -56,4 +56,5 @@ ENTRY __fixsfsi
 	ret
 ENDFUNC
 
+STACKUSAGE __fixsfsi, 0
 #endif /* !defined(__AVR_TINY__) */

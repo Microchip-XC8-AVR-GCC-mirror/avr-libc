@@ -40,8 +40,28 @@
   _PROTECTED_WRITE_SPM (NVMCTRL.CTRLA, ((uint8_t)(command)));
 
 #undef NVM_PAGEERASEWRITE_CMD
+#if defined(__AVR_AVR64EA28__) \
+ || defined(__AVR_AVR64EA32__) \
+ || defined(__AVR_AVR64EA48__) \
+ || defined(__AVR_AVR32EA28__) \
+ || defined(__AVR_AVR32EA32__) \
+ || defined(__AVR_AVR32EA48__) \
+ || defined(__AVR_AVR16EA28__) \
+ || defined(__AVR_AVR16EA32__) \
+ || defined(__AVR_AVR16EA48__) \
+ || defined(__AVR_AVR8EA28__) \
+ || defined(__AVR_AVR8EA32__)
+
+#define NVM_PAGEERASEWRITE_CMD \
+  NVMCTRL_CMD_EEPERW_gc
+
+#else
+
 #define NVM_PAGEERASEWRITE_CMD \
   NVMCTRL_CMD_PAGEERASEWRITE_gc
+
+#endif
+
 #endif
 
 extern void ccp_write_io (volatile uint8_t *__ioaddr, uint8_t __value);

@@ -88,3 +88,5 @@ ENTRY __fp_mintl
 	bld	rA3, 7		; sign
 	ret
 ENDFUNC
+
+STACKUSAGE __fp_mintl, 0

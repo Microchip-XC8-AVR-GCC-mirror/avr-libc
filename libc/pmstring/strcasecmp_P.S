@@ -84,6 +84,7 @@ _U(strcasecmp_P):
 
 	.size   _U(strcasecmp_P), . - _U(strcasecmp_P)
 
+STACKUSAGE _U(strcasecmp_P), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

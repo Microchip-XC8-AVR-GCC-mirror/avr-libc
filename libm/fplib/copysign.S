@@ -42,3 +42,5 @@ ENTRY   copysign
 	bld	rA3, 7
 	ret
 ENDFUNC
+
+STACKUSAGE   copysign, 0

@@ -48,3 +48,5 @@ ENTRY isnan
 	adc	r24, r24
 1:	ret
 ENDFUNC
+
+STACKUSAGE isnan, 0

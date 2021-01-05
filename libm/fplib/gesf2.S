@@ -58,3 +58,6 @@ ENTRY   __gtsf2
 1:	ret
 
 ENDFUNC
+
+STACKUSAGE   __gesf2, 0
+STACKUSAGE   __gtsf2, 0

@@ -65,5 +65,7 @@ _U(ffsl):
 9:	ret
 
     .size  _U(ffsl), . - _U(ffsl)
+STACKUSAGE _U(ffsl), 0
     .end
+
 #endif	/* not __DOXYGEN__ */

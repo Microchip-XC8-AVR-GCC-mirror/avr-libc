@@ -57,3 +57,5 @@ ENTRY   __fp_negdi
 	sbci	rA3, -1
 	ret
 ENDFUNC
+
+STACKUSAGE   __fp_negdi, 0

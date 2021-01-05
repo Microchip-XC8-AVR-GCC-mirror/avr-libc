@@ -213,6 +213,7 @@ __ultoa_invert:
 	ret
 
 	.size	__ultoa_invert, . - __ultoa_invert
+STACKUSAGE __ultoa_invert, 1
 	.end
 
 #endif	/* !__DOXYGEN__ */

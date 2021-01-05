@@ -67,6 +67,7 @@ _U(strcspn_P):
 	ret
 
 	.size _U(strcspn_P), . - _U(strcspn_P)
+STACKUSAGE _U(strcspn_P), 0
 #endif	/* !__DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

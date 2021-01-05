@@ -38,6 +38,7 @@
 
 #include <avr/io.h>
 #include "sectionname.h"
+#include "stackusage.inc"
 
 /* if not defined, assume old version with underscores */
 #ifndef __USER_LABEL_PREFIX__

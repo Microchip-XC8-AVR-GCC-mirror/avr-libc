@@ -81,4 +81,5 @@ ENTRY fmin
 	ret
 ENDFUNC
 
+STACKUSAGE fmin, 0
 #endif /* !defined(__AVR_TINY__) */

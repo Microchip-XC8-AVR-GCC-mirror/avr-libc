@@ -113,4 +113,5 @@ ENTRY ldexp
 	XJMP	_U(__fp_szero)
 ENDFUNC
 
+STACKUSAGE ldexp, 0
 #endif /* !defined(__AVR_TINY__) */

@@ -96,6 +96,7 @@ _U(strlcpy_PF):
 
 	.size	_U(strlcpy_PF), .L_strlcpy_PF_end - _U(strlcpy_PF)
 
+STACKUSAGE _U(strlcpy_PF), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

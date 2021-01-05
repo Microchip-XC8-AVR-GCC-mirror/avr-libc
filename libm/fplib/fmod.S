@@ -133,4 +133,5 @@ ENTRY fmod
 	rjmp	8b
 ENDFUNC
 
+STACKUSAGE fmod, 0
 #endif /* !defined(__AVR_TINY__) */

@@ -53,4 +53,5 @@ ENTRY fma
 	XJMP	_U(__fp_round)
 ENDFUNC
 
+STACKUSAGE fma, 0
 #endif /* !defined(__AVR_TINY__) */

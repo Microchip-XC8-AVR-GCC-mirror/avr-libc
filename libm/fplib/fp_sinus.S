@@ -63,6 +63,7 @@ ENTRY __fp_sinus
 	ldi	ZH, hi8(.L_table)
 	XJMP	_U(__fp_powsodd)
 ENDFUNC
+STACKUSAGE __fp_sinus, 1
 	
 	PGM_SECTION
 .L_table:

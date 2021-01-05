@@ -78,4 +78,6 @@ ENTRY __fp_mpack_finite
 
 ENDFUNC
 
+STACKUSAGE __fp_mpack, 0
+STACKUSAGE __fp_mpack_finite, 0
 #endif /* !defined(__AVR_TINY__) */

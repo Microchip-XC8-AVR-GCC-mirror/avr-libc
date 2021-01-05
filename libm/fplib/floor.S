@@ -71,4 +71,5 @@ ENTRY floor
 .L_nf:	XJMP	_U(__fp_mpack)	; pass nonfinite arg as is
 ENDFUNC
 
+STACKUSAGE floor, 0
 #endif /* !defined(__AVR_TINY__) */

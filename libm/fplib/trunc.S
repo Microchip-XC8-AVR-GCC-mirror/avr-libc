@@ -50,3 +50,5 @@ ENTRY trunc
 1:	XJMP	_U(__fp_mintl)
 2:	XJMP	_U(__fp_mpack)
 ENDFUNC
+
+STACKUSAGE trunc, 0

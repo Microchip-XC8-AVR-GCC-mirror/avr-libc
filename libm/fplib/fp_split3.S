@@ -119,4 +119,6 @@ ENTRY   __fp_splitA
 	ret
 ENDFUNC
 
+STACKUSAGE   __fp_split3, 0
+STACKUSAGE   __fp_splitA, 0
 #endif /* !defined(__AVR_TINY__) */

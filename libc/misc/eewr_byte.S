@@ -190,6 +190,13 @@ ENTRY	eeprom_write_r18
 #endif		/* ----------------------------------------------------	*/
 
 ENDFUNC
+#if  __AVR_XMEGA__ && !defined (NVM_EEMAPEN_bm)
+STACKUSAGE eeprom_write_byte, 2
+STACKUSAGE eeprom_write_r18, 2
+#else
+STACKUSAGE eeprom_write_byte, 0
+STACKUSAGE eeprom_write_r18, 0
+#endif
 
 #endif	/* E2END && __AVR_ARCH__ > 1 */
 #endif	/* !__DOXYGEN__ */

@@ -67,6 +67,7 @@ _U(memchr):
 .L_memchr_end:
 	.size	_U(memchr), .L_memchr_end - _U(memchr)
 
+STACKUSAGE _U(memchr), 0
 #endif /* not __AVR_CONST_POINTER_IS_MEMX__ */
 #endif /* not __DOXYGEN__ */
 

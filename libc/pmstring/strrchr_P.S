@@ -61,6 +61,7 @@ _U(strrchr_P):
 
 	.size	_U(strrchr_P), . - _U(strrchr_P)
 
+STACKUSAGE _U(strrchr_P), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

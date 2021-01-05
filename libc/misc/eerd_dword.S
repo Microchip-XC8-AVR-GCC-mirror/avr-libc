@@ -76,5 +76,8 @@ ENTRY	eeprom_read_float
 
 ENDFUNC
 
+STACKUSAGE eeprom_read_dword, 0
+STACKUSAGE eeprom_read_float, 0
+
 #endif	/* E2END && __AVR_ARCH__ > 1 */
 #endif	/* !__DOXYGEN__ */

@@ -65,5 +65,6 @@ ENTRY	__ltoa_ncheck
 
 ENDFUNC
 
+STACKUSAGE __ltoa_ncheck, 0
 #endif	/* !__AVR_TINY__ */
 #endif	/* !__DOXYGEN__ */

@@ -70,6 +70,7 @@ _U(strspn_P):
 	ret
 
 	.size _U(strspn_P), . - _U(strspn_P)
+STACKUSAGE _U(strspn_P), 0
 #endif	/* !__DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

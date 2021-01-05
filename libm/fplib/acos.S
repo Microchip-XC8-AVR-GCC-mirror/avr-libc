@@ -65,4 +65,5 @@ ENTRY acos
 1:	XJMP	_U(__fp_round)
 ENDFUNC
 
+STACKUSAGE acos, 1
 #endif /* !defined(__AVR_TINY__) */

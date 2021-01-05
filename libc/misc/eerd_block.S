@@ -163,5 +163,8 @@ ENTRY eeprom_read_blraw
 
 ENDFUNC
 
+STACKUSAGE eeprom_read_block, 0
+STACKUSAGE eeprom_read_blraw, 0
+
 #endif	/* E2END && __AVR_ARCH__ > 1 */
 #endif	/* !__DOXYGEN__ */

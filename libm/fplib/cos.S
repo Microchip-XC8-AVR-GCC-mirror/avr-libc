@@ -41,3 +41,5 @@ ENTRY cos
 	inc	ZL
 	XJMP	_U(__fp_sinus)
 ENDFUNC
+
+STACKUSAGE cos, 0

@@ -86,4 +86,5 @@ ENTRY __fp_trunc
 9:	ret			; C == 0
 ENDFUNC
 
+STACKUSAGE __fp_trunc, 0
 #endif /* !defined(__AVR_TINY__) */

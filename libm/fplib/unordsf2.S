@@ -44,3 +44,5 @@ ENTRY   __unordsf2
 	sbc	r25, r25
 	ret
 ENDFUNC
+
+STACKUSAGE   __unordsf2, 0

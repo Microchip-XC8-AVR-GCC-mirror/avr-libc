@@ -32,6 +32,7 @@
 #define _ASMDEF_H
 
 #include "sectionname.h"
+#include "stackusage.inc"
 
 /* Macros in this header use local symbols with `.L__' prefix. */
 
@@ -274,5 +275,6 @@ _U(\name):
 #endif
   .endif
 .endm
+
 
 #endif	/* !_ASMDEF_H */

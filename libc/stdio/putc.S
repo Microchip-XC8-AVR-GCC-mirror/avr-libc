@@ -42,3 +42,5 @@ _U(putc):
 	XJMP	fputc
 .L_putc_end:
 	.size	_U(putc), .L_putc_end - _U(putc)
+    
+ STACKUSAGE _U(putc), 0

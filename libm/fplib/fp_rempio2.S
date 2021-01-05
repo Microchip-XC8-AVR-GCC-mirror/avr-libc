@@ -99,6 +99,8 @@ ENTRY __fp_rempio2
 	XJMP	_U(__fp_mpack_finite)
 ENDFUNC
 
+STACKUSAGE __fp_rempio2, 0
+
 #if 0
 /* This is a test program to find the smallest value of rA2.1.0.E after
    division. The nonzero value gives a garanty that normalization loop

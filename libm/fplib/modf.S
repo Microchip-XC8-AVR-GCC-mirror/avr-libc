@@ -114,4 +114,6 @@ ENTRY modff
 1:	ret
 ENDFUNC
 
+STACKUSAGE modf, 0
+STACKUSAGE modff, 0
 #endif /* !defined(__AVR_TINY__) */

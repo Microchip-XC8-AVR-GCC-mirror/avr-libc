@@ -72,4 +72,5 @@ ENTRY   ceil
 .L_nf:	XJMP	_U(__fp_mpack)	; pass nonfinite arg as is
 ENDFUNC
 
+STACKUSAGE   ceil, 0
 #endif /* !defined(__AVR_TINY__) */

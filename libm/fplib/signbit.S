@@ -50,3 +50,4 @@ ENTRY signbit
 	clr	rA3
 	ret
 ENDFUNC
+STACKUSAGE signbit, 0

@@ -59,5 +59,6 @@ _U(strnlen):
 .L_strnlen_end:
 	.size	_U(strnlen), .L_strnlen_end - _U(strnlen)
 
+STACKUSAGE _U(strnlen), 0
 #endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */

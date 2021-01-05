@@ -93,4 +93,5 @@ ENTRY round
 
 ENDFUNC
 
+STACKUSAGE round, 0
 #endif /* !defined(__AVR_TINY__) */

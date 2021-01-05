@@ -104,6 +104,7 @@ _U(memcpy_PF):
 
 	.size	_U(memcpy_PF), .L_memcpy_PF_end - _U(memcpy_PF)
 
+STACKUSAGE _U(memcpy_PF), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

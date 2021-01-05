@@ -97,6 +97,7 @@ ENTRY tan
 3:	pop	rsign
 	ret
 ENDFUNC
+STACKUSAGE tan, 1
 	
 	PGM_SECTION
 .L_table:
@@ -109,3 +110,4 @@ ENDFUNC
 	.byte	0xea,0x69,0xaa,0xaa,0x3e	;  0.3333314036
 	.byte	0x00,0x00,0x00,0x80,0x3f	;  1.0000000000
 	.end
+

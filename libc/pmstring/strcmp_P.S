@@ -60,6 +60,7 @@ _U(strcmp_P):
 .L_strcmp_P_end:
 	.size	_U(strcmp_P), .L_strcmp_P_end - _U(strcmp_P)
 
+STACKUSAGE _U(strcmp_P), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

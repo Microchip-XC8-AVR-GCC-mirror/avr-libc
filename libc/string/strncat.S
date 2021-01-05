@@ -71,6 +71,7 @@ _U(strncat):
 .L_strncat_end:
 	.size	_U(strncat), .L_strncat_end - _U(strncat)
 
+STACKUSAGE _U(strncat), 0
 #endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 
 #endif /* not __DOXYGEN__ */

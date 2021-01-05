@@ -186,4 +186,6 @@ ALIAS_ENTRY sqrtf
 	ret
 ENDFUNC
 
+STACKUSAGE sqrt, 0
+STACKUSAGE sqrtf, 0
 #endif /* !defined(__AVR_TINY__) */

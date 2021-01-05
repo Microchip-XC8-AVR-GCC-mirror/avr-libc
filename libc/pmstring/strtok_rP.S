@@ -211,6 +211,7 @@ ENTRY strtok_rP
 
 ENDFUNC
 
+STACKUSAGE strtok_rP, 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

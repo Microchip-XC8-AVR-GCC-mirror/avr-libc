@@ -80,6 +80,7 @@ ENTRY	eeprom_write_block
 	ret
 
 ENDFUNC
+STACKUSAGE eeprom_write_block, 0
 #endif  /* All except __AVR_XMEGA__ && E2PAGESIZE */
 #endif	/* E2END && __AVR_ARCH__ > 1 */
 #endif  /* !__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */

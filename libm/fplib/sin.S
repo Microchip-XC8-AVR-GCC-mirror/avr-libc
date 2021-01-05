@@ -47,4 +47,5 @@ ENTRY sin
 	XJMP	_U(__fp_sinus)
 ENDFUNC
 
+STACKUSAGE sin, 1
 #endif /* !defined(__AVR_TINY__) */

@@ -44,4 +44,5 @@ _U(abort):
 
 	.size	_U(abort), . - _U(abort)
 
+STACKUSAGE _U(abort), 0
 #endif	/* !__DOXYGEN__	*/

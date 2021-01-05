@@ -66,3 +66,5 @@ ENTRY cosh
 	pop	rB3
 	XJMP	_U(__addsf3)
 ENDFUNC
+
+STACKUSAGE cosh, 4

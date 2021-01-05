@@ -40,3 +40,5 @@ ENTRY	__divsf3
 	XCALL	_U(__divsf3x)
 	XJMP	_U(__fp_round)
 ENDFUNC
+
+STACKUSAGE __divsf3, 0

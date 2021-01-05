@@ -68,3 +68,5 @@ ENTRY __fp_powsodd
 	pop	rB3
 	XJMP	_U(__mulsf3)
 ENDFUNC
+
+STACKUSAGE __fp_powsodd, 6

@@ -93,5 +93,7 @@ ENTRY	__utoa_common
 
 ENDFUNC
 
+STACKUSAGE __utoa_ncheck, 0
+STACKUSAGE __utoa_common, 0
 #endif	/* !__AVR_TINY__ */
 #endif	/* !__DOXYGEN__ */

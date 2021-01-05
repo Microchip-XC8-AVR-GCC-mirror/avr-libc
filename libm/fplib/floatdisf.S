@@ -44,4 +44,7 @@ ENTRY   __floatdisf
 	brtc	1f
 	XCALL	_U(__fp_negdi)
 1:	XJMP	_U(__fp_di2sf)
+
 ENDFUNC
+
+STACKUSAGE   __floatdisf, 0

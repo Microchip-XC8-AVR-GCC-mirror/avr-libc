@@ -78,6 +78,7 @@ _U(strcat_PF):
 
 	.size	_U(strcat_PF), .L_strcat_PF_end - _U(strcat_PF)
 
+STACKUSAGE _U(strcat_PF), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

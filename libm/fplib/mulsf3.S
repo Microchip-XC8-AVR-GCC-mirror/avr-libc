@@ -36,3 +36,5 @@ ENTRY   __mulsf3
 	XCALL	_U(__mulsf3x)
 	XJMP	_U(__fp_round)
 ENDFUNC
+
+STACKUSAGE   __mulsf3, 0

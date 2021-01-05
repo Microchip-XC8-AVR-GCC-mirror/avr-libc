@@ -75,6 +75,7 @@ ENTRY asin
 	subi	rA3, 0x80
 	ret
 ENDFUNC
+STACKUSAGE asin, 1
 
 	PGM_SECTION
 .L_table:

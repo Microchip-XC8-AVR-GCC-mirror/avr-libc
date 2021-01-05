@@ -46,4 +46,7 @@ ENTRY   __fp_inf
 	ldi	rA1, 0
 	ldi	rA0, 0
 	ret
+
 ENDFUNC
+
+STACKUSAGE   __fp_inf, 0

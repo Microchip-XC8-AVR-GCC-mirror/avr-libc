@@ -45,14 +45,14 @@
 
 PATH=/usr/xpg4/bin:$PATH
 
-CFLAGS_SPACE="-mcall-prologues -Os"
-CFLAGS_TINY_STACK="-msp8 -mcall-prologues -Os"
-CFLAGS_SHORT_CALLS="-mshort-calls -mcall-prologues -Os"
-CFLAGS_BIG_MEMORY='-Os $(FNO_JUMP_TABLES)'
-CFLAGS_SPEED="-Os"
+CFLAGS_SPACE="-mcall-prologues -Os -mchp-stack-usage"
+CFLAGS_TINY_STACK="-msp8 -mcall-prologues -Os -mchp-stack-usage"
+CFLAGS_SHORT_CALLS="-mshort-calls -mcall-prologues -Os -mchp-stack-usage"
+CFLAGS_BIG_MEMORY='-Os $(FNO_JUMP_TABLES) -mchp-stack-usage'
+CFLAGS_SPEED="-Os -mchp-stack-usage"
 
 # option for multilib - const data in memx
-CFLAGS_MEMX_CONST="-mconst-data-in-progmem"
+CFLAGS_MEMX_CONST="-mconst-data-in-progmem -mchp-stack-usage"
 ASFLAGS_MEMX_CONST="-mconst-data-in-progmem"
 
 ASFLAGS_SPEED="-DOPTIMIZE_SPEED"

@@ -48,6 +48,7 @@ ENTRY	eeprom_write_word
 	XJMP	eeprom_write_r18
 
 ENDFUNC
+STACKUSAGE eeprom_write_word, 0
 
 #endif	/* E2END && __AVR_ARCH__ > 1 */
 #endif	/* !__DOXYGEN__ */

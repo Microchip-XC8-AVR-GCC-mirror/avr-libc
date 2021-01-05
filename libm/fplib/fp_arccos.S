@@ -124,6 +124,7 @@ ENTRY __fp_arccos
 
 #endif
 ENDFUNC
+STACKUSAGE __fp_arccos, 4
 	
 	PGM_SECTION
 .L_table:
@@ -137,3 +138,4 @@ ENDFUNC
 	.byte	0xcb,0xc9,0xbf,0x5b,0xbe	; -0.2145988016
 	.byte	0x73,0xda,0x0f,0xc9,0x3f	;  1.5707963050
 	.end
+

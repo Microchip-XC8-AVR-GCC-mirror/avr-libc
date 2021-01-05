@@ -175,4 +175,6 @@ ENTRY	__divsf3_pse		; post split entry
 	ret
 ENDFUNC
 
+STACKUSAGE __divsf3x, 0
+STACKUSAGE __divsf3_pse, 0
 #endif /* !defined(__AVR_TINY__) */

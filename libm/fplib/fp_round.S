@@ -64,4 +64,5 @@ ENTRY   __fp_round
 3:	ret
 ENDFUNC
 
+STACKUSAGE   __fp_round, 0
 #endif /* !defined(__AVR_TINY__) */

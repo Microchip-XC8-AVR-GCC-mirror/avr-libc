@@ -62,6 +62,7 @@ ENTRY memrchr_P
 	ret
 ENDFUNC
 
+STACKUSAGE memrchr_P, 0
 #endif /* not __DOXYGEN__ */
 
 #endif /*!defined(__AVR_TINY__) */

@@ -114,6 +114,7 @@ ENTRY strlcat_P
 
 ENDFUNC
 
+STACKUSAGE strlcat_P, 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

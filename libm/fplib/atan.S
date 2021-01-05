@@ -101,6 +101,7 @@ ENTRY atan
 2:	pop	corr
 	XJMP	_U(__fp_round)
 ENDFUNC
+STACKUSAGE atan, 5
 
 	PGM_SECTION
 .L_table:

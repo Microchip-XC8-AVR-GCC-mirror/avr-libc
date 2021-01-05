@@ -80,6 +80,8 @@ _U(strsep_P):
 	ret
 
 	.size	_U(strsep_P), . - _U(strsep_P)
+    
+STACKUSAGE _U(strsep_P), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

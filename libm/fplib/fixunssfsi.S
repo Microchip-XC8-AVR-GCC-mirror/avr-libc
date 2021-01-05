@@ -128,3 +128,5 @@ ENTRY __fixunssfsi
 6:	ret
 
 ENDFUNC
+
+STACKUSAGE __fixunssfsi, 0

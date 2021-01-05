@@ -89,4 +89,5 @@ _U(strncasecmp):
 
 	.size	_U(strncasecmp), . - _U(strncasecmp)
 
+STACKUSAGE _U(strncasecmp), 0
 #endif /* not __DOXYGEN__ */

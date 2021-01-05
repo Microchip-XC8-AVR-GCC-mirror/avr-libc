@@ -64,6 +64,7 @@ _U(strchr):
 .L_strchr_end:
 	.size	_U(strchr), .L_strchr_end - _U(strchr)
 
+STACKUSAGE _U(strchr), 0
 #endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */
 

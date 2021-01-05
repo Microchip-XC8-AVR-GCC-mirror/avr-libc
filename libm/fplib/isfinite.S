@@ -47,3 +47,5 @@ ENTRY isfinite
 	sbc	rA2, rA2
 	ret
 ENDFUNC
+
+STACKUSAGE isfinite, 0

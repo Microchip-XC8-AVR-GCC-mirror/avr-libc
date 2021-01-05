@@ -122,4 +122,5 @@ ENTRY lround
 
 ENDFUNC
 
+STACKUSAGE lround, 0
 #endif /* !defined(__AVR_TINY__) */

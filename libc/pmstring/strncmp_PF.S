@@ -87,6 +87,7 @@ _U(strncmp_PF):
 
 	.size	_U(strncmp_PF), .L_strncmp_PF_end - _U(strncmp_PF)
 
+STACKUSAGE _U(strncmp_PF), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

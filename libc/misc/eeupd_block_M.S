@@ -123,6 +123,8 @@ ENTRY	eeprom_update_block
 
 ENDFUNC
 
+STACKUSAGE eeprom_update_block, 3
+
 #endif	/* E2END && __AVR_ARCH__ > 1 */
 #endif  /* __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif	/* !__DOXYGEN__ */

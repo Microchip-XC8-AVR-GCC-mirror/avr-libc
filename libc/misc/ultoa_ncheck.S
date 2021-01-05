@@ -112,5 +112,7 @@ ENTRY	__ultoa_common
 
 ENDFUNC
 
+STACKUSAGE __ultoa_ncheck, 0
+STACKUSAGE __ultoa_common, 0
 #endif	/* !__AVR_TINY__ */
 #endif	/* !__DOXYGEN__ */

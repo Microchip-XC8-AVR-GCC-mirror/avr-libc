@@ -40,3 +40,5 @@ ENTRY   __fp_nan
 	ldi	rA2, 0xC0
 	ret
 ENDFUNC
+
+STACKUSAGE   __fp_nan, 0

@@ -36,3 +36,4 @@
 ldiv:
 	XJMP	__divmodsi4
 
+STACKUSAGE ldiv, 0

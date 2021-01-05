@@ -42,3 +42,5 @@ _U(getc):
 	XJMP	fgetc
 .L_getc_end:
 	.size	_U(getc), .L_getc_end - _U(getc)
+
+STACKUSAGE _U(getc), 0

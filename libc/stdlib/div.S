@@ -35,3 +35,4 @@
 div:
 	XJMP	__divmodhi4
 
+STACKUSAGE div, 0

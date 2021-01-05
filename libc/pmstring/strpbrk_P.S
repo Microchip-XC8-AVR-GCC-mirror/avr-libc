@@ -67,6 +67,8 @@ _U(strpbrk_P):
 3:	ret
 
 	.size _U(strpbrk_P), . - _U(strpbrk_P)
+
+STACKUSAGE _U(strpbrk_P), 0
 #endif	/* !__DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

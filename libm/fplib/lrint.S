@@ -134,4 +134,5 @@ ENTRY lrint
 
 ENDFUNC
 
+STACKUSAGE lrint, 0
 #endif /* !defined(__AVR_TINY__) */

@@ -71,5 +71,6 @@ _U(memmove):
 .L_memmove_end:
 	.size	_U(memmove), .L_memmove_end - _U(memmove)
 
+STACKUSAGE _U(memmove), 0
 #endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */

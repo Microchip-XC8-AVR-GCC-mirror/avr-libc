@@ -59,6 +59,8 @@ ENTRY	__itoa
 	ret
 
 ENDFUNC
+STACKUSAGE itoa, 0
+STACKUSAGE __itoa, 0
 
 #endif	/* !__AVR_TINY__ */
 #endif	/* !__DOXYGEN__ */

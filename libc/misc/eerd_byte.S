@@ -112,5 +112,11 @@ ENTRY	eeprom_mapen
 
 ENDFUNC
 
+STACKUSAGE eeprom_read_byte, 0
+
+#if	__AVR_XMEGA__
+STACKUSAGE eeprom_mapen, 0
+#endif
+
 #endif	/* E2END && __AVR_ARCH__ > 1 */
 #endif	/* !__DOXYGEN__ */

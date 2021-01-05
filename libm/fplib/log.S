@@ -133,6 +133,7 @@ ENTRY log
 	XCALL	_U(__addsf3x)
 	XJMP	_U(__fp_round)
 ENDFUNC
+STACKUSAGE log, 5
 	
 	PGM_SECTION
 

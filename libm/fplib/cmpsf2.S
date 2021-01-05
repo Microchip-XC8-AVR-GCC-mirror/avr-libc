@@ -61,3 +61,9 @@ ENTRY   __lesf2
 1:	ret
 
 ENDFUNC
+
+STACKUSAGE   __cmpsf2, 0
+STACKUSAGE   __eqsf2, 0
+STACKUSAGE   __nesf2, 0
+STACKUSAGE   __ltsf2, 0
+STACKUSAGE   __lesf2, 0

@@ -251,3 +251,5 @@ ENTRY hypot
 	com	exp_hi
 	XJMP	_U(ldexp)
 ENDFUNC
+
+STACKUSAGE hypot, 6

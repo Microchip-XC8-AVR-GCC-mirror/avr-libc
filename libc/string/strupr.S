@@ -64,4 +64,5 @@ _U(strupr):
 
 	.size	_U(strupr), . - _U(strupr)
 
+STACKUSAGE _U(strupr), 0
 #endif /* not __DOXYGEN__ */

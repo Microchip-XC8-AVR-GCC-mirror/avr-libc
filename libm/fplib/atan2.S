@@ -142,4 +142,5 @@ ENTRY   atan2
 9:	ret
 ENDFUNC
 
+STACKUSAGE   atan2, 1
 #endif /* !defined(__AVR_TINY__) */

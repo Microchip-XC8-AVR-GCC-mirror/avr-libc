@@ -42,3 +42,5 @@ ENTRY square
 
 	XJMP	_U(__mulsf3)	; A * B
 ENDFUNC
+
+STACKUSAGE square, 0

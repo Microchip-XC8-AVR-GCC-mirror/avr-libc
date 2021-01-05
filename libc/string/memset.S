@@ -71,4 +71,5 @@ _U(memset):
 .L_memset_end:
 	.size	_U(memset), .L_memset_end - _U(memset)
 
+STACKUSAGE _U(memset), 0
 #endif /* not __DOXYGEN__ */

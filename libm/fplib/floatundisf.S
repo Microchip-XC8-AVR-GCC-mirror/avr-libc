@@ -130,4 +130,6 @@ ENTRY   __fp_di2sf
 	ret
 ENDFUNC
 
+STACKUSAGE   __floatundisf, 0
+STACKUSAGE   __fp_di2sf, 0
 #endif /* !defined(__AVR_TINY__) */

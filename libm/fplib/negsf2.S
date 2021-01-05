@@ -39,3 +39,5 @@ ENTRY   __negsf2
 	subi	rA3, 0x80
 	ret
 ENDFUNC
+
+STACKUSAGE   __negsf2, 0

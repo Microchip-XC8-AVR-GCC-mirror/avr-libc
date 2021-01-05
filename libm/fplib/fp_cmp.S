@@ -101,4 +101,5 @@ ENTRY	__fp_cmp
 9:	ret
 ENDFUNC
 
+STACKUSAGE __fp_cmp, 0
 #endif /* !defined(__AVR_TINY__) */

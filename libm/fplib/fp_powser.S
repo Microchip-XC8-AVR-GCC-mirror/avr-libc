@@ -107,4 +107,5 @@ ENTRY __fp_powser
 	ret
 ENDFUNC
 
+STACKUSAGE __fp_powser, 7
 #endif /* !defined(__AVR_TINY__) */

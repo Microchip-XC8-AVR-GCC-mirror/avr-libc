@@ -44,3 +44,6 @@ ENTRY	__addsf3
 	XCALL	_U(__addsf3x)
 	XJMP	_U(__fp_round)
 ENDFUNC
+
+STACKUSAGE __addsf3, 0
+STACKUSAGE __subsf3, 0

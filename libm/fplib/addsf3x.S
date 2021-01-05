@@ -175,4 +175,5 @@ ENTRY	__addsf3x
 	ret
 ENDFUNC
 
+STACKUSAGE __addsf3x, 0
 #endif /* !defined(__AVR_TINY__) */

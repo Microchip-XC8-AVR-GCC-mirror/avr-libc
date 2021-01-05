@@ -54,4 +54,5 @@ ENTRY isinf
 2:	ret
 ENDFUNC
 
+STACKUSAGE isinf, 0
 #endif /* !defined(__AVR_TINY__) */

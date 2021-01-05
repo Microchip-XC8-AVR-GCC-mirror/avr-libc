@@ -75,4 +75,5 @@ _U(__mulhi_const_10):
 #endif
 	ret
 
+STACKUSAGE _U(__mulhi_const_10), 0
 #endif /* not __DOXYGEN__ */

@@ -52,6 +52,8 @@ ENTRY	eeprom_write_float
 	XJMP	eeprom_write_word	; val_hlo, val_hhi
 
 ENDFUNC
+STACKUSAGE eeprom_write_dword, 0
+STACKUSAGE eeprom_write_float, 0
 
 #endif	/* E2END && __AVR_ARCH__ > 1 */
 #endif	/* !__DOXYGEN__ */

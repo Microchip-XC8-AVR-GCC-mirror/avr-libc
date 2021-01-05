@@ -72,5 +72,7 @@ ENTRY	eeprom_read_word
 
 ENDFUNC
 
+STACKUSAGE eeprom_read_word, 0
+
 #endif	/* E2END && __AVR_ARCH__ > 1 */
 #endif	/* !__DOXYGEN__ */

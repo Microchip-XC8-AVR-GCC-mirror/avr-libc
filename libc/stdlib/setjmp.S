@@ -175,4 +175,8 @@ _U(longjmp):
 #endif
 	.size	_U(longjmp), . - _U(longjmp)
 
+STACKUSAGE _U(setjmp), 0
+/* longjmp restores SP to whatever it was when setjmp
+    was called, so no real way to statically know size. */
+STACKUSAGE_DYNUNBOUNDED _U(longjmp), 0
 #endif	/* !__DOXYGEN__ */

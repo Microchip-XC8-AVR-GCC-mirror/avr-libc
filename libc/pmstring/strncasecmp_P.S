@@ -90,6 +90,7 @@ _U(strncasecmp_P):
 
 	.size	_U(strncasecmp_P), . - _U(strncasecmp_P)
 
+STACKUSAGE _U(strncasecmp_P), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

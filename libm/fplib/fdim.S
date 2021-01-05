@@ -84,4 +84,5 @@ ENTRY fdim
 .L_nan:	XJMP	_U(__fp_nan)
 ENDFUNC
 
+STACKUSAGE fdim, 0
 #endif /* !defined(__AVR_TINY__) */

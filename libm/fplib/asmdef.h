@@ -31,6 +31,8 @@
 #ifndef	_ASMDEF_H
 #define _ASMDEF_H
 
+#include "stackusage.inc"
+
 #ifndef __AVR_HAVE_MOVW__
 # if  defined(__AVR_ENHANCED__) && __AVR_ENHANCED__
 #  define __AVR_HAVE_MOVW__ 1

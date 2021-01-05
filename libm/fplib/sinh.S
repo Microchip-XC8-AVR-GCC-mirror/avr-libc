@@ -90,6 +90,7 @@ ENTRY sinh
 	ori	rA3, 0x80
 	ret
 ENDFUNC
+STACKUSAGE sinh, 5
 	
 	PGM_SECTION
 .L_table:

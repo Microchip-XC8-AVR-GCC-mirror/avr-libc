@@ -41,3 +41,5 @@ ENTRY __fp_norm2
 	brpl	1b
 	ret
 ENDFUNC
+
+STACKUSAGE __fp_norm2, 0

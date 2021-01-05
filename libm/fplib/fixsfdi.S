@@ -159,3 +159,6 @@ ENTRY	__fixunssfdi
 	X_movw	rA2, rA0
 	ret
 ENDFUNC
+
+STACKUSAGE __fixsfdi, 0
+STACKUSAGE __fixunssfdi, 0

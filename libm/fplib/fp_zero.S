@@ -46,3 +46,6 @@ ENTRY   __fp_szero
 	bld	rA3, 7
 	ret
 ENDFUNC
+
+STACKUSAGE __fp_zero, 0
+STACKUSAGE   __fp_szero, 0

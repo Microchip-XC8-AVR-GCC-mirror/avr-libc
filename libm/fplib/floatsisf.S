@@ -115,4 +115,6 @@ ENTRY   __floatsisf
 9:	ret
 ENDFUNC
 
+STACKUSAGE   __floatunsisf, 0
+STACKUSAGE   __floatsisf, 0
 #endif /* !defined(__AVR_TINY__) */

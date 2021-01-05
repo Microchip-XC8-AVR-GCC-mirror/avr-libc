@@ -41,5 +41,7 @@ atof:
 	XJMP	strtod
 
 	.size atof, .-atof
+STACKUSAGE atof, 0
 	.end
+
 #endif	/* !__DOXYGEN__ */

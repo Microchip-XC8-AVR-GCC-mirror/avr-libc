@@ -49,3 +49,5 @@ ENTRY inverse
 
 	XJMP	_U(__divsf3)
 ENDFUNC
+
+STACKUSAGE inverse, 0

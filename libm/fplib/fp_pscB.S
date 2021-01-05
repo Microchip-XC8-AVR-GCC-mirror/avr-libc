@@ -52,4 +52,5 @@ ENTRY   __fp_pscB
 	ret
 ENDFUNC
 
+STACKUSAGE   __fp_pscB, 0
 #endif /* !defined(__AVR_TINY__) */

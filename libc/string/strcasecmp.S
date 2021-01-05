@@ -83,5 +83,6 @@ _U(strcasecmp):
 
 	.size	_U(strcasecmp), . - _U(strcasecmp)
 
+STACKUSAGE _U(strcasecmp), 0
 #endif /* not __AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__ */
 #endif /* not __DOXYGEN__ */

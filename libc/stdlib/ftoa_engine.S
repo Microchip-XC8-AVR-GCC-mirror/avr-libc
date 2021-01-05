@@ -470,6 +470,7 @@ __ftoa_engine:
 
     .size  __ftoa_engine, . - __ftoa_engine
 
+STACKUSAGE __ftoa_engine, 6
 /* --------------------------------------------------------------------
     Tables.  '.L_powr10' is placed first -- for subnormals stability.
 */
@@ -531,6 +532,7 @@ __ftoa_engine:
     .size .L_base10, . - .L_base10
 
 	.end
+
 #endif	/* !__DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

@@ -72,6 +72,7 @@ _U(strncpy_P):
 .L_strncpy_P_end:
 	.size	_U(strncpy_P), .L_strncpy_P_end - _U(strncpy_P)
 
+STACKUSAGE _U(strncpy_P), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

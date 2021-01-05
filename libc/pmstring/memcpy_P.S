@@ -78,7 +78,8 @@ _U(memcpy_P):
 	ret
 .L_memcpy_P_end:
 	.size	_U(memcpy_P), .L_memcpy_P_end - _U(memcpy_P)
-
+    
+STACKUSAGE _U(memcpy_P), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

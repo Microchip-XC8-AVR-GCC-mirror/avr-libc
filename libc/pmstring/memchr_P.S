@@ -83,6 +83,8 @@ _U(memchr_P):
 #endif
 
 	.size	_U(memchr_P), . - _U(memchr_P)
+
+STACKUSAGE _U(memchr_P), 0
 #endif /* not __DOXYGEN__ */
 
 #endif /* !defined(__AVR_TINY__) */

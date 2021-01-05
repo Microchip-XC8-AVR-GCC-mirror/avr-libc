@@ -58,5 +58,7 @@ ENTRY	__ltoa
 
 ENDFUNC
 
+STACKUSAGE ltoa, 0
+STACKUSAGE __ltoa, 0
 #endif	/* !__AVR_TINY__ */
 #endif	/* !__DOXYGEN__ */

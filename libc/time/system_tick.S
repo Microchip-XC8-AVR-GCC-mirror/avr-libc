@@ -33,6 +33,7 @@
 */
 
 #include <avr/common.h>
+#include "stackusage.inc"
 
     .global	system_tick
 	.type	system_tick, @function
@@ -58,3 +59,4 @@ system_tick:
     pop r24
     ret
 	.size	system_tick, .-system_tick
+STACKUSAGE system_tick, 2

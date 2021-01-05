@@ -254,4 +254,6 @@ ENTRY   __mulsf3_pse			; post split entry
 	ret
 ENDFUNC
 
+STACKUSAGE   __mulsf3x, 0
+STACKUSAGE   __mulsf3_pse, 0
 #endif /* !defined(__AVR_TINY__) */

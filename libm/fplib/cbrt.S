@@ -361,4 +361,5 @@ ENTRY cbrt
 
 ENDFUNC
 
+STACKUSAGE cbrt, 13
 #endif /* !defined(__AVR_TINY__) */
