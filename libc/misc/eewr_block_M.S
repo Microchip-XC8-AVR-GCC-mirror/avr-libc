@@ -37,7 +37,7 @@
 #if	E2END && __AVR_ARCH__ > 1
 
 /* Skip for Xmega with valid page size. Refer. eewr_block_xmega.c.  */
-#if !(__AVR_XMEGA__ && defined (E2PAGESIZE) && (E2PAGESIZE > 1))
+#if !(__AVR_XMEGA__ && defined (E2PAGESIZE) && (E2PAGESIZE >= 1))
 
 #include <avr/eeprom.h>
 #include "asmdef.h"

@@ -214,6 +214,44 @@ __bad_interrupt:
 ;	.func	__init
 __init:
 
+#ifdef __AVR_CONST_DATA_IN_CONFIG_MAPPED_PROGMEM__
+	.section .init1,code
+	.weak __MAPPED_FLASH_SECTION__
+
+	/* Load SFR value to reg */
+	lds r24, NVMCTRL_CTRLB
+	/* Clear all FLMAP bits */
+	andi r24, ~NVMCTRL_FLMAP_gm
+	/* Set to mapped section */
+	ori r24, __MAPPED_FLASH_SECTION__
+	/* Lock the selection. Cannot combine with previous instruction
+	   because assembler cannot create a reloc for one operand of |. */
+	ori r24, (1 << NVMCTRL_FLMAPLOCK_bp)
+	/* Write back to SFR */
+	sts NVMCTRL_CTRLB, r24
+
+/* Expose possible symbol values for __MAPPED_FLASH_SECTION__ for the linker */
+	.global	 __FLMAP_SECTION0__
+	.set __FLMAP_SECTION0__, ((0 << NVMCTRL_FLMAP1_bp) | (0 << NVMCTRL_FLMAP0_bp))
+	.global	 __FLMAP_SECTION1__
+	.set __FLMAP_SECTION1__, ((0 << NVMCTRL_FLMAP1_bp) | (1 << NVMCTRL_FLMAP0_bp))
+	.global	 __FLMAP_SECTION2__
+	.set __FLMAP_SECTION2__, ((1 << NVMCTRL_FLMAP1_bp) | (0 << NVMCTRL_FLMAP0_bp))
+	.global	 __FLMAP_SECTION3__
+	.set __FLMAP_SECTION3__, ((1 << NVMCTRL_FLMAP1_bp) | (1 << NVMCTRL_FLMAP0_bp))
+
+/* Explicitly setting __MAPPED_FLASH_SECTION__ to zero (i.e __FLMAP_SECTION0__
+   with value zero) causes the assembler to emit an absolute reloc
+   (i.e *ABS*, not against __MAPPED_FLASH_SECTION__), with symbol value zero.
+   Whatever value the linker sets for __MAPPED_FLASH_SECTION__ will end up
+   having no effect, as the reloc is absolute.
+   Therefore, set to __FLMAP_SECTION0__ only if it is non-zero. */
+.ifne __FLMAP_SECTION0__
+    .set __MAPPED_FLASH_SECTION__, __FLMAP_SECTION0__
+.endif
+
+#endif
+
 #ifndef __AVR_ASM_ONLY__
 	.weak	__stack
 

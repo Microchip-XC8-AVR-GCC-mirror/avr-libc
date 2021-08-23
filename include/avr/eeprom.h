@@ -45,6 +45,13 @@
 #define EEARL EEAR
 #endif
 
+#if (EEPROM_PAGE_SIZE == 1)
+/* True for Dx devices right now, can write directly
+   to mapped EEPROM mem by just setting mode to
+   EEERWR, writing bytes and then clearing mode. */
+#define __EEPROM_NON_PAGE_WRITE_AVAILABLE__ 1
+#endif
+
 #ifndef	__ASSEMBLER__
 
 #include <stddef.h>	/* size_t */

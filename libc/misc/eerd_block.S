@@ -63,8 +63,15 @@ ENTRY eeprom_read_block
 #if  __AVR_XMEGA__	/* --------------------------------------------	*/
 
 #if defined (__AVR_CONST_DATA_IN_MEMX_ADDRESS_SPACE__)
-	X_movw  r22, r20
-	X_movw  r20, r18
+ ; As eepr is a const void *, it sits in R20:R21:R22
+ ; so adjust eepr_lo and eepr_hi accordingly. Set R22
+ ; to 0x80 so that memcpy below correctly copies from
+ ; EEPROM mapped data address space.
+	#undef eepr_lo
+	#undef eepr_hi
+	#define eepr_lo r20
+	#define eepr_hi r21
+	ori r22, 0x80
 #endif
 
   ; It has to be noted that for some Xmega parts (Eg. Xmega E family) EEPROM

@@ -636,7 +636,9 @@
 
 #include <avr/common.h>
 
+#ifdef __WITH_AVRLIBC__
 #include <avr/version.h>
+#endif
 
 #if __AVR_ARCH__ >= 100
 #  include <avr/xmega.h>

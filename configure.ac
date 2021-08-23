@@ -1902,6 +1902,11 @@ AC_CONFIG_FILES([
 	avr/lib/avrxmega2/memx-const/atxmega32e5/Makefile
 ])
 
+# avrxmega2/memx-const/mapped
+AC_CONFIG_FILES([
+	avr/lib/avrxmega2/memx-const/mapped/Makefile
+])
+
 # avrxmega3
 AC_CONFIG_FILES([
 	avr/lib/avrxmega3/Makefile
@@ -1940,6 +1945,11 @@ AC_CONFIG_FILES([
 	avr/lib/avrxmega4/memx-const/atxmega64c3/Makefile
 	avr/lib/avrxmega4/memx-const/atxmega64d3/Makefile
 	avr/lib/avrxmega4/memx-const/atxmega64d4/Makefile
+])
+
+# avrxmega4/memx-const/mapped
+AC_CONFIG_FILES([
+	avr/lib/avrxmega4/memx-const/mapped/Makefile
 ])
 
 # avrxmega5

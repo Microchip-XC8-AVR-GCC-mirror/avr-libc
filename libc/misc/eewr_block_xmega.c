@@ -3,7 +3,7 @@
 
 #include <avr/io.h>
 
-#if E2END && __AVR_XMEGA__ && defined(E2PAGESIZE) && (E2PAGESIZE > 1)
+#if E2END && __AVR_XMEGA__ && defined(E2PAGESIZE) && (E2PAGESIZE >= 1)
 
 #include <assert.h>
 #include "sectionname.h"
@@ -50,7 +50,16 @@
  || defined(__AVR_AVR16EA32__) \
  || defined(__AVR_AVR16EA48__) \
  || defined(__AVR_AVR8EA28__) \
- || defined(__AVR_AVR8EA32__)
+ || defined(__AVR_AVR8EA32__) \
+ || defined(__AVR_AVR8EA32__) \
+ || defined(__AVR_AVR8EB14__) \
+ || defined(__AVR_AVR8EB20__) \
+ || defined(__AVR_AVR8EB28__) \
+ || defined(__AVR_AVR8EB32__) \
+ || defined(__AVR_AVR16EB14__) \
+ || defined(__AVR_AVR16EB20__) \
+ || defined(__AVR_AVR16EB28__) \
+ || defined(__AVR_AVR16EB32__)
 
 #define NVM_PAGEERASEWRITE_CMD \
   NVMCTRL_CMD_EEPERW_gc
@@ -78,6 +87,12 @@ eeprom_write_page (const uint8_t *sram, uint16_t eeprom_addr,
   /* Wait till nvm is ready.  */
   NVMBUSY_WAIT();
 
+#ifdef __EEPROM_NON_PAGE_WRITE_AVAILABLE__
+  /* Enable erase/write mode. All successive writes to
+     mapped address will automatically be written to EEPROM.  */
+  _PROTECTED_WRITE_SPM (NVMCTRL.CTRLA, NVMCTRL_CMD_EEERWR_gc);
+#endif
+
   while (data_index < nbytes)
   {
     NVMBUSY_WAIT();
@@ -102,8 +117,13 @@ eeprom_write_page (const uint8_t *sram, uint16_t eeprom_addr,
     NVMADDRL = ((eeprom_addr & 0xff));
   #endif
 
+#ifdef __EEPROM_NON_PAGE_WRITE_AVAILABLE__
+    /* Clear erase/write mode */
+  _PROTECTED_WRITE_SPM (NVMCTRL.CTRLA, NVMCTRL_CMD_NONE_gc);
+#else
   /* Issue EEPROM erase and write command.  */
   NVM_WRITE_CMD (NVM_PAGEERASEWRITE_CMD);
+#endif
 }
 
 /* void eeprom_write_block (const void *sram, void *eeprom_addr, size_t length)
@@ -111,6 +131,14 @@ eeprom_write_page (const uint8_t *sram, uint16_t eeprom_addr,
 ATTRIBUTE_CLIB_SECTION
 void eeprom_write_block (const void *sram, void *eeprom_addr, size_t length)
 {
+#if __EEPROM_NON_PAGE_WRITE_AVAILABLE__
+/* For devices with that don't write by page, there is no need to split
+   writes by page. Could have made eeprom_write_block an alias to eeprom_write_page,
+   but the second parameter type (eeprom_addr) is pointer in one and a scalar type
+   in another. */
+   eeprom_write_page ((const uint8_t*)sram, (uint16_t)eeprom_addr, length);
+   return;
+#else
   #if defined (NVM_EEMAPEN_bm)
     /* enable memory map.  */
     NVM_CTRLB = NVM_CTRLB | NVM_EEMAPEN_bm;
@@ -131,6 +159,7 @@ void eeprom_write_block (const void *sram, void *eeprom_addr, size_t length)
     /* disable memory map.  */
     NVM_CTRLB = NVM_CTRLB & ~NVM_EEMAPEN_bm;
   #endif
+#endif /* __EEPROM_NON_PAGE_WRITE_AVAILABLE__ */
 }
 
 #endif  /* E2END && __AVR_XMEGA__ && E2PAGESIZE */

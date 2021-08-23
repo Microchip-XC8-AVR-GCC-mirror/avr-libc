@@ -60,6 +60,12 @@ ENTRY	eeprom_write_r18
 # ifndef  NVM_CMD_ERASE_EEPROM_BUFFER_gc
 #  define NVM_CMD_ERASE_EEPROM_BUFFER_gc	0x36
 # endif
+#ifndef NVMCTRL_CMD_EEERWR_gc
+#  define NVMCTRL_CMD_EEERWR_gc			0x13
+#endif
+#ifndef NVMCTRL_CMD_NONE_gc
+#  define NVMCTRL_CMD_NONE_gc			0x0
+#endif
 
 #if    ! defined (NVM_EEMAPEN_bm)
   ; Saving X register because it might contain source address of block
@@ -125,17 +131,30 @@ ENTRY	eeprom_write_r18
 
 	std	Z + NVM_DATA0 - NVM_BASE, r18
 #else
+#if defined (__EEPROM_NON_PAGE_WRITE_AVAILABLE__)
+  /* Enable erase/write mode. All successive writes to
+     mapped address will automatically be written to EEPROM.  */
+	ldi	r19, CCP_SPM_gc
+	out CCP, r19
+	ldi r19, NVMCTRL_CMD_EEERWR_gc
+	std Z + NVMCTRL_CTRLA - NVM_BASE, r19
+#endif  /* defined (__EEPROM_NON_PAGE_WRITE_AVAILABLE__) */
   	movw 	XL, addr_lo
 	subi	XL, lo8(-MAPPED_EEPROM_START)
 	sbci	XH, hi8(-MAPPED_EEPROM_START)
 	st	X, r18
 #endif
 
-  ; Issue EEPROM Erase & Write command.
+; Issue EEPROM Erase & Write command for page based
+; writes, and clear erase/write mode for non-page based ones.
 #if defined(NVMCTRL_CTRLA)
-	ldi	r18, CCP_SPM_gc
-	out CCP, r18
+	ldi	r19, CCP_SPM_gc
+	out	CCP, r19
+#if defined (__EEPROM_NON_PAGE_WRITE_AVAILABLE__)
+	ldi	r18, NVMCTRL_CMD_NONE_gc
+#else
 	ldi	r18, NVMCTRL_CMD_PAGEERASEWRITE_gc
+#endif /* defined (__EEPROM_NON_PAGE_WRITE_AVAILABLE__) */
 	std	Z + NVMCTRL_CTRLA - NVM_BASE, r18
 #else
 	ldi	r18, NVM_CMD_ERASE_WRITE_EEPROM_PAGE_gc

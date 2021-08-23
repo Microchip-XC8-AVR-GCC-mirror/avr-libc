@@ -96,6 +96,7 @@ Options:
   -s          Stop at any error, temparary files will save
   -L dyldpath Specify DYLD_LIBRARY_PATH
   -h          Print this help
+  -D dfpath   Specify DFP path to be passed with -mdfp option
 If FILE is not specified, the full test list is used.
 EOF
 }
@@ -103,7 +104,7 @@ EOF
 # -L dyld path, mac os x shell may purge dynamic linker environment
 #    variables such as DYLD_LIBRARY_PATH, So pass explicitly to simulavr
 #
-while getopts "a:icg:ktTsL:Mh" opt ; do
+while getopts "a:icg:ktTsL:MD:h" opt ; do
     case $opt in
 	a)	AVRDIR="$OPTARG" ;;
 	i)	AVRDIR= ;;
@@ -115,17 +116,20 @@ while getopts "a:icg:ktTsL:Mh" opt ; do
 	s)	FLAG_STOP=1 ;;
 	L)	LIBPATH="$OPTARG" ;;
     M)  MEMXCONST_FLAG="-mconst-data-in-progmem" ;;
+    D)  DFP_PATH="$OPTARG" ;;
 	h)	Usage `basename $myname` ; exit 0 ;;
 	*)	Errx "Invalid option(s). Try '-h' for more info."
     esac
 done
+MDFP_FLAG=${DFP_PATH:+"-mdfp=${DFP_PATH}"}
+
 shift $((OPTIND - 1))
 test_list=${*:-"time/*.c regression/*.c stdlib/*.c string/*.c pmstring/*.c \
 		printf/*.c scanf/*.c fplib/*.c math/*.c other/*.c \
 		avr/*.[cS]"}
 
 CPPFLAGS="-Wundef -I."
-CFLAGS="-gdwarf-4 -W -Wall -pipe -Os $MEMXCONST_FLAG"
+CFLAGS="-gdwarf-4 -W -Wall -pipe -Os $MEMXCONST_FLAG $MDFP_FLAG"
 CORE=core_avr_dump.core
 HOST_CC=gcc
 HOST_CFLAGS="-W -Wall -std=gnu99 -pipe -O2 -I."
