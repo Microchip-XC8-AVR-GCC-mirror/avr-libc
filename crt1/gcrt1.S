@@ -227,18 +227,21 @@ __init:
 	/* Lock the selection. Cannot combine with previous instruction
 	   because assembler cannot create a reloc for one operand of |. */
 	ori r24, (1 << NVMCTRL_FLMAPLOCK_bp)
+	/* Write IOREG signature to CCP */
+	ldi r25, 0xD8
+	out CCP, r25
 	/* Write back to SFR */
 	sts NVMCTRL_CTRLB, r24
 
 /* Expose possible symbol values for __MAPPED_FLASH_SECTION__ for the linker */
 	.global	 __FLMAP_SECTION0__
-	.set __FLMAP_SECTION0__, ((0 << NVMCTRL_FLMAP1_bp) | (0 << NVMCTRL_FLMAP0_bp))
+	.set __FLMAP_SECTION0__, ((0 << NVMCTRL_FLMAP_1_bp) | (0 << NVMCTRL_FLMAP_0_bp))
 	.global	 __FLMAP_SECTION1__
-	.set __FLMAP_SECTION1__, ((0 << NVMCTRL_FLMAP1_bp) | (1 << NVMCTRL_FLMAP0_bp))
+	.set __FLMAP_SECTION1__, ((0 << NVMCTRL_FLMAP_1_bp) | (1 << NVMCTRL_FLMAP_0_bp))
 	.global	 __FLMAP_SECTION2__
-	.set __FLMAP_SECTION2__, ((1 << NVMCTRL_FLMAP1_bp) | (0 << NVMCTRL_FLMAP0_bp))
+	.set __FLMAP_SECTION2__, ((1 << NVMCTRL_FLMAP_1_bp) | (0 << NVMCTRL_FLMAP_0_bp))
 	.global	 __FLMAP_SECTION3__
-	.set __FLMAP_SECTION3__, ((1 << NVMCTRL_FLMAP1_bp) | (1 << NVMCTRL_FLMAP0_bp))
+	.set __FLMAP_SECTION3__, ((1 << NVMCTRL_FLMAP_1_bp) | (1 << NVMCTRL_FLMAP_0_bp))
 
 /* Explicitly setting __MAPPED_FLASH_SECTION__ to zero (i.e __FLMAP_SECTION0__
    with value zero) causes the assembler to emit an absolute reloc

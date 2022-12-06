@@ -52,14 +52,13 @@
  || defined(__AVR_AVR8EA28__) \
  || defined(__AVR_AVR8EA32__) \
  || defined(__AVR_AVR8EA32__) \
- || defined(__AVR_AVR8EB14__) \
- || defined(__AVR_AVR8EB20__) \
- || defined(__AVR_AVR8EB28__) \
- || defined(__AVR_AVR8EB32__) \
  || defined(__AVR_AVR16EB14__) \
  || defined(__AVR_AVR16EB20__) \
  || defined(__AVR_AVR16EB28__) \
- || defined(__AVR_AVR16EB32__)
+ || defined(__AVR_AVR16EB32__) \
+ || defined(__AVR_AVR32EB28__) \
+ || defined(__AVR_AVR32EB32__) \
+ || defined(__AVR_AVRFPGAV3__)
 
 #define NVM_PAGEERASEWRITE_CMD \
   NVMCTRL_CMD_EEPERW_gc
@@ -69,6 +68,15 @@
 #define NVM_PAGEERASEWRITE_CMD \
   NVMCTRL_CMD_PAGEERASEWRITE_gc
 
+#endif
+
+/* avrfpgav3 has EEPROM_PAGE_SIZE set to 1, which enables
+   EEPROM_NON_PAGE_WRITE_AVAILABLE, but doesn't have
+   NVMCTRL_CMD_NONE_gc. Instead, use NVMCTRL_CMD_NOCMD_gc. */
+#if defined(__AVR_AVRFPGAV3__)
+#define NVM_CLEAR_CMD NVMCTRL_CMD_NOCMD_gc
+#else
+#define NVM_CLEAR_CMD NVMCTRL_CMD_NONE_gc
 #endif
 
 #endif
@@ -119,7 +127,7 @@ eeprom_write_page (const uint8_t *sram, uint16_t eeprom_addr,
 
 #ifdef __EEPROM_NON_PAGE_WRITE_AVAILABLE__
     /* Clear erase/write mode */
-  _PROTECTED_WRITE_SPM (NVMCTRL.CTRLA, NVMCTRL_CMD_NONE_gc);
+  _PROTECTED_WRITE_SPM (NVMCTRL.CTRLA, NVM_CLEAR_CMD);
 #else
   /* Issue EEPROM erase and write command.  */
   NVM_WRITE_CMD (NVM_PAGEERASEWRITE_CMD);
